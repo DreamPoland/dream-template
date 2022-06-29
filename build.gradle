@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'checkstyle'
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+}
+
+allprojects {
+    group 'cc.dreamcode'
+    version '1.0-SNAPSHOT'
+
+    apply plugin: 'java-library'
+    apply plugin: 'checkstyle'
+
+    java {
+        withSourcesJar()
+    }
+
+    idea {
+        project {
+            jdkName = "17"
+            languageLevel = "8"
+        }
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url "https://papermc.io/repo/repository/maven-public/" }
+        maven { url "https://repo.panda-lang.org/releases" }
+        maven { url "https://storehouse.okaeri.eu/repository/maven-public" }
+        maven { url "https://repo.codemc.io/repository/maven-public/" }
+        maven { url 'https://nexus.iridiumdevelopment.net/repository/maven-releases/' }
+    }
+}
+
+subprojects {
+    apply plugin: 'com.github.johnrengelman.shadow'
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
