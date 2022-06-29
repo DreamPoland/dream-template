@@ -11,7 +11,9 @@ public interface UserRepository extends DocumentRepository<UUID, User> {
 
     default User getOrCreate(OfflinePlayer player) {
         User user = this.findOrCreateByPath(player.getUniqueId());
-        if (player.getName() != null) user.setName(player.getName());
+        if (player.getName() != null) {
+            user.setName(player.getName());
+        }
 
         return user;
     }
