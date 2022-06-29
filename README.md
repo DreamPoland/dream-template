@@ -26,7 +26,7 @@ Thanks [Okaeri](https://github.com/OkaeriPoland) for [Object Document Mapping](h
 
 Build to jar by ``shadowJar`` gradle task.
 
-Libraries: <33
+**Libraries**: <33
 - [Okaeri-Configs](https://github.com/OkaeriPoland/okaeri-configs) by [Okaeri](https://github.com/OkaeriPoland)
 - [Okaeri-Persistence](https://github.com/OkaeriPoland/okaeri-persistence) by [Okaeri](https://github.com/OkaeriPoland)
 - [Okaeri-Injector](https://github.com/OkaeriPoland/okaeri-injector) by [Okaeri](https://github.com/OkaeriPoland)
