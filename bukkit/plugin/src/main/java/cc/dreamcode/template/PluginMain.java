@@ -129,6 +129,7 @@ public final class PluginMain extends PluginBootLoader {
 
     @Override
     public void stop() {
+        // save cache to database
         this.persistenceService.savePersistence(true, this.repositoryLoaders());
 
         PluginMain.getPluginLogger().info(String.format("Aktywna wersja: v%s - Autor: %s",
@@ -138,7 +139,6 @@ public final class PluginMain extends PluginBootLoader {
 
     /**
      * Complete all repository loader by writing it below.
-     * @return collection of repository loaders.
      */
     public Collection<RepositoryLoader> repositoryLoaders() {
         return Collections.singletonList(
