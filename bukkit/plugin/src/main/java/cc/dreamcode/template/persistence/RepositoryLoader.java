@@ -13,11 +13,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("ALL")
-public interface RepositoryLoader<REPO extends DocumentRepository> {
+public interface RepositoryLoader {
 
-    REPO getDatabaseRepository();
+    DocumentRepository getDatabaseRepository();
 
-    REPO getCacheRepository();
+    DocumentRepository getCacheRepository();
 
     List<Field> getDocumentFields();
 

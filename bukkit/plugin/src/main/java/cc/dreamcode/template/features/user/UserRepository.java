@@ -2,6 +2,7 @@ package cc.dreamcode.template.features.user;
 
 import cc.dreamcode.template.persistence.Repository;
 import cc.dreamcode.template.persistence.RepositoryLoader;
+import eu.okaeri.persistence.repository.DocumentRepository;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.OfflinePlayer;
@@ -12,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -21,15 +23,15 @@ public class UserRepository implements Repository<UserRepositoryCollection, Offl
     @Getter private final UserRepositoryCollection userCacheRepository;
 
     @Override
-    public RepositoryLoader<UserRepositoryCollection> getRepositoryLoader() {
-        return new RepositoryLoader<UserRepositoryCollection>() {
+    public RepositoryLoader getRepositoryLoader() {
+        return new RepositoryLoader() {
             @Override
-            public UserRepositoryCollection getDatabaseRepository() {
+            public DocumentRepository<UUID, User> getDatabaseRepository() {
                 return userDatabaseRepository;
             }
 
             @Override
-            public UserRepositoryCollection getCacheRepository() {
+            public DocumentRepository<UUID, User> getCacheRepository() {
                 return userCacheRepository;
             }
 
