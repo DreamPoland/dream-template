@@ -32,7 +32,6 @@ import eu.okaeri.injector.Injector;
 import eu.okaeri.injector.OkaeriInjector;
 import lombok.Getter;
 import lombok.Setter;
-import org.bukkit.plugin.java.annotation.dependency.SoftDependency;
 import org.bukkit.plugin.java.annotation.plugin.ApiVersion;
 import org.bukkit.plugin.java.annotation.plugin.Description;
 import org.bukkit.plugin.java.annotation.plugin.Plugin;
@@ -49,7 +48,7 @@ import java.util.stream.Stream;
 @Website("DreamCode - https://discord.gg/dreamcode")
 @ApiVersion(ApiVersion.Target.v1_13)
 
-@SoftDependency("FunnyGuilds")
+//@SoftDependency("FunnyGuilds")
 public final class PluginMain extends PluginBootLoader {
 
     @Getter private static PluginMain pluginMain;
