@@ -23,8 +23,8 @@ public class UserRepository implements Repository<OfflinePlayer, User> {
     @Getter private final UserRepositoryCollection userCacheRepository;
 
     @Override
-    public RepositoryLoader getRepositoryLoader() {
-        return new RepositoryLoader() {
+    public RepositoryLoader<UUID, User> getRepositoryLoader() {
+        return new RepositoryLoader<UUID, User>() {
             @Override
             public DocumentRepository<UUID, User> getDatabaseRepository() {
                 return userDatabaseRepository;

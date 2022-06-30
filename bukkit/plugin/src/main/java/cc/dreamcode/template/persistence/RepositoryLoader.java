@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@SuppressWarnings("ALL")
+@SuppressWarnings("all")
 public interface RepositoryLoader<PATH, T extends Document> {
 
     DocumentRepository<PATH, T> getDatabaseRepository();
