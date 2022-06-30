@@ -60,7 +60,7 @@ public class PersistenceService {
         try {
             long start = System.currentTimeMillis();
 
-            repositoryLoaders.forEach(RepositoryLoader::save);
+            repositoryLoaders.forEach(repositoryLoader -> repositoryLoader.save(true));
 
             if (close) {
                 this.persistenceHandler.getDatabasePersistence().close();
@@ -77,7 +77,8 @@ public class PersistenceService {
                                 .build()
                 );
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             PluginMain.getPluginLogger().error("Cannot interact with database.", e);
         }
     }

@@ -7,8 +7,8 @@ import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.exception.PluginRuntimeException;
 import cc.dreamcode.template.features.menu.MenuActionHandler;
-import cc.dreamcode.template.features.user.UserRepoFactory;
-import cc.dreamcode.template.features.user.UserRepoService;
+import cc.dreamcode.template.features.user.UserRepositoryFactory;
+import cc.dreamcode.template.features.user.UserRepository;
 import cc.dreamcode.template.nms.api.NmsAccessor;
 import cc.dreamcode.template.nms.v1_10_R1.V1_10_R1_NmsAccessor;
 import cc.dreamcode.template.nms.v1_11_R1.V1_11_R1_NmsAccessor;
@@ -55,7 +55,7 @@ public final class PluginMain extends PluginBootLoader {
 
     @Getter private PersistenceService persistenceService;
 
-    @Getter private UserRepoService userRepoService;
+    @Getter private UserRepository userRepository;
 
     @Getter @Setter Injector injector;
     @Getter private NmsAccessor nmsAccessor;
@@ -93,8 +93,8 @@ public final class PluginMain extends PluginBootLoader {
             );
             this.persistenceService.initializePersistence();
 
-            // include database tables
-            this.userRepoService = new UserRepoFactory(
+            // Add database tables
+            this.userRepository = new UserRepositoryFactory(
                     this,
                     this.persistenceService.getPersistenceHandler()
             ).getRepositoryService();
@@ -115,7 +115,7 @@ public final class PluginMain extends PluginBootLoader {
                 .registerInjectable(this.pluginConfig)
                 .registerInjectable(this.messageConfig)
 
-                .registerInjectable(this.userRepoService);
+                .registerInjectable(this.userRepository);
 
         // register components (commands, listener, task or else (need implement))
         this.componentHandler = new ComponentHandler(this)
@@ -142,7 +142,7 @@ public final class PluginMain extends PluginBootLoader {
      */
     public Collection<RepositoryLoader> repositoryLoaders() {
         return Collections.singletonList(
-                this.userRepoService.getRepositoryLoader()
+                this.userRepository.getRepositoryLoader()
         );
     }
 

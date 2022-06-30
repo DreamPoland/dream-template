@@ -8,26 +8,25 @@ import eu.okaeri.persistence.repository.RepositoryDeclaration;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class UserRepoFactory implements PersistenceInitializer<UserRepoService> {
+public class UserRepositoryFactory implements PersistenceInitializer<UserRepository> {
 
     private final PluginMain plugin;
     private final PersistenceHandler persistenceHandler;
 
     @Override
-    public UserRepoService getRepositoryService() {
-        PersistenceCollection persistenceCollection = PersistenceCollection.of(UserRepository.class);
+    public UserRepository getRepositoryService() {
+        PersistenceCollection persistenceCollection = PersistenceCollection.of(UserRepositoryCollection.class);
 
         this.persistenceHandler.registerCollection(persistenceCollection);
 
-        return new UserRepoService(
-                this.plugin.getPluginConfig().debug,
-                RepositoryDeclaration.of(UserRepository.class)
+        return new UserRepository(
+                RepositoryDeclaration.of(UserRepositoryCollection.class)
                         .newProxy(
                                 this.persistenceHandler.getDatabasePersistence(),
                                 persistenceCollection,
                                 this.plugin.getClass().getClassLoader()
                         ),
-                RepositoryDeclaration.of(UserRepository.class)
+                RepositoryDeclaration.of(UserRepositoryCollection.class)
                         .newProxy(
                                 this.persistenceHandler.getInMemoryPersistence(),
                                 persistenceCollection,

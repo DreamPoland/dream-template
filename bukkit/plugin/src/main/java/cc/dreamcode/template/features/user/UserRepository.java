@@ -1,21 +1,67 @@
 package cc.dreamcode.template.features.user;
 
-import eu.okaeri.persistence.repository.DocumentRepository;
-import eu.okaeri.persistence.repository.annotation.DocumentCollection;
+import cc.dreamcode.template.persistence.Repository;
+import cc.dreamcode.template.persistence.RepositoryLoader;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.bukkit.OfflinePlayer;
 
-import java.util.UUID;
+import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-@DocumentCollection(path = "users", keyLength = 36)
-public interface UserRepository extends DocumentRepository<UUID, User> {
+@RequiredArgsConstructor
+public class UserRepository implements Repository<UserRepositoryCollection, OfflinePlayer, User> {
 
-    default User getOrCreate(OfflinePlayer player) {
-        User user = this.findOrCreateByPath(player.getUniqueId());
-        if (player.getName() != null) {
-            user.setName(player.getName());
-        }
+    @Getter private final UserRepositoryCollection userDatabaseRepository;
+    @Getter private final UserRepositoryCollection userCacheRepository;
 
-        return user;
+    @Override
+    public RepositoryLoader<UserRepositoryCollection> getRepositoryLoader() {
+        return new RepositoryLoader<UserRepositoryCollection>() {
+            @Override
+            public UserRepositoryCollection getDatabaseRepository() {
+                return userDatabaseRepository;
+            }
+
+            @Override
+            public UserRepositoryCollection getCacheRepository() {
+                return userCacheRepository;
+            }
+
+            @Override
+            public List<Field> getDocumentFields() {
+                return Arrays.stream(User.class.getDeclaredFields()).collect(Collectors.toList());
+            }
+        };
     }
 
+    @Override
+    public boolean contains(OfflinePlayer offlinePlayer) {
+        return this.userCacheRepository.existsByPath(offlinePlayer.getUniqueId());
+    }
+
+    @Override
+    public Optional<User> getByKey(OfflinePlayer offlinePlayer) {
+        return this.userCacheRepository.findByPath(offlinePlayer.getUniqueId());
+    }
+
+    @Override
+    public Set<User> getSet() {
+        return new HashSet<>(this.userCacheRepository.findAll());
+    }
+
+    @Override
+    public User getOrCreate(OfflinePlayer offlinePlayer) {
+        return this.userCacheRepository.getOrCreate(offlinePlayer);
+    }
+
+    @Override
+    public void remove(OfflinePlayer offlinePlayer) {
+        this.userCacheRepository.deleteByPath(offlinePlayer.getUniqueId());
+    }
 }

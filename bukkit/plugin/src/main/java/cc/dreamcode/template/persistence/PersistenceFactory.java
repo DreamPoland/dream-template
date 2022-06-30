@@ -28,8 +28,15 @@ public class PersistenceFactory {
     public DocumentPersistence getDatabasePersistence(File pluginFolder) {
         final PersistencePath persistencePath = PersistencePath.of(this.storageConfig.prefix);
 
-        try { Class.forName("org.mariadb.jdbc.Driver"); } catch (ClassNotFoundException ignored) { }
-        try { Class.forName("org.h2.Driver"); } catch (ClassNotFoundException ignored) { }
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+        }
+        catch (ClassNotFoundException ignored) { }
+
+        try {
+            Class.forName("org.h2.Driver");
+        }
+        catch (ClassNotFoundException ignored) { }
 
         switch (this.storageConfig.backendSave) {
             case FLAT:
@@ -85,7 +92,7 @@ public class PersistenceFactory {
                 MongoClientURI mongoUri = new MongoClientURI(this.storageConfig.uri);
                 MongoClient mongoClient = new MongoClient(mongoUri);
 
-                if(mongoUri.getDatabase() == null) {
+                if (mongoUri.getDatabase() == null) {
                     throw new IllegalArgumentException("Mongo URI database not found: " + mongoUri.getURI());
                 }
 
