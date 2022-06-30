@@ -1,8 +1,18 @@
+Working with template:
+-----
+Clone this repo to your account, rename package name, then by pressing ``CTRL + SHIFT + R`` change all variables to your plugin name. (Template --> PluginName).
+
+Finally, remove all **unnecessary** template functions.
+
+Build to jar by ``shadowJar`` gradle task.
+
 **Required:**
+-----
 - Spigot 1.8x-1.19x
 - Java 8-17.
 
 **Example usage data:**
+----------
 ```java
 public class RandomActionHandler implements Listener {
     
@@ -24,7 +34,7 @@ public class RandomActionHandler implements Listener {
 ``` 
 Thanks [Okaeri](https://github.com/OkaeriPoland) for [Object Document Mapping](https://github.com/OkaeriPoland/okaeri-persistence) library
 
-Build to jar by ``shadowJar`` gradle task.
+------
 
 **Libraries**: <33
 - [Okaeri-Configs](https://github.com/OkaeriPoland/okaeri-configs) by [Okaeri](https://github.com/OkaeriPoland)
