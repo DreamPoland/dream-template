@@ -22,7 +22,7 @@ public class StorageConfig extends OkaeriConfig {
             "REDIS  : redis://{host}[:{port}]?db={database}&password={password}",
             "MYSQL  : jdbc:mysql://{host}[:{port}]/{database}?user={name}&password={password}",
             "MONGO  : mongodb://{name}:{password}@{host}[:{port}]/{database}?authSource=admin",
-            "H2     : jdbc:h2:file:./plugins/dream-storage;mode=mysql"})
+            "H2     : jdbc:h2:file:./plugins/dream-template;mode=mysql"})
     public String uri = "flat";
 
     @Comment("Co ile maja byc zapisywane dane do database?")
