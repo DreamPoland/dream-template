@@ -2,7 +2,6 @@ package cc.dreamcode.template.persistence;
 
 import cc.dreamcode.template.PluginLogger;
 import cc.dreamcode.template.PluginMain;
-import cc.dreamcode.template.exception.PluginRuntimeException;
 import cc.dreamcode.template.features.user.User;
 import eu.okaeri.persistence.document.Document;
 import eu.okaeri.persistence.repository.DocumentRepository;
@@ -13,24 +12,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("ALL")
-public interface RepositoryLoader {
+public interface RepositoryLoader<PATH, T extends Document> {
 
-    DocumentRepository getDatabaseRepository();
+    DocumentRepository<PATH, T> getDatabaseRepository();
 
-    DocumentRepository getCacheRepository();
+    DocumentRepository<PATH, T> getCacheRepository();
 
     List<Field> getDocumentFields();
 
     default void load() {
         long start = System.currentTimeMillis();
 
-        this.getDatabaseRepository().findAll().forEach(object -> {
-            if (!(object instanceof Document)) {
-                throw new PluginRuntimeException("Object is not document.");
-            }
-
-            Document document = (Document) object;
-            Document documentToLoad = this.getCacheRepository().findOrCreateByPath(document.getPath());
+        this.getDatabaseRepository().findAll().forEach(document -> {
+            Document documentToLoad = this.getCacheRepository().findOrCreateByPath((PATH) document.getPath());
 
             this.getDocumentFields().stream()
                     .map(Field::getName)
@@ -58,24 +52,14 @@ public interface RepositoryLoader {
     default void save(boolean printNotice) {
         long start = System.currentTimeMillis();
 
-        this.getDatabaseRepository().findAll().forEach(object -> {
-            if (!(object instanceof Document)) {
-                throw new PluginRuntimeException("Object is not document.");
-            }
-
-            Document document = (Document) object;
-            if (!this.getCacheRepository().findByPath(document.getPath()).isPresent()) {
-                this.getDatabaseRepository().deleteByPath(document.getPath());
+        this.getDatabaseRepository().findAll().forEach(document -> {
+            if (!this.getCacheRepository().findByPath((PATH) document.getPath()).isPresent()) {
+                this.getDatabaseRepository().deleteByPath((PATH) document.getPath());
             }
         });
 
-        this.getCacheRepository().findAll().forEach(object -> {
-            if (!(object instanceof Document)) {
-                throw new PluginRuntimeException("Object is not document.");
-            }
-
-            Document document = (Document) object;
-            Document documentToSave = this.getDatabaseRepository().findOrCreateByPath(document.getPath());
+        this.getCacheRepository().findAll().forEach(document -> {
+            Document documentToSave = this.getDatabaseRepository().findOrCreateByPath((PATH) document.getPath());
 
             this.getDocumentFields().stream()
                     .map(Field::getName)
