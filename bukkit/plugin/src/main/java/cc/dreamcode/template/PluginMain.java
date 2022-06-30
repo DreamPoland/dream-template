@@ -148,6 +148,8 @@ public final class PluginMain extends PluginBootLoader {
         this.persistenceService.savePersistence(true,
                 this.persistenceService.getPersistenceHandler().getRepositoryLoaderList());
 
+        // features need to be call by stop server
+
         PluginMain.getPluginLogger().info(String.format("Aktywna wersja: v%s - Autor: %s",
                 getDescription().getVersion(),
                 getDescription().getAuthors()));
