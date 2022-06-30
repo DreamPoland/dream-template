@@ -44,6 +44,8 @@ dependencies {
     // -- RGB-CHAT --
     implementation 'com.iridium:IridiumColorAPI:1.0.6'
 
+    compileOnly 'net.dzikoysk.funnyguilds:plugin:4.10.1'
+
     // -- lombok --
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
