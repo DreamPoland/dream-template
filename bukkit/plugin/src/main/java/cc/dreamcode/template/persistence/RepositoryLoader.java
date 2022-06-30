@@ -2,12 +2,10 @@ package cc.dreamcode.template.persistence;
 
 import cc.dreamcode.template.PluginLogger;
 import cc.dreamcode.template.PluginMain;
-import cc.dreamcode.template.features.user.User;
 import eu.okaeri.persistence.document.Document;
 import eu.okaeri.persistence.repository.DocumentRepository;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,7 +40,7 @@ public interface RepositoryLoader<PATH, T extends Document> {
                         .name(this.getCacheRepository().getCollection().getValue())
                         .took(took)
                         .meta("size", this.getCacheRepository().count())
-                        .meta("values", Arrays.stream(User.class.getDeclaredFields())
+                        .meta("values", this.getDocumentFields().stream()
                                 .map(Field::getName)
                                 .collect(Collectors.joining(", ")))
                         .build()
@@ -78,7 +76,7 @@ public interface RepositoryLoader<PATH, T extends Document> {
                             .name(this.getCacheRepository().getCollection().getValue())
                             .took(took)
                             .meta("size", this.getDatabaseRepository().count())
-                            .meta("values", Arrays.stream(User.class.getDeclaredFields())
+                            .meta("values", this.getDocumentFields().stream()
                                     .map(Field::getName)
                                     .collect(Collectors.joining(", ")))
                             .build()
