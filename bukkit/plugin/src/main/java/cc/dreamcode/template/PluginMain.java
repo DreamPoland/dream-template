@@ -7,8 +7,8 @@ import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.exception.PluginRuntimeException;
 import cc.dreamcode.template.features.menu.MenuActionHandler;
-import cc.dreamcode.template.features.user.UserRepositoryFactory;
 import cc.dreamcode.template.features.user.UserRepository;
+import cc.dreamcode.template.features.user.UserRepositoryFactory;
 import cc.dreamcode.template.nms.api.NmsAccessor;
 import cc.dreamcode.template.nms.v1_10_R1.V1_10_R1_NmsAccessor;
 import cc.dreamcode.template.nms.v1_11_R1.V1_11_R1_NmsAccessor;
@@ -37,8 +37,6 @@ import org.bukkit.plugin.java.annotation.plugin.Website;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
 
 import java.io.File;
-import java.util.Collection;
-import java.util.Collections;
 
 @Plugin(name = "Dream-Template", version = "1.0-SNAPSHOT")
 @Author("Ravis96")
@@ -100,7 +98,8 @@ public final class PluginMain extends PluginBootLoader {
             ).getRepositoryService();
 
             // load database to cache
-            this.repositoryLoaders().forEach(RepositoryLoader::load);
+            this.persistenceService.getPersistenceHandler().getRepositoryLoaderList()
+                    .forEach(RepositoryLoader::load);
 
             // register other services
 
@@ -130,20 +129,12 @@ public final class PluginMain extends PluginBootLoader {
     @Override
     public void stop() {
         // save cache to database
-        this.persistenceService.savePersistence(true, this.repositoryLoaders());
+        this.persistenceService.savePersistence(true,
+                this.persistenceService.getPersistenceHandler().getRepositoryLoaderList());
 
         PluginMain.getPluginLogger().info(String.format("Aktywna wersja: v%s - Autor: %s",
                 getDescription().getVersion(),
                 getDescription().getAuthors()));
-    }
-
-    /**
-     * Complete all repository loader by writing it below.
-     */
-    public Collection<RepositoryLoader> repositoryLoaders() {
-        return Collections.singletonList(
-                this.userRepository.getRepositoryLoader()
-        );
     }
 
     public NmsAccessor hookNmsAccessor() {

@@ -37,7 +37,8 @@ public class PersistenceService {
 
         this.pluginMain.getServer().getScheduler().runTaskTimerAsynchronously(
                 this.pluginMain,
-                () -> this.pluginMain.getPersistenceService().savePersistence(false, this.pluginMain.repositoryLoaders()),
+                () -> this.pluginMain.getPersistenceService().savePersistence(false,
+                        this.persistenceHandler.getRepositoryLoaderList()),
                 storageConfig.saveDataTimer,
                 storageConfig.saveDataTimer
         );

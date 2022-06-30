@@ -32,7 +32,9 @@ public class PluginCMD extends CommandUse implements NoticeService {
 
         if (args.length == 1) {
             if (args[0].equalsIgnoreCase("load-data")) {
-                this.pluginMain.repositoryLoaders().forEach(RepositoryLoader::load);
+                this.pluginMain.getPersistenceService().getPersistenceHandler().getRepositoryLoaderList()
+                        .forEach(RepositoryLoader::load);
+
                 this.send(this.messageConfig.dataLoaded, sender);
                 return;
             }

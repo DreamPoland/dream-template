@@ -8,6 +8,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.lang.Validate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -15,6 +18,8 @@ public class PersistenceHandler {
 
     private DocumentPersistence databasePersistence;
     private DocumentPersistence inMemoryPersistence;
+
+    private final List<RepositoryLoader> repositoryLoaderList = new ArrayList<>();
 
     public void registerCollection(@NonNull PersistenceCollection collection) {
         Validate.notNull(this.databasePersistence, "DatabasePersistence cannot be null!");

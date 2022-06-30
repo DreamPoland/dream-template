@@ -19,7 +19,7 @@ public class UserRepositoryFactory implements PersistenceInitializer<UserReposit
 
         this.persistenceHandler.registerCollection(persistenceCollection);
 
-        return new UserRepository(
+        UserRepository userRepository = new UserRepository(
                 RepositoryDeclaration.of(UserRepositoryCollection.class)
                         .newProxy(
                                 this.persistenceHandler.getDatabasePersistence(),
@@ -33,5 +33,9 @@ public class UserRepositoryFactory implements PersistenceInitializer<UserReposit
                                 this.plugin.getClass().getClassLoader()
                         )
         );
+
+        this.persistenceHandler.getRepositoryLoaderList().add(userRepository.getRepositoryLoader());
+
+        return userRepository;
     }
 }
