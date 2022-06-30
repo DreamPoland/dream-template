@@ -17,7 +17,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public class UserRepository implements Repository<UserRepositoryCollection, OfflinePlayer, User> {
+public class UserRepository implements Repository<OfflinePlayer, User> {
 
     @Getter private final UserRepositoryCollection userDatabaseRepository;
     @Getter private final UserRepositoryCollection userCacheRepository;
