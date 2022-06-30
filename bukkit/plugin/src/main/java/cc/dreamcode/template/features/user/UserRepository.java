@@ -58,8 +58,12 @@ public class UserRepository implements Repository<OfflinePlayer, User> {
     }
 
     @Override
-    public User getOrCreate(OfflinePlayer offlinePlayer) {
-        return this.userCacheRepository.getOrCreate(offlinePlayer);
+    public User get(OfflinePlayer offlinePlayer, boolean createWhenNull) {
+        if (createWhenNull) {
+            return this.userCacheRepository.getOrCreate(offlinePlayer);
+        }
+
+        return this.userCacheRepository.get(offlinePlayer);
     }
 
     @Override

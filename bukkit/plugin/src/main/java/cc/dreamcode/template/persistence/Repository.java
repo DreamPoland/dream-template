@@ -13,7 +13,7 @@ public interface Repository<K, V> {
 
     Set<V> getSet();
 
-    V getOrCreate(K t);
+    V get(K k, boolean create);
 
     void remove(K k);
 
