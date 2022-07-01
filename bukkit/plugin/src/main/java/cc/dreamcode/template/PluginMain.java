@@ -9,6 +9,7 @@ import cc.dreamcode.template.exception.PluginRuntimeException;
 import cc.dreamcode.template.features.hook.HookService;
 import cc.dreamcode.template.features.hook.plugins.FunnyGuildsHook;
 import cc.dreamcode.template.features.menu.MenuActionHandler;
+import cc.dreamcode.template.features.user.UserActionHandler;
 import cc.dreamcode.template.features.user.UserRepository;
 import cc.dreamcode.template.features.user.UserRepositoryFactory;
 import cc.dreamcode.template.nms.api.NmsAccessor;
@@ -30,8 +31,9 @@ import cc.dreamcode.template.persistence.RepositoryLoader;
 import com.cryptomorin.xseries.ReflectionUtils;
 import eu.okaeri.injector.Injector;
 import eu.okaeri.injector.OkaeriInjector;
+import eu.okaeri.tasker.bukkit.BukkitTasker;
+import eu.okaeri.tasker.core.Tasker;
 import lombok.Getter;
-import lombok.Setter;
 import org.bukkit.plugin.java.annotation.plugin.ApiVersion;
 import org.bukkit.plugin.java.annotation.plugin.Description;
 import org.bukkit.plugin.java.annotation.plugin.Plugin;
@@ -62,7 +64,8 @@ public final class PluginMain extends PluginBootLoader {
 
     @Getter private HookService hookService;
 
-    @Getter @Setter Injector injector;
+    @Getter private Injector injector;
+    @Getter private Tasker tasker;
     @Getter private NmsAccessor nmsAccessor;
     @Getter private ComponentHandler componentHandler;
 
@@ -72,6 +75,7 @@ public final class PluginMain extends PluginBootLoader {
         pluginLogger = new PluginLogger(pluginMain.getLogger());
 
         this.injector = OkaeriInjector.create();
+        this.tasker = BukkitTasker.newPool(this);
         this.nmsAccessor = this.hookNmsAccessor();
 
         try {
@@ -123,6 +127,7 @@ public final class PluginMain extends PluginBootLoader {
         }
 
         this.injector.registerInjectable(this)
+                .registerInjectable(this.tasker)
                 .registerInjectable(this.nmsAccessor)
                 .registerInjectable(this.pluginConfig)
                 .registerInjectable(this.messageConfig)
@@ -134,6 +139,7 @@ public final class PluginMain extends PluginBootLoader {
         // register components (commands, listener, task or else (need implement))
         this.componentHandler = new ComponentHandler(this)
                 .registerComponent(new PluginCMD())
+                .registerComponent(new UserActionHandler())
                 .registerComponent(new MenuActionHandler());
 
         PluginMain.getPluginLogger().info(String.format("Aktywna wersja: v%s - Autor: %s",

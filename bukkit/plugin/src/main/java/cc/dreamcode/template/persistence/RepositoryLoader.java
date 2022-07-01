@@ -18,20 +18,22 @@ public interface RepositoryLoader<PATH, T extends Document> {
 
     List<Field> getDocumentFields();
 
+    default void load(Document document) {
+        Document documentToLoad = this.getCacheRepository().findOrCreateByPath((PATH) document.getPath());
+
+        this.getDocumentFields().stream()
+                .map(Field::getName)
+                .forEach(fieldName -> {
+                    documentToLoad.set(fieldName, document.get(fieldName));
+                });
+
+        documentToLoad.save();
+    }
+
     default void load() {
         long start = System.currentTimeMillis();
 
-        this.getDatabaseRepository().findAll().forEach(document -> {
-            Document documentToLoad = this.getCacheRepository().findOrCreateByPath((PATH) document.getPath());
-
-            this.getDocumentFields().stream()
-                    .map(Field::getName)
-                    .forEach(fieldName -> {
-                        documentToLoad.set(fieldName, document.get(fieldName));
-                    });
-
-            documentToLoad.save();
-        });
+        this.getDatabaseRepository().findAll().forEach(document -> load(document));
 
         long took = System.currentTimeMillis() - start;
         PluginMain.getPluginLogger().info(
@@ -47,6 +49,18 @@ public interface RepositoryLoader<PATH, T extends Document> {
         );
     }
 
+    default void save(Document document) {
+        Document documentToSave = this.getDatabaseRepository().findOrCreateByPath((PATH) document.getPath());
+
+        this.getDocumentFields().stream()
+                .map(Field::getName)
+                .forEach(fieldName -> {
+                    documentToSave.set(fieldName, document.get(fieldName));
+                });
+
+        documentToSave.save();
+    }
+
     default void save(boolean printNotice) {
         long start = System.currentTimeMillis();
 
@@ -56,17 +70,7 @@ public interface RepositoryLoader<PATH, T extends Document> {
             }
         });
 
-        this.getCacheRepository().findAll().forEach(document -> {
-            Document documentToSave = this.getDatabaseRepository().findOrCreateByPath((PATH) document.getPath());
-
-            this.getDocumentFields().stream()
-                    .map(Field::getName)
-                    .forEach(fieldName -> {
-                        documentToSave.set(fieldName, document.get(fieldName));
-                    });
-
-            documentToSave.save();
-        });
+        this.getCacheRepository().findAll().forEach(document -> save(document));
 
         if (printNotice) {
             long took = System.currentTimeMillis() - start;

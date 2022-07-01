@@ -32,6 +32,9 @@ dependencies {
     // -- placeholders --
     implementation 'eu.okaeri:okaeri-placeholders-bukkit:3.0.4'
 
+    // -- tasker --
+    implementation 'eu.okaeri:okaeri-tasker-bukkit:1.1.7'
+
     // -- scoreboard --
     implementation 'fr.mrmicky:fastboard:1.2.1'
 
