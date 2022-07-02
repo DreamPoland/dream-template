@@ -25,16 +25,15 @@ public class PluginCMD extends CommandUse {
     @Override
     public void run(@NonNull CommandSender sender, @NonNull String[] args) {
         whenNot(sender.hasPermission("rpl." + this.getName()), this.messageConfig.noPermission);
-        whenNot(args.length == 1, this.messageConfig.usage, new ImmutableMap.Builder<String, Object>()
+        whenNot(args.length == 1 &&
+                args[0].equalsIgnoreCase("load-data"), this.messageConfig.usage, new ImmutableMap.Builder<String, Object>()
                 .put("usage", "/plugin [load-data]")
                 .build());
 
-        if (args[0].equalsIgnoreCase("load-data")) {
-            this.pluginMain.getPersistenceService().getPersistenceHandler().getRepositoryLoaderList()
-                    .forEach(RepositoryLoader::load);
+        this.pluginMain.getPersistenceService().getPersistenceHandler().getRepositoryLoaderList()
+                .forEach(RepositoryLoader::load);
 
-            this.send(this.messageConfig.dataLoaded, sender);
-        }
+        this.send(this.messageConfig.dataLoaded, sender);
     }
 
     @Override
