@@ -24,24 +24,17 @@ public class PluginCMD extends CommandUse {
 
     @Override
     public void run(@NonNull CommandSender sender, @NonNull String[] args) {
-        if (!sender.hasPermission("rpl." + this.getName())) {
-            this.send(this.messageConfig.noPermission, sender);
-            return;
-        }
-
-        if (args.length == 1) {
-            if (args[0].equalsIgnoreCase("load-data")) {
-                this.pluginMain.getPersistenceService().getPersistenceHandler().getRepositoryLoaderList()
-                        .forEach(RepositoryLoader::load);
-
-                this.send(this.messageConfig.dataLoaded, sender);
-                return;
-            }
-        }
-
-        this.send(this.messageConfig.usage, sender, new ImmutableMap.Builder<String, Object>()
+        whenNot(sender.hasPermission("rpl." + this.getName()), this.messageConfig.noPermission);
+        whenNot(args.length == 1, this.messageConfig.usage, new ImmutableMap.Builder<String, Object>()
                 .put("usage", "/plugin [load-data]")
                 .build());
+
+        if (args[0].equalsIgnoreCase("load-data")) {
+            this.pluginMain.getPersistenceService().getPersistenceHandler().getRepositoryLoaderList()
+                    .forEach(RepositoryLoader::load);
+
+            this.send(this.messageConfig.dataLoaded, sender);
+        }
     }
 
     @Override
