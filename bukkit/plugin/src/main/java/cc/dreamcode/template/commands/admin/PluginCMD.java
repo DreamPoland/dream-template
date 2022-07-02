@@ -3,7 +3,6 @@ package cc.dreamcode.template.commands.admin;
 import cc.dreamcode.template.PluginMain;
 import cc.dreamcode.template.commands.CommandUse;
 import cc.dreamcode.template.config.MessageConfig;
-import cc.dreamcode.template.features.notice.NoticeService;
 import cc.dreamcode.template.persistence.RepositoryLoader;
 import com.google.common.collect.ImmutableMap;
 import eu.okaeri.injector.annotation.Inject;
@@ -14,7 +13,7 @@ import org.bukkit.entity.Player;
 import java.util.Collections;
 import java.util.List;
 
-public class PluginCMD extends CommandUse implements NoticeService {
+public class PluginCMD extends CommandUse {
 
     private @Inject PluginMain pluginMain;
     private @Inject MessageConfig messageConfig;

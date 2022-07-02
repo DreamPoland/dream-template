@@ -1,16 +1,20 @@
 package cc.dreamcode.template.commands;
 
 import cc.dreamcode.template.PluginMain;
+import cc.dreamcode.template.exception.PluginValidationException;
+import cc.dreamcode.template.features.notice.NoticeService;
+import cc.dreamcode.template.features.validation.ValidationService;
 import lombok.NonNull;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.PluginIdentifiableCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class CommandUse extends Command implements PluginIdentifiableCommand {
+public abstract class CommandUse extends Command implements PluginIdentifiableCommand, NoticeService, ValidationService {
 
     public CommandUse(String name, List<String> aliases) {
         super(name);
@@ -31,7 +35,15 @@ public abstract class CommandUse extends Command implements PluginIdentifiableCo
 
     @Override
     public boolean execute(@NonNull CommandSender sender, @NonNull String commandLabel, @NonNull String[] arguments) {
-        run(sender, arguments);
+        try {
+            run(sender, arguments);
+        } catch (PluginValidationException e) {
+            if (e.getReplaceMap().isEmpty()) {
+                this.send(e.getNotice(), sender);
+            } else {
+                this.send(e.getNotice(), sender, e.getReplaceMap());
+            }
+        }
         return true;
     }
 
