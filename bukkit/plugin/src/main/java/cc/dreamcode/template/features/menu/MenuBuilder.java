@@ -23,7 +23,9 @@ public class MenuBuilder {
 
     public MenuBase build(Map<String, Object> replaceMap) {
         return new MenuBase(PlaceholderContext.of(
-                        CompiledMessage.of(this.name))
+                        CompiledMessage.of(
+                                ChatColor.translateAlternateColorCodes('&', this.name)
+                        ))
                 .with(replaceMap)
                 .apply(), this.rows);
     }
@@ -39,7 +41,9 @@ public class MenuBuilder {
 
     public MenuBase buildWithItem(Map<String, Object> replaceMap) {
         MenuBase menuBase = new MenuBase(PlaceholderContext.of(
-                        CompiledMessage.of(this.name))
+                        CompiledMessage.of(
+                                ChatColor.translateAlternateColorCodes('&', this.name)
+                        ))
                 .with(replaceMap)
                 .apply(), this.rows);
 
