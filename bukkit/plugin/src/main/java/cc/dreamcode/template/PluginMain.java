@@ -7,7 +7,6 @@ import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.exception.PluginRuntimeException;
 import cc.dreamcode.template.features.hook.HookService;
-import cc.dreamcode.template.features.hook.plugins.FunnyGuildsHook;
 import cc.dreamcode.template.features.menu.MenuActionHandler;
 import cc.dreamcode.template.features.user.UserActionHandler;
 import cc.dreamcode.template.features.user.UserRepository;
@@ -41,8 +40,6 @@ import org.bukkit.plugin.java.annotation.plugin.Website;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
 
 import java.io.File;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Plugin(name = "Dream-Template", version = "1.0-SNAPSHOT")
 @Author("Ravis96")
@@ -114,9 +111,9 @@ public final class PluginMain extends PluginBootLoader {
 
             // load all plugin hooks
             this.hookService = new HookService(this);
-            this.hookService.tryLoadAllDepends(Stream.of(
+            /*this.hookService.tryLoadAllDepends(Stream.of(
                     new FunnyGuildsHook()
-            ).collect(Collectors.toList()));
+            ).collect(Collectors.toList()));*/
 
             // register other services
 

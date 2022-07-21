@@ -10,7 +10,6 @@ import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
 import eu.okaeri.persistence.PersistencePath;
 import eu.okaeri.persistence.document.DocumentPersistence;
 import eu.okaeri.persistence.flat.FlatPersistence;
-import eu.okaeri.persistence.jdbc.H2Persistence;
 import eu.okaeri.persistence.jdbc.MariaDbPersistence;
 import eu.okaeri.persistence.mongo.MongoPersistence;
 import eu.okaeri.persistence.redis.RedisPersistence;
@@ -33,11 +32,6 @@ public class PersistenceFactory {
         }
         catch (ClassNotFoundException ignored) { }
 
-        try {
-            Class.forName("org.h2.Driver");
-        }
-        catch (ClassNotFoundException ignored) { }
-
         switch (this.storageConfig.backendSave) {
             case FLAT:
                 return new DocumentPersistence(
@@ -57,19 +51,6 @@ public class PersistenceFactory {
                         new MariaDbPersistence(
                                 persistencePath,
                                 mariadbHikari
-                        ),
-                        JsonSimpleConfigurer::new,
-                        new SerdesBukkit(),
-                        new PersistenceSerdesPack()
-                );
-            case H2:
-                HikariConfig jdbcHikari = new HikariConfig();
-                jdbcHikari.setJdbcUrl(this.storageConfig.uri);
-
-                return new DocumentPersistence(
-                        new H2Persistence(
-                                persistencePath,
-                                jdbcHikari
                         ),
                         JsonSimpleConfigurer::new,
                         new SerdesBukkit(),

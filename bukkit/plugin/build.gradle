@@ -24,7 +24,6 @@ dependencies {
 
     // -- additional jdbc backend --
     implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.5'
-    implementation 'com.h2database:h2:2.1.212'
 
     // -- injector --
     implementation 'eu.okaeri:okaeri-injector:2.1.0'
@@ -78,6 +77,5 @@ shadowJar {
     relocate "com.zaxxer", "cc.dreamcode.template.libs.com.zaxxer"
     relocate "org.slf4j", "cc.dreamcode.template.libs.org.slf4j"
     relocate "org.mariadb", "cc.dreamcode.template.libs.org.mariadb"
-    relocate "org.h2", "cc.dreamcode.template.libs.org.h2"
     relocate "org.json", "cc.dreamcode.template.libs.org.json"
 }

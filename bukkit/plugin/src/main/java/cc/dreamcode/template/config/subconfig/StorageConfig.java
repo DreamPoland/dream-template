@@ -10,7 +10,7 @@ import eu.okaeri.configs.annotation.Names;
 public class StorageConfig extends OkaeriConfig {
 
     @Comment({"W jakiej formie maja byc zapisywane dane o graczu?",
-            "Dostepne zapisy: (FLAT, MYSQL, H2, MONGO, REDIS)"})
+            "Dostepne zapisy: (FLAT, MYSQL, MONGO, REDIS)"})
     public BackendSave backendSave = BackendSave.FLAT;
 
     @Comment({"Jaki prefix ustawic dla danych?",
@@ -21,15 +21,14 @@ public class StorageConfig extends OkaeriConfig {
             "FLAT   : nie musisz uzupelniac",
             "REDIS  : redis://{host}[:{port}]?db={database}&password={password}",
             "MYSQL  : jdbc:mysql://{host}[:{port}]/{database}?user={name}&password={password}",
-            "MONGO  : mongodb://{name}:{password}@{host}[:{port}]/{database}?authSource=admin",
-            "H2     : jdbc:h2:file:./plugins/dream-template;mode=mysql"})
+            "MONGO  : mongodb://{name}:{password}@{host}[:{port}]/{database}?authSource=admin"})
     public String uri = "flat";
 
     @Comment("Co ile maja byc zapisywane dane do database?")
     public int saveDataTimer = 1500;
 
     public enum BackendSave {
-        FLAT, MYSQL, H2, MONGO, REDIS
+        FLAT, MYSQL, MONGO, REDIS
     }
 
 }
