@@ -40,6 +40,7 @@ import org.bukkit.plugin.java.annotation.plugin.Website;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
 
 import java.io.File;
+import java.util.stream.Stream;
 
 @Plugin(name = "Dream-Template", version = "1.0-SNAPSHOT")
 @Author("Ravis96")
@@ -72,12 +73,23 @@ public final class PluginMain extends PluginBootLoader {
         pluginLogger = new PluginLogger(pluginMain.getLogger());
 
         this.injector = OkaeriInjector.create();
+        this.injector.registerInjectable(this);
+
         this.tasker = BukkitTasker.newPool(this);
+        this.injector.registerInjectable(this.tasker);
+
         this.nmsAccessor = this.hookNmsAccessor();
+        this.injector.registerInjectable(this.nmsAccessor);
+
+        this.componentHandler = new ComponentHandler(this);
+        this.injector.registerInjectable(this.componentHandler);
 
         try {
             this.messageConfig = new ConfigLoader(new File(this.getDataFolder(), "message.yml")).loadMessageConfig();
+            this.injector.registerInjectable(this.messageConfig);
+
             this.pluginConfig = new ConfigLoader(new File(this.getDataFolder(), "config.yml")).loadPluginConfig();
+            this.injector.registerInjectable(this.pluginConfig);
         }
         catch (Exception e) {
             this.getPluginDisabled().set(true);
@@ -104,6 +116,7 @@ public final class PluginMain extends PluginBootLoader {
                     this,
                     this.persistenceService.getPersistenceHandler()
             ).getRepositoryService();
+            this.injector.registerInjectable(this.userRepository);
 
             // load database to cache
             this.persistenceService.getPersistenceHandler().getRepositoryLoaderList()
@@ -111,6 +124,8 @@ public final class PluginMain extends PluginBootLoader {
 
             // load all plugin hooks
             this.hookService = new HookService(this);
+            this.injector.registerInjectable(this.hookService.getHookManager());
+
             /*this.hookService.tryLoadAllDepends(Stream.of(
                     new FunnyGuildsHook()
             ).collect(Collectors.toList()));*/
@@ -123,21 +138,12 @@ public final class PluginMain extends PluginBootLoader {
             throw new PluginRuntimeException("An error was caught when services are loading...", e, this);
         }
 
-        this.injector.registerInjectable(this)
-                .registerInjectable(this.tasker)
-                .registerInjectable(this.nmsAccessor)
-                .registerInjectable(this.pluginConfig)
-                .registerInjectable(this.messageConfig)
-
-                .registerInjectable(this.userRepository)
-
-                .registerInjectable(this.hookService.getHookManager());
-
         // register components (commands, listener, task or else (need implement))
-        this.componentHandler = new ComponentHandler(this)
-                .registerComponent(new PluginCMD())
-                .registerComponent(new UserActionHandler())
-                .registerComponent(new MenuActionHandler());
+        Stream.of(
+                new PluginCMD(),
+                new UserActionHandler(),
+                new MenuActionHandler()
+        ).forEach(ob -> this.componentHandler.registerComponent(ob));
 
         PluginMain.getPluginLogger().info(String.format("Aktywna wersja: v%s - Autor: %s",
                 getDescription().getVersion(),
