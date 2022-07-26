@@ -1,6 +1,8 @@
 package cc.dreamcode.template.persistence;
 
-public interface PersistenceInitializer<V extends Repository> {
+import eu.okaeri.persistence.repository.DocumentRepository;
+
+public interface PersistenceInitializer<V extends DocumentRepository> {
 
     V getRepositoryService();
 

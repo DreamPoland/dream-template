@@ -2,13 +2,13 @@ package cc.dreamcode.template.features.user;
 
 import cc.dreamcode.template.PluginMain;
 import cc.dreamcode.template.persistence.PersistenceHandler;
-import cc.dreamcode.template.persistence.PersistenceInitializer;
+import cc.dreamcode.template.persistence.RepositoryInitializer;
 import eu.okaeri.persistence.PersistenceCollection;
 import eu.okaeri.persistence.repository.RepositoryDeclaration;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class UserRepositoryFactory implements PersistenceInitializer<UserRepository> {
+public class UserRepositoryFactory implements RepositoryInitializer<UserRepository> {
 
     private final PluginMain plugin;
     private final PersistenceHandler persistenceHandler;
