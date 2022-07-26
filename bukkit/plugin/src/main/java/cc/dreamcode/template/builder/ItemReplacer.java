@@ -2,6 +2,7 @@ package cc.dreamcode.template.builder;
 
 import eu.okaeri.placeholders.context.PlaceholderContext;
 import eu.okaeri.placeholders.message.CompiledMessage;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
@@ -16,6 +17,10 @@ import java.util.stream.Collectors;
 public class ItemReplacer {
 
     private final ItemStack is;
+
+    public static ItemReplacer of(@NonNull ItemStack itemStack) {
+        return new ItemReplacer(itemStack);
+    }
 
     public ItemStack fixColors() {
         ItemStack is = new ItemStack(this.is);
