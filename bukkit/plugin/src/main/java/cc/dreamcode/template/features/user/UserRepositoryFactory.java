@@ -17,7 +17,7 @@ public class UserRepositoryFactory implements RepositoryInitializer<UserReposito
     public UserRepository getRepositoryService() {
         PersistenceCollection persistenceCollection = PersistenceCollection.of(UserRepositoryCollection.class);
 
-        this.persistenceHandler.registerCollection(persistenceCollection);
+        this.persistenceHandler.registerCollection(persistenceCollection, true);
 
         UserRepository userRepository = new UserRepository(
                 RepositoryDeclaration.of(UserRepositoryCollection.class)

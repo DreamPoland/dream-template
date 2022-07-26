@@ -21,12 +21,15 @@ public class PersistenceHandler {
 
     private final List<RepositoryLoader> repositoryLoaderList = new ArrayList<>();
 
-    public void registerCollection(@NonNull PersistenceCollection collection) {
+    public void registerCollection(@NonNull PersistenceCollection collection, boolean inMemory) {
         Validate.notNull(this.databasePersistence, "DatabasePersistence cannot be null!");
         Validate.notNull(this.inMemoryPersistence, "InMemoryPersistence cannot be null!");
 
         this.databasePersistence.registerCollection(collection);
-        this.inMemoryPersistence.registerCollection(collection);
+
+        if (inMemory) {
+            this.inMemoryPersistence.registerCollection(collection);
+        }
     }
 
 }
