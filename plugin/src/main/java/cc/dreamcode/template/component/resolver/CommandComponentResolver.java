@@ -2,11 +2,12 @@ package cc.dreamcode.template.component.resolver;
 
 import cc.dreamcode.template.PluginLogger;
 import cc.dreamcode.template.PluginMain;
-import cc.dreamcode.template.commands.CommandUse;
+import cc.dreamcode.template.features.command.CommandUse;
 import eu.okaeri.injector.Injector;
 import org.bukkit.Server;
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.plugin.SimplePluginManager;
+
 import java.lang.reflect.Field;
 
 public class CommandComponentResolver implements ComponentResolver<CommandUse> {

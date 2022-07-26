@@ -2,10 +2,10 @@ package cc.dreamcode.template.component;
 
 import cc.dreamcode.template.PluginLogger;
 import cc.dreamcode.template.PluginMain;
-import cc.dreamcode.template.commands.CommandUse;
 import cc.dreamcode.template.component.resolver.CommandComponentResolver;
 import cc.dreamcode.template.component.resolver.ListenerComponentResolver;
 import cc.dreamcode.template.component.resolver.RunnableComponentResolver;
+import cc.dreamcode.template.features.command.CommandUse;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,15 +19,14 @@ public final class ComponentHandler {
 
     private final PluginMain pluginMain;
 
-    public ComponentHandler registerComponent(Object component) {
+    public void registerComponent(Object component) {
         if (component instanceof CommandUse) {
             new CommandComponentResolver().resolve(
                     this.pluginMain,
                     this.pluginMain.getInjector(),
                     (CommandUse) component
             );
-
-            return this;
+            return;
         }
 
         if (component instanceof Listener) {
@@ -36,8 +35,7 @@ public final class ComponentHandler {
                     this.pluginMain.getInjector(),
                     (Listener) component
             );
-
-            return this;
+            return;
         }
 
         if (component instanceof Runnable) {
@@ -46,8 +44,7 @@ public final class ComponentHandler {
                     this.pluginMain.getInjector(),
                     (Runnable) component
             );
-
-            return this;
+            return;
         }
 
         long start = System.currentTimeMillis();
@@ -66,8 +63,6 @@ public final class ComponentHandler {
                                 .collect(Collectors.toList()))
                         .build()
         );
-
-        return this;
     }
 
 }
