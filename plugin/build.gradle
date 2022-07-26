@@ -1,6 +1,6 @@
 dependencies {
     // -- bukkit-nms --
-    project(":bukkit:nms").getSubprojects().forEach(nms -> implementation nms)
+    project(":nms").getSubprojects().forEach(nms -> implementation nms)
 
     // -- spigot api --
     compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'

@@ -1,5 +1,5 @@
 dependencies {
-    implementation project(":bukkit:nms:api")
+    implementation project(":nms:api")
 
     compileOnly 'org.spigotmc:spigot:1.9.4-R0.1-SNAPSHOT'
 }
