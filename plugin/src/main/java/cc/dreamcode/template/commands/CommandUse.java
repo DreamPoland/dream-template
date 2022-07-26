@@ -37,10 +37,12 @@ public abstract class CommandUse extends Command implements PluginIdentifiableCo
     public boolean execute(@NonNull CommandSender sender, @NonNull String commandLabel, @NonNull String[] arguments) {
         try {
             run(sender, arguments);
-        } catch (PluginValidationException e) {
+        }
+        catch (PluginValidationException e) {
             if (e.getReplaceMap().isEmpty()) {
                 this.send(e.getNotice(), sender);
-            } else {
+            }
+            else {
                 this.send(e.getNotice(), sender, e.getReplaceMap());
             }
         }
