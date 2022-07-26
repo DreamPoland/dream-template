@@ -1,4 +1,4 @@
-package cc.dreamcode.template.commands;
+package cc.dreamcode.template.features.command;
 
 import cc.dreamcode.template.PluginMain;
 import cc.dreamcode.template.exception.PluginValidationException;

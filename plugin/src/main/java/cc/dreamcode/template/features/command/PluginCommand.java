@@ -1,7 +1,6 @@
-package cc.dreamcode.template.commands.admin;
+package cc.dreamcode.template.features.command;
 
 import cc.dreamcode.template.PluginMain;
-import cc.dreamcode.template.commands.CommandUse;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.persistence.RepositoryLoader;
 import com.google.common.collect.ImmutableMap;
@@ -13,13 +12,13 @@ import org.bukkit.entity.Player;
 import java.util.Collections;
 import java.util.List;
 
-public class PluginCMD extends CommandUse {
+public class PluginCommand extends CommandUse {
 
     private @Inject PluginMain pluginMain;
     private @Inject MessageConfig messageConfig;
 
-    public PluginCMD() {
-        super("plugintemplate", null);
+    public PluginCommand() {
+        super("plugincase", null);
     }
 
     @Override

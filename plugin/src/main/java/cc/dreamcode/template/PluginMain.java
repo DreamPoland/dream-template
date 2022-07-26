@@ -1,11 +1,11 @@
 package cc.dreamcode.template;
 
-import cc.dreamcode.template.commands.admin.PluginCMD;
 import cc.dreamcode.template.component.ComponentHandler;
 import cc.dreamcode.template.config.ConfigLoader;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.exception.PluginRuntimeException;
+import cc.dreamcode.template.features.command.PluginCommand;
 import cc.dreamcode.template.features.hook.HookService;
 import cc.dreamcode.template.features.menu.MenuActionHandler;
 import cc.dreamcode.template.features.user.UserActionHandler;
@@ -140,7 +140,7 @@ public final class PluginMain extends PluginBootLoader {
 
         // register components (commands, listener, task or else (need implement))
         Stream.of(
-                new PluginCMD(),
+                new PluginCommand(),
                 new UserActionHandler(),
                 new MenuActionHandler()
         ).forEach(ob -> this.componentHandler.registerComponent(ob));
