@@ -2,7 +2,7 @@ package cc.dreamcode.template.component.resolver;
 
 import cc.dreamcode.template.PluginLogger;
 import cc.dreamcode.template.PluginMain;
-import cc.dreamcode.template.features.command.CommandUse;
+import cc.dreamcode.template.features.command.CommandHandler;
 import eu.okaeri.injector.Injector;
 import org.bukkit.Server;
 import org.bukkit.command.SimpleCommandMap;
@@ -10,10 +10,10 @@ import org.bukkit.plugin.SimplePluginManager;
 
 import java.lang.reflect.Field;
 
-public class CommandComponentResolver implements ComponentResolver<CommandUse> {
+public class CommandComponentResolver implements ComponentResolver<CommandHandler> {
 
     @Override
-    public void resolve(PluginMain plugin, Injector injector, CommandUse commandUse) {
+    public void resolve(PluginMain plugin, Injector injector, CommandHandler commandUse) {
         long start = System.currentTimeMillis();
 
         SimpleCommandMap simpleCommandMap = this.getSimpleCommandMap(plugin.getServer());

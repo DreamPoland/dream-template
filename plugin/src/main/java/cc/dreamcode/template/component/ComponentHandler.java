@@ -5,7 +5,7 @@ import cc.dreamcode.template.PluginMain;
 import cc.dreamcode.template.component.resolver.CommandComponentResolver;
 import cc.dreamcode.template.component.resolver.ListenerComponentResolver;
 import cc.dreamcode.template.component.resolver.RunnableComponentResolver;
-import cc.dreamcode.template.features.command.CommandUse;
+import cc.dreamcode.template.features.command.CommandHandler;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,11 +20,11 @@ public final class ComponentHandler {
     private final PluginMain pluginMain;
 
     public void registerComponent(Object component) {
-        if (component instanceof CommandUse) {
+        if (component instanceof CommandHandler) {
             new CommandComponentResolver().resolve(
                     this.pluginMain,
                     this.pluginMain.getInjector(),
-                    (CommandUse) component
+                    (CommandHandler) component
             );
             return;
         }
