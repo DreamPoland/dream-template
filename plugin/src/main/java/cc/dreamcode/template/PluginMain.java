@@ -89,12 +89,12 @@ public final class PluginMain extends PluginBootLoader {
                 .registerComponent(DocumentPersistence.class)
                 .registerComponent(UserRepository.class)
                 .registerComponent(UserService.class)
-                .registerComponent(UserActionHandler.class)
-                .registerComponent(MenuActionHandler.class)
                 .registerComponent(HookManager.class, hookManager ->
                         this.createInstance(HookFactory.class).tryLoadAllDepends(Stream.of(
                                 FunnyGuildsHook.class
-                        ).collect(Collectors.toList()), hookManager));
+                        ).collect(Collectors.toList()), hookManager))
+                .registerComponent(UserActionHandler.class)
+                .registerComponent(MenuActionHandler.class);
 
         PluginMain.getPluginLogger().info(String.format("Active version: v%s - Author: %s",
                 getDescription().getVersion(),

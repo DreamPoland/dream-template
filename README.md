@@ -1,10 +1,8 @@
 
 
-Working with template:
+Tips:
 -----
-Clone this repo to your account, rename package name, then by pressing ``CTRL + SHIFT + R`` change all variables to your plugin name. (Template --> PluginName).
-
-Finally, remove all **unnecessary** template functions.
+Remove all **unnecessary** template functions.
 
 Build to jar by ``shadowJar`` gradle task.
 
