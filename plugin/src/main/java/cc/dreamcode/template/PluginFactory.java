@@ -19,7 +19,7 @@ public final class PluginFactory {
             return false;
         }
         if (pluginDescriptionFile.getDescription() != null &&
-                !pluginDescriptionFile.getDescription().equals("Template plugin for DreamCode.")) {
+                !pluginDescriptionFile.getDescription().equals("Template plugin by DreamCode.")) {
             atomicBoolean.set(true);
             throwRuntimeException("Provided plugin description is changed...");
             return false;

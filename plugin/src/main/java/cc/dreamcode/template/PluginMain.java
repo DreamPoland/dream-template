@@ -44,7 +44,7 @@ import java.util.stream.Stream;
 
 @Plugin(name = "Dream-Template", version = "1.0-SNAPSHOT")
 @Author("Ravis96")
-@Description("Template plugin for DreamCode.")
+@Description("Template plugin by DreamCode.")
 @Website("DreamCode - https://discord.gg/dreamcode")
 @ApiVersion(ApiVersion.Target.v1_13)
 
