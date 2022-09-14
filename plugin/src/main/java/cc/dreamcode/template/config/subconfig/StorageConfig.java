@@ -24,9 +24,6 @@ public class StorageConfig extends OkaeriConfig {
             "MONGO  : mongodb://{name}:{password}@{host}[:{port}]/{database}?authSource=admin"})
     public String uri = "flat";
 
-    @Comment("Co ile maja byc zapisywane dane do database?")
-    public int saveDataTimer = 1500;
-
     public enum BackendSave {
         FLAT, MYSQL, MONGO, REDIS
     }

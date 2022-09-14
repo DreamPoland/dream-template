@@ -2,11 +2,7 @@ package cc.dreamcode.template.features.hook;
 
 import cc.dreamcode.template.features.Manager;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class HookManager implements Manager<PluginHookType, PluginHook> {
 
@@ -23,8 +19,8 @@ public class HookManager implements Manager<PluginHookType, PluginHook> {
     }
 
     @Override
-    public void add(PluginHook pluginHook) {
-        this.pluginHooks.put(pluginHook.getPluginHookType(), pluginHook);
+    public PluginHook add(PluginHook pluginHook) {
+        return this.pluginHooks.put(pluginHook.getPluginHookType(), pluginHook);
     }
 
     @Override

@@ -17,7 +17,7 @@ public abstract class AbstractPluginHook implements PluginHook {
         catch (Exception e) {
             this.initialized = false;
             throw new PluginRuntimeException("Plugin (name=" + this.getPluginHookType().getName() + ") " +
-                    "posiada blad i nie mozna go zaladowac.", e);
+                    "throw an error. Hook process is cancelled.", e);
         }
     }
 

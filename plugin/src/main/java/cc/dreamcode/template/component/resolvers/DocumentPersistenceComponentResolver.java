@@ -1,12 +1,18 @@
-package cc.dreamcode.template.persistence;
+package cc.dreamcode.template.component.resolvers;
 
+import cc.dreamcode.template.PluginMain;
+import cc.dreamcode.template.component.ComponentResolver;
+import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.config.subconfig.StorageConfig;
+import cc.dreamcode.template.features.persistence.PersistenceSerdesPack;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.zaxxer.hikari.HikariConfig;
 import eu.okaeri.configs.json.simple.JsonSimpleConfigurer;
 import eu.okaeri.configs.yaml.bukkit.YamlBukkitConfigurer;
 import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
+import eu.okaeri.injector.Injector;
+import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.persistence.PersistencePath;
 import eu.okaeri.persistence.document.DocumentPersistence;
 import eu.okaeri.persistence.flat.FlatPersistence;
@@ -15,28 +21,46 @@ import eu.okaeri.persistence.mongo.MongoPersistence;
 import eu.okaeri.persistence.redis.RedisPersistence;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisURI;
-import lombok.RequiredArgsConstructor;
+import lombok.NonNull;
 
-import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
-@RequiredArgsConstructor
-public class PersistenceFactory {
+public class DocumentPersistenceComponentResolver extends ComponentResolver<Class<DocumentPersistence>> {
 
-    private final StorageConfig storageConfig;
+    private @Inject PluginMain pluginMain;
+    private @Inject PluginConfig pluginConfig;
 
-    public DocumentPersistence getDatabasePersistence(File pluginFolder) {
-        final PersistencePath persistencePath = PersistencePath.of(this.storageConfig.prefix);
+    @Override
+    public boolean isAssignableFrom(@NonNull Class<DocumentPersistence> documentPersistenceClass) {
+        return DocumentPersistence.class.isAssignableFrom(documentPersistenceClass);
+    }
+
+    @Override
+    public String getComponentName() {
+        return "persistence";
+    }
+
+    @Override
+    public Map<String, Object> getMetas(@NonNull Injector injector, @NonNull Class<DocumentPersistence> documentPersistenceClass) {
+        return new HashMap<>();
+    }
+
+    @Override
+    public Object resolve(@NonNull Injector injector, @NonNull Class<DocumentPersistence> documentPersistenceClass) {
+        final StorageConfig storageConfig = this.pluginConfig.storageConfig;
+        final PersistencePath persistencePath = PersistencePath.of(storageConfig.prefix);
 
         try {
             Class.forName("org.mariadb.jdbc.Driver");
         }
         catch (ClassNotFoundException ignored) { }
 
-        switch (this.storageConfig.backendSave) {
+        switch (storageConfig.backendSave) {
             case FLAT:
                 return new DocumentPersistence(
                         new FlatPersistence(
-                                pluginFolder,
+                                this.pluginMain.getDataFolder(),
                                 ".yml"
                         ),
                         YamlBukkitConfigurer::new,
@@ -45,7 +69,7 @@ public class PersistenceFactory {
                 );
             case MYSQL:
                 HikariConfig mariadbHikari = new HikariConfig();
-                mariadbHikari.setJdbcUrl(this.storageConfig.uri);
+                mariadbHikari.setJdbcUrl(storageConfig.uri);
 
                 return new DocumentPersistence(
                         new MariaDbPersistence(
@@ -57,7 +81,7 @@ public class PersistenceFactory {
                         new PersistenceSerdesPack()
                 );
             case REDIS:
-                RedisURI redisURI = RedisURI.create(this.storageConfig.uri);
+                RedisURI redisURI = RedisURI.create(storageConfig.uri);
                 RedisClient redisClient = RedisClient.create(redisURI);
 
                 return new DocumentPersistence(
@@ -70,7 +94,7 @@ public class PersistenceFactory {
                         new PersistenceSerdesPack()
                 );
             case MONGO:
-                MongoClientURI mongoUri = new MongoClientURI(this.storageConfig.uri);
+                MongoClientURI mongoUri = new MongoClientURI(storageConfig.uri);
                 MongoClient mongoClient = new MongoClient(mongoUri);
 
                 if (mongoUri.getDatabase() == null) {
@@ -88,9 +112,7 @@ public class PersistenceFactory {
                         new PersistenceSerdesPack()
                 );
             default:
-                throw new RuntimeException("Unknown data type: " + this.storageConfig.backendSave);
+                throw new RuntimeException("Unknown data type: " + storageConfig.backendSave);
         }
     }
-
-
 }

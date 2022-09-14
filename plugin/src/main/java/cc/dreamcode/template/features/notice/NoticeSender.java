@@ -14,7 +14,11 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public interface NoticeService {
+/**
+ * NoticeSender is interface for sending formatted messages to player.
+ * Notice allows you to choose how the message are displayed and format them automatically. (+ config)
+ */
+public interface NoticeSender {
     default void send(Notice notice, Player player, String text) {
         switch (notice.getType()) {
             case CHAT: {

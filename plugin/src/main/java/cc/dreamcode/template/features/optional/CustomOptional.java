@@ -5,6 +5,9 @@ import lombok.RequiredArgsConstructor;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+/**
+ * Additional optional methods for java 8.
+ */
 @SuppressWarnings("ALL")
 @RequiredArgsConstructor
 public class CustomOptional<T> {

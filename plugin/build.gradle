@@ -10,35 +10,35 @@ dependencies {
     annotationProcessor "org.spigotmc:plugin-annotations:1.2.3-SNAPSHOT"
 
     // -- configs--
-    implementation "eu.okaeri:okaeri-configs-yaml-bukkit:4.0.1"
-    implementation "eu.okaeri:okaeri-configs-serdes-bukkit:4.0.1"
+    implementation "eu.okaeri:okaeri-configs-yaml-bukkit:4.0.6"
+    implementation "eu.okaeri:okaeri-configs-serdes-bukkit:4.0.6"
 
     // -- persistence data --
-    implementation 'eu.okaeri:okaeri-persistence-flat:1.5.12'
-    implementation 'eu.okaeri:okaeri-persistence-jdbc:1.5.12'
-    implementation 'eu.okaeri:okaeri-persistence-redis:1.5.12'
-    implementation 'eu.okaeri:okaeri-persistence-mongo:1.5.12'
+    implementation 'eu.okaeri:okaeri-persistence-flat:1.5.13'
+    implementation 'eu.okaeri:okaeri-persistence-jdbc:1.5.13'
+    implementation 'eu.okaeri:okaeri-persistence-redis:1.5.13'
+    implementation 'eu.okaeri:okaeri-persistence-mongo:1.5.13'
 
     // -- json configure --
-    implementation 'eu.okaeri:okaeri-configs-json-simple:4.0.5'
+    implementation 'eu.okaeri:okaeri-configs-json-simple:4.0.6'
 
     // -- additional jdbc backend --
-    implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.5'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.6'
 
     // -- injector --
     implementation 'eu.okaeri:okaeri-injector:2.1.0'
 
     // -- placeholders --
-    implementation 'eu.okaeri:okaeri-placeholders-bukkit:3.0.4'
+    implementation 'eu.okaeri:okaeri-placeholders-bukkit:4.0.3'
 
     // -- tasker --
-    implementation 'eu.okaeri:okaeri-tasker-bukkit:1.1.7'
+    implementation 'eu.okaeri:okaeri-tasker-bukkit:1.1.9'
 
     // -- scoreboard --
     implementation 'fr.mrmicky:fastboard:1.2.1'
 
     // -- NMS Items helper --
-    implementation 'com.github.cryptomorin:XSeries:8.8.0'
+    implementation 'com.github.cryptomorin:XSeries:9.0.0'
 
     // -- NBT-API --
     implementation 'de.tr7zw:item-nbt-api-plugin:2.9.2'
@@ -57,7 +57,7 @@ dependencies {
 }
 
 shadowJar {
-    libsDirName = "P:/1.16.5ZM/plugins"
+    //libsDirName = "P:/1.17/plugins"
     archiveFileName = "Dream-Template-${project.version} (1.8-1.19).jar"
 
     minimize()

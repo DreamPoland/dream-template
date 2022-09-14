@@ -2,12 +2,12 @@ package cc.dreamcode.template.features.command;
 
 import cc.dreamcode.template.PluginMain;
 import cc.dreamcode.template.config.MessageConfig;
-import cc.dreamcode.template.exception.PluginValidationException;
+import cc.dreamcode.template.exception.PluginValidatorException;
 import cc.dreamcode.template.features.command.annotations.RequiredPermission;
 import cc.dreamcode.template.features.command.annotations.RequiredPlayer;
 import cc.dreamcode.template.features.menu.MenuBaseBuilder;
-import cc.dreamcode.template.features.notice.NoticeService;
-import cc.dreamcode.template.features.validation.ValidationService;
+import cc.dreamcode.template.features.notice.NoticeSender;
+import eu.okaeri.injector.annotation.Inject;
 import lombok.NonNull;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -18,7 +18,9 @@ import org.bukkit.plugin.Plugin;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class CommandHandler extends Command implements PluginIdentifiableCommand, NoticeService, ValidationService {
+public abstract class CommandHandler extends Command implements PluginIdentifiableCommand, NoticeSender, CommandValidator {
+
+    private @Inject MessageConfig messageConfig;
 
     public CommandHandler(String name, List<String> aliases) {
         super(name);
@@ -39,21 +41,20 @@ public abstract class CommandHandler extends Command implements PluginIdentifiab
 
     @Override
     public boolean execute(@NonNull CommandSender sender, @NonNull String commandLabel, @NonNull String[] arguments) {
-        final MessageConfig messageConfig = PluginMain.getPluginMain().getMessageConfig();
         try {
             RequiredPermission requiredPermission = getClass().getAnnotation(RequiredPermission.class);
             if (requiredPermission != null) {
-                whenNot(sender.hasPermission(requiredPermission.permission()), messageConfig.noPermission);
+                whenNot(sender.hasPermission(requiredPermission.permission()), this.messageConfig.noPermission);
             }
 
             RequiredPlayer requiredPlayer = getClass().getAnnotation(RequiredPlayer.class);
             if (requiredPlayer != null) {
-                whenNot(sender instanceof Player, messageConfig.noPlayer);
+                whenNot(sender instanceof Player, this.messageConfig.noPlayer);
             }
 
             handle(sender, arguments);
         }
-        catch (PluginValidationException e) {
+        catch (PluginValidatorException e) {
             if (e.getReplaceMap().isEmpty()) {
                 this.send(e.getNotice(), sender);
             }
@@ -73,16 +74,14 @@ public abstract class CommandHandler extends Command implements PluginIdentifiab
     }
 
     public CommandArgHandler getArgument(@NonNull CommandSender sender, @NonNull Class<? extends CommandArgHandler> commandArgHandlerClass) {
-        final MessageConfig messageConfig = PluginMain.getPluginMain().getMessageConfig();
-
         RequiredPermission requiredPermission = commandArgHandlerClass.getAnnotation(RequiredPermission.class);
         if (requiredPermission != null) {
-            whenNot(sender.hasPermission(requiredPermission.permission()), messageConfig.noPermission);
+            whenNot(sender.hasPermission(requiredPermission.permission()), this.messageConfig.noPermission);
         }
 
         RequiredPlayer requiredPlayer = commandArgHandlerClass.getAnnotation(RequiredPlayer.class);
         if (requiredPlayer != null) {
-            whenNot(sender instanceof Player, messageConfig.noPlayer);
+            whenNot(sender instanceof Player, this.messageConfig.noPlayer);
         }
 
         return PluginMain.getPluginMain().getInjector().createInstance(commandArgHandlerClass);

@@ -1,6 +1,6 @@
 package cc.dreamcode.template.features.user;
 
-import eu.okaeri.persistence.document.Document;
+import cc.dreamcode.template.features.persistence.AbstractDocument;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.bukkit.Bukkit;
@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class User extends Document {
+public class User extends AbstractDocument {
 
     private String name;
 

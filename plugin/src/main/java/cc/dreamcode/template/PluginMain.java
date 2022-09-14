@@ -1,15 +1,16 @@
 package cc.dreamcode.template;
 
 import cc.dreamcode.template.component.ComponentHandler;
-import cc.dreamcode.template.config.ConfigLoader;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.exception.PluginRuntimeException;
-import cc.dreamcode.template.features.hook.HookService;
+import cc.dreamcode.template.features.hook.HookFactory;
+import cc.dreamcode.template.features.hook.HookManager;
+import cc.dreamcode.template.features.hook.plugins.FunnyGuildsHook;
 import cc.dreamcode.template.features.menu.MenuActionHandler;
 import cc.dreamcode.template.features.user.UserActionHandler;
 import cc.dreamcode.template.features.user.UserRepository;
-import cc.dreamcode.template.features.user.UserRepositoryFactory;
+import cc.dreamcode.template.features.user.UserService;
 import cc.dreamcode.template.nms.api.NmsAccessor;
 import cc.dreamcode.template.nms.v1_10_R1.V1_10_R1_NmsAccessor;
 import cc.dreamcode.template.nms.v1_11_R1.V1_11_R1_NmsAccessor;
@@ -23,22 +24,22 @@ import cc.dreamcode.template.nms.v1_18_R2.V1_18_R2_NmsAccessor;
 import cc.dreamcode.template.nms.v1_19_R1.V1_19_R1_NmsAccessor;
 import cc.dreamcode.template.nms.v1_8_R3.V1_8_R3_NmsAccessor;
 import cc.dreamcode.template.nms.v1_9_R2.V1_9_R2_NmsAccessor;
-import cc.dreamcode.template.persistence.PersistenceHandler;
-import cc.dreamcode.template.persistence.PersistenceService;
-import cc.dreamcode.template.persistence.RepositoryLoader;
 import com.cryptomorin.xseries.ReflectionUtils;
 import eu.okaeri.injector.Injector;
 import eu.okaeri.injector.OkaeriInjector;
+import eu.okaeri.persistence.document.DocumentPersistence;
 import eu.okaeri.tasker.bukkit.BukkitTasker;
 import eu.okaeri.tasker.core.Tasker;
 import lombok.Getter;
+import lombok.NonNull;
+import org.bukkit.plugin.java.annotation.dependency.SoftDependency;
 import org.bukkit.plugin.java.annotation.plugin.ApiVersion;
 import org.bukkit.plugin.java.annotation.plugin.Description;
 import org.bukkit.plugin.java.annotation.plugin.Plugin;
 import org.bukkit.plugin.java.annotation.plugin.Website;
 import org.bukkit.plugin.java.annotation.plugin.author.Author;
 
-import java.io.File;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Plugin(name = "Dream-Template", version = "1.0-SNAPSHOT")
@@ -47,24 +48,15 @@ import java.util.stream.Stream;
 @Website("DreamCode - https://discord.gg/dreamcode")
 @ApiVersion(ApiVersion.Target.v1_13)
 
-//@SoftDependency("FunnyGuilds")
+@SoftDependency("FunnyGuilds")
 public final class PluginMain extends PluginBootLoader {
 
     @Getter private static PluginMain pluginMain;
     @Getter private static PluginLogger pluginLogger;
 
-    @Getter private PluginConfig pluginConfig;
-    @Getter private MessageConfig messageConfig;
-
-    @Getter private PersistenceService persistenceService;
-    @Getter private UserRepository userRepository;
-
-    @Getter private HookService hookService;
-
     @Getter private Injector injector;
     @Getter private Tasker tasker;
     @Getter private NmsAccessor nmsAccessor;
-    @Getter private ComponentHandler componentHandler;
 
     @Override
     public void load() {
@@ -79,21 +71,6 @@ public final class PluginMain extends PluginBootLoader {
 
         this.nmsAccessor = this.hookNmsAccessor();
         this.injector.registerInjectable(this.nmsAccessor);
-
-        this.componentHandler = new ComponentHandler(this);
-        this.injector.registerInjectable(this.componentHandler);
-
-        try {
-            this.messageConfig = new ConfigLoader(new File(this.getDataFolder(), "message.yml")).loadMessageConfig();
-            this.injector.registerInjectable(this.messageConfig);
-
-            this.pluginConfig = new ConfigLoader(new File(this.getDataFolder(), "config.yml")).loadPluginConfig();
-            this.injector.registerInjectable(this.pluginConfig);
-        }
-        catch (Exception e) {
-            this.getPluginDisabled().set(true);
-            throw new PluginRuntimeException("An error was caught when config files are loading...", e, this);
-        }
     }
 
     @Override
@@ -102,61 +79,33 @@ public final class PluginMain extends PluginBootLoader {
             return;
         }
 
-        try {
-            // connect database
-            this.persistenceService = new PersistenceService(
-                    this,
-                    new PersistenceHandler()
-            );
-            this.persistenceService.initializePersistence();
+        // Component system inspired by okaeri-platform
+        // These simple structure can register all content of this plugin.
+        // Remember to sort it by type of class:
+        // --> Config, DocumentPersistence, DocumentRepository, Services, Managers, Commands, Listeners, Runnables, other...
+        new ComponentHandler(this.getInjector())
+                .registerComponent(PluginConfig.class)
+                .registerComponent(MessageConfig.class)
+                .registerComponent(DocumentPersistence.class)
+                .registerComponent(UserRepository.class)
+                .registerComponent(UserService.class)
+                .registerComponent(UserActionHandler.class)
+                .registerComponent(MenuActionHandler.class)
+                .registerComponent(HookManager.class, hookManager ->
+                        this.createInstance(HookFactory.class).tryLoadAllDepends(Stream.of(
+                                FunnyGuildsHook.class
+                        ).collect(Collectors.toList()), hookManager));
 
-            // Add database tables
-            this.userRepository = new UserRepositoryFactory(
-                    this,
-                    this.persistenceService.getPersistenceHandler()
-            ).getRepositoryService();
-            this.injector.registerInjectable(this.userRepository);
-
-            // load database to cache
-            this.persistenceService.getPersistenceHandler().getRepositoryLoaderList()
-                    .forEach(RepositoryLoader::load);
-
-            // load all plugin hooks
-            this.hookService = new HookService(this);
-            this.injector.registerInjectable(this.hookService.getHookManager());
-
-            /*this.hookService.tryLoadAllDepends(Stream.of(
-                    new FunnyGuildsHook()
-            ).collect(Collectors.toList()));*/
-
-            // register other services
-
-        }
-        catch (Exception e) {
-            this.getPluginDisabled().set(true);
-            throw new PluginRuntimeException("An error was caught when services are loading...", e, this);
-        }
-
-        // register components (commands, listener, task or else (need implement))
-        Stream.of(
-                new UserActionHandler(),
-                new MenuActionHandler()
-        ).forEach(ob -> this.componentHandler.registerComponent(ob));
-
-        PluginMain.getPluginLogger().info(String.format("Aktywna wersja: v%s - Autor: %s",
+        PluginMain.getPluginLogger().info(String.format("Active version: v%s - Author: %s",
                 getDescription().getVersion(),
                 getDescription().getAuthors()));
     }
 
     @Override
     public void stop() {
-        // save cache to database
-        this.persistenceService.savePersistence(true,
-                this.persistenceService.getPersistenceHandler().getRepositoryLoaderList());
-
         // features need to be call by stop server
 
-        PluginMain.getPluginLogger().info(String.format("Aktywna wersja: v%s - Autor: %s",
+        PluginMain.getPluginLogger().info(String.format("Active version: v%s - Author: %s",
                 getDescription().getVersion(),
                 getDescription().getAuthors()));
     }
@@ -164,7 +113,7 @@ public final class PluginMain extends PluginBootLoader {
     public NmsAccessor hookNmsAccessor() {
         PluginMain.getPluginLogger().info(
                 new PluginLogger.Loader()
-                        .type("Podlaczam wersje minecraft")
+                        .type("Connect with minecraft version")
                         .name(ReflectionUtils.VERSION)
                         .build()
         );
@@ -210,5 +159,9 @@ public final class PluginMain extends PluginBootLoader {
                 throw new PluginRuntimeException("Plugin doesn't support this server version, change to 1.8 - 1.19 (latest subversion).");
             }
         }
+    }
+
+    public <T> T createInstance(@NonNull Class<T> type) {
+        return this.injector.createInstance(type);
     }
 }

@@ -35,7 +35,7 @@ public final class PluginLogger {
     }
 
     
-    // Thanks Okaeri-Platform for loader solution
+    // Logging builder from okaeri-platform with features
     public static class Loader {
 
         private String type;
@@ -57,6 +57,11 @@ public final class PluginLogger {
 
         public Loader meta(String name, Object value) {
             this.meta.put(name, value);
+            return this;
+        }
+
+        public Loader meta(Map<String, Object> metas) {
+            this.meta.putAll(metas);
             return this;
         }
 

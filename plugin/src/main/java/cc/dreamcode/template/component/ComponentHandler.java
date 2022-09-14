@@ -1,68 +1,56 @@
 package cc.dreamcode.template.component;
 
-import cc.dreamcode.template.PluginLogger;
-import cc.dreamcode.template.PluginMain;
-import cc.dreamcode.template.component.resolver.CommandComponentResolver;
-import cc.dreamcode.template.component.resolver.ListenerComponentResolver;
-import cc.dreamcode.template.component.resolver.RunnableComponentResolver;
-import cc.dreamcode.template.features.command.CommandHandler;
+import cc.dreamcode.template.component.resolvers.*;
+import com.google.common.collect.ImmutableList;
+import eu.okaeri.injector.Injector;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import java.util.List;
+import java.util.function.Consumer;
 
 @RequiredArgsConstructor
 public final class ComponentHandler {
 
-    private final PluginMain pluginMain;
+    private final Injector injector;
+    private final List<Class<? extends ComponentResolver>> componentResolvers = new ImmutableList.Builder<Class<? extends ComponentResolver>>()
+            .add(ConfigurationComponentResolver.class)
+            .add(DocumentPersistenceComponentResolver.class)
+            .add(DocumentRepositoryComponentResolver.class)
+            .add(ServiceComponentResolver.class)
+            .add(CommandComponentResolver.class)
+            .add(ListenerComponentResolver.class)
+            .add(RunnableComponentResolver.class)
+            .add(ObjectComponentResolver.class)
+            .build();
 
-    public void registerComponent(Object component) {
-        if (component instanceof CommandHandler) {
-            new CommandComponentResolver().resolve(
-                    this.pluginMain,
-                    this.pluginMain.getInjector(),
-                    (CommandHandler) component
-            );
-            return;
+    @SuppressWarnings("unchecked")
+    public <T> ComponentHandler registerComponent(@NonNull Class<T> componentClass, Consumer<T> consumer) {
+        for (Class<? extends ComponentResolver> componentResolvers : this.componentResolvers) {
+            try {
+                final ComponentResolver componentResolver = componentResolvers.newInstance();
+                if (componentResolver.isAssignableFrom(componentClass)) {
+                    this.injector.injectFields(componentResolver);
+                    if (consumer != null) {
+                        final Object object = componentResolver.process(this.injector, componentClass);
+                        consumer.accept((T) object);
+                    }
+                    else {
+                        componentResolver.process(this.injector, componentClass);
+                    }
+                    return this;
+                }
+            }
+            catch (InstantiationException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
 
-        if (component instanceof Listener) {
-            new ListenerComponentResolver().resolve(
-                    this.pluginMain,
-                    this.pluginMain.getInjector(),
-                    (Listener) component
-            );
-            return;
-        }
+        return this;
+    }
 
-        if (component instanceof Runnable) {
-            new RunnableComponentResolver().resolve(
-                    this.pluginMain,
-                    this.pluginMain.getInjector(),
-                    (Runnable) component
-            );
-            return;
-        }
-
-        long start = System.currentTimeMillis();
-
-        this.pluginMain.getInjector().registerInjectable(component.getClass());
-
-        long took = System.currentTimeMillis() - start;
-        PluginMain.getPluginLogger().info(
-                new PluginLogger.Loader()
-                        .type("Poprawnie dodano obiekt")
-                        .name(component.getClass().getSimpleName())
-                        .took(took)
-                        .meta("methods", Arrays.stream(component.getClass().getDeclaredMethods())
-                                .filter(method -> method.getAnnotation(EventHandler.class) != null)
-                                .map(Method::getName)
-                                .collect(Collectors.toList()))
-                        .build()
-        );
+    public ComponentHandler registerComponent(@NonNull Class<?> componentClass) {
+        return this.registerComponent(componentClass, null);
     }
 
 }

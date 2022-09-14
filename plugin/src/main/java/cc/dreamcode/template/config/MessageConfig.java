@@ -1,6 +1,7 @@
 package cc.dreamcode.template.config;
 
 import cc.dreamcode.template.features.notice.Notice;
+import cc.dreamcode.template.stereotypes.Configuration;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Header;
 import eu.okaeri.configs.annotation.Headers;
@@ -8,6 +9,9 @@ import eu.okaeri.configs.annotation.NameModifier;
 import eu.okaeri.configs.annotation.NameStrategy;
 import eu.okaeri.configs.annotation.Names;
 
+@Configuration(
+        child = "message.yml"
+)
 @Headers({
         @Header("## Dream-Template (Message-Config) ##"),
         @Header("Dostepne type: (CHAT, ACTION_BAR, SUBTITLE, TITLE, TITLE_SUBTITLE, SIDEBAR)")

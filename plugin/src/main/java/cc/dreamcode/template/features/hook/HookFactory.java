@@ -3,29 +3,29 @@ package cc.dreamcode.template.features.hook;
 import cc.dreamcode.template.PluginLogger;
 import cc.dreamcode.template.PluginMain;
 import cc.dreamcode.template.exception.PluginRuntimeException;
-import lombok.Getter;
+import eu.okaeri.injector.annotation.Inject;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.bukkit.plugin.Plugin;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public class HookService {
+public class HookFactory {
 
-    private final Plugin plugin;
-    @Getter private final HookManager hookManager = new HookManager();
+    private @Inject PluginMain pluginMain;
 
-    public void tryLoadAllDepends(List<PluginHook> pluginHookList) {
+    public void tryLoadAllDepends(@NonNull List<Class<? extends PluginHook>> pluginHookList, @NonNull HookManager hookManager) {
         long start = System.currentTimeMillis();
 
-        pluginHookList.forEach(pluginHook -> {
-            this.hookManager.add(pluginHook);
+        pluginHookList.forEach(pluginHookClass -> {
+            final PluginHook pluginHook = this.pluginMain.createInstance(pluginHookClass);
+            hookManager.add(pluginHook);
 
             try {
                 Class.forName(pluginHook.getPluginHookType().getClassPackageName());
 
-                if (!this.plugin.getDescription().getSoftDepend().contains(pluginHook.getPluginHookType().getName())) {
+                if (!this.pluginMain.getDescription().getSoftDepend().contains(pluginHook.getPluginHookType().getName())) {
                     throw new PluginRuntimeException("Plugin (name=" + pluginHook.getPluginHookType().getName() + ") " +
                             "is not a softdepend. Add plugin name to file/main class.");
                 }
@@ -34,11 +34,11 @@ public class HookService {
             }
             catch (ClassNotFoundException e) {
                 PluginMain.getPluginLogger().warning("Plugin (name=" + pluginHook.getPluginHookType().getName() + ") " +
-                        "nie zostal znaleziony lub wersja jest niekompatybilna! Plugin dziala z ograniczeniami.");
+                        "not found or version is not compatible. Plugin works with limitations.");
             }
         });
 
-        if (this.hookManager.getSet()
+        if (hookManager.getSet()
                 .stream()
                 .noneMatch(PluginHook::isInitialized)) {
             return;
@@ -47,8 +47,8 @@ public class HookService {
         long took = System.currentTimeMillis() - start;
         PluginMain.getPluginLogger().info(
                 new PluginLogger.Loader()
-                        .type("Poprawnie zaladowano kompatybilne pluginy")
-                        .name(this.hookManager.getSet().stream()
+                        .type("Loaded soft-depends")
+                        .name(hookManager.getSet().stream()
                                 .filter(PluginHook::isInitialized)
                                 .map(pluginHook -> pluginHook.getPluginHookType().getName())
                                 .collect(Collectors.joining(", ")))

@@ -1,6 +1,7 @@
 package cc.dreamcode.template.config;
 
 import cc.dreamcode.template.config.subconfig.StorageConfig;
+import cc.dreamcode.template.stereotypes.Configuration;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Comment;
 import eu.okaeri.configs.annotation.Header;
@@ -8,6 +9,9 @@ import eu.okaeri.configs.annotation.NameModifier;
 import eu.okaeri.configs.annotation.NameStrategy;
 import eu.okaeri.configs.annotation.Names;
 
+@Configuration(
+        child = "config.yml"
+)
 @Header("## Dream-Template (Main-Config) ##")
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public class PluginConfig extends OkaeriConfig {
