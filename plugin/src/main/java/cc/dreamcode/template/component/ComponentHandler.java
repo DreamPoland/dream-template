@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 import java.util.function.Consumer;
 
+@SuppressWarnings("rawtypes")
 @RequiredArgsConstructor
 public final class ComponentHandler {
 
@@ -17,7 +18,7 @@ public final class ComponentHandler {
             .add(ConfigurationComponentResolver.class)
             .add(DocumentPersistenceComponentResolver.class)
             .add(DocumentRepositoryComponentResolver.class)
-            .add(ServiceComponentResolver.class)
+            .add(PersistenceServiceComponentResolver.class)
             .add(CommandComponentResolver.class)
             .add(ListenerComponentResolver.class)
             .add(RunnableComponentResolver.class)

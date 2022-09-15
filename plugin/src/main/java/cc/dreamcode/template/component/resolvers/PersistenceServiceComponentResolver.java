@@ -8,7 +8,8 @@ import lombok.NonNull;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ServiceComponentResolver extends ComponentResolver<Class<PersistenceService>> {
+@SuppressWarnings("rawtypes")
+public class PersistenceServiceComponentResolver extends ComponentResolver<Class<PersistenceService>> {
 
     @Override
     public boolean isAssignableFrom(@NonNull Class<PersistenceService> serviceClass) {
