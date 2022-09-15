@@ -1,5 +1,6 @@
 package cc.dreamcode.template.config.subconfig;
 
+import cc.dreamcode.template.persistence.PersistenceType;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Comment;
 import eu.okaeri.configs.annotation.NameModifier;
@@ -11,7 +12,7 @@ public class StorageConfig extends OkaeriConfig {
 
     @Comment({"W jakiej formie maja byc zapisywane dane o graczu?",
             "Dostepne zapisy: (FLAT, MYSQL, MONGO, REDIS)"})
-    public BackendSave backendSave = BackendSave.FLAT;
+    public PersistenceType backendSave = PersistenceType.FLAT;
 
     @Comment({"Jaki prefix ustawic dla danych?",
             "Dla FLAT prefix nie jest uzywany."})
@@ -23,9 +24,5 @@ public class StorageConfig extends OkaeriConfig {
             "MYSQL  : jdbc:mysql://{host}[:{port}]/{database}?user={name}&password={password}",
             "MONGO  : mongodb://{name}:{password}@{host}[:{port}]/{database}?authSource=admin"})
     public String uri = "flat";
-
-    public enum BackendSave {
-        FLAT, MYSQL, MONGO, REDIS
-    }
 
 }

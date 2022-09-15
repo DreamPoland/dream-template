@@ -1,4 +1,4 @@
-package cc.dreamcode.template.builder;
+package cc.dreamcode.template.features.item;
 
 import lombok.Setter;
 import org.bukkit.Material;

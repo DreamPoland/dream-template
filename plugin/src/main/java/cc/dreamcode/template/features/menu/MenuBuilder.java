@@ -1,6 +1,6 @@
 package cc.dreamcode.template.features.menu;
 
-import cc.dreamcode.template.builder.ItemReplacer;
+import cc.dreamcode.template.features.item.ItemReplacer;
 import eu.okaeri.placeholders.context.PlaceholderContext;
 import eu.okaeri.placeholders.message.CompiledMessage;
 import lombok.Getter;

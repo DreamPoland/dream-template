@@ -25,13 +25,10 @@ import cc.dreamcode.template.nms.v1_19_R1.V1_19_R1_NmsAccessor;
 import cc.dreamcode.template.nms.v1_8_R3.V1_8_R3_NmsAccessor;
 import cc.dreamcode.template.nms.v1_9_R2.V1_9_R2_NmsAccessor;
 import com.cryptomorin.xseries.ReflectionUtils;
-import eu.okaeri.injector.Injector;
-import eu.okaeri.injector.OkaeriInjector;
 import eu.okaeri.persistence.document.DocumentPersistence;
 import eu.okaeri.tasker.bukkit.BukkitTasker;
 import eu.okaeri.tasker.core.Tasker;
 import lombok.Getter;
-import lombok.NonNull;
 import org.bukkit.plugin.java.annotation.dependency.SoftDependency;
 import org.bukkit.plugin.java.annotation.plugin.ApiVersion;
 import org.bukkit.plugin.java.annotation.plugin.Description;
@@ -54,7 +51,6 @@ public final class PluginMain extends PluginBootLoader {
     @Getter private static PluginMain pluginMain;
     @Getter private static PluginLogger pluginLogger;
 
-    @Getter private Injector injector;
     @Getter private Tasker tasker;
     @Getter private NmsAccessor nmsAccessor;
 
@@ -63,14 +59,11 @@ public final class PluginMain extends PluginBootLoader {
         pluginMain = this;
         pluginLogger = new PluginLogger(pluginMain.getLogger());
 
-        this.injector = OkaeriInjector.create();
-        this.injector.registerInjectable(this);
-
         this.tasker = BukkitTasker.newPool(this);
-        this.injector.registerInjectable(this.tasker);
+        this.registerInjectable(this.tasker);
 
         this.nmsAccessor = this.hookNmsAccessor();
-        this.injector.registerInjectable(this.nmsAccessor);
+        this.registerInjectable(this.nmsAccessor);
     }
 
     @Override
@@ -82,7 +75,7 @@ public final class PluginMain extends PluginBootLoader {
         // Component system inspired by okaeri-platform
         // These simple structure can register all content of this plugin.
         // Remember to sort it by type of class:
-        // --> Config, DocumentPersistence, DocumentRepository, Services, Managers, Commands, Listeners, Runnables, other...
+        // --> Config -> DocumentPersistence -> DocumentRepository -> Services -> Managers -> other...
         new ComponentHandler(this.getInjector())
                 .registerComponent(PluginConfig.class)
                 .registerComponent(MessageConfig.class)
@@ -159,9 +152,5 @@ public final class PluginMain extends PluginBootLoader {
                 throw new PluginRuntimeException("Plugin doesn't support this server version, change to 1.8 - 1.19 (latest subversion).");
             }
         }
-    }
-
-    public <T> T createInstance(@NonNull Class<T> type) {
-        return this.injector.createInstance(type);
     }
 }

@@ -1,4 +1,4 @@
-package cc.dreamcode.template.builder;
+package cc.dreamcode.template.features.item;
 
 import eu.okaeri.placeholders.context.PlaceholderContext;
 import eu.okaeri.placeholders.message.CompiledMessage;
@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public class ItemReplacer {
+public class ItemReplacer { // TODO: improve it
 
     private final ItemStack is;
 

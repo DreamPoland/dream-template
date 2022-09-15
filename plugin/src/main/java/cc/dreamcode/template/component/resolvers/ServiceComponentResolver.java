@@ -1,18 +1,18 @@
 package cc.dreamcode.template.component.resolvers;
 
 import cc.dreamcode.template.component.ComponentResolver;
-import cc.dreamcode.template.features.persistence.service.Service;
+import cc.dreamcode.template.persistence.PersistenceService;
 import eu.okaeri.injector.Injector;
 import lombok.NonNull;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ServiceComponentResolver extends ComponentResolver<Class<Service>> {
+public class ServiceComponentResolver extends ComponentResolver<Class<PersistenceService>> {
 
     @Override
-    public boolean isAssignableFrom(@NonNull Class<Service> serviceClass) {
-        return Service.class.isAssignableFrom(serviceClass);
+    public boolean isAssignableFrom(@NonNull Class<PersistenceService> serviceClass) {
+        return PersistenceService.class.isAssignableFrom(serviceClass);
     }
 
     @Override
@@ -21,13 +21,13 @@ public class ServiceComponentResolver extends ComponentResolver<Class<Service>> 
     }
 
     @Override
-    public Map<String, Object> getMetas(@NonNull Injector injector, @NonNull Class<Service> serviceClass) {
+    public Map<String, Object> getMetas(@NonNull Injector injector, @NonNull Class<PersistenceService> serviceClass) {
         return new HashMap<>();
     }
 
     @Override
-    public Object resolve(@NonNull Injector injector, @NonNull Class<Service> serviceClass) {
-        final Service service = injector.createInstance(serviceClass);
+    public Object resolve(@NonNull Injector injector, @NonNull Class<PersistenceService> serviceClass) {
+        final PersistenceService service = injector.createInstance(serviceClass);
         service.loadAllToMemory();
 
         return service;

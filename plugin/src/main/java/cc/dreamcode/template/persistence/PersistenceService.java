@@ -1,4 +1,4 @@
-package cc.dreamcode.template.features.persistence.service;
+package cc.dreamcode.template.persistence;
 
 import cc.dreamcode.template.PluginLogger;
 import cc.dreamcode.template.PluginMain;
@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
  * @param <K> PersistencePath
  * @param <V> Document
  */
-public abstract class Service<K, V extends Document> implements Manager<K, V> {
+public abstract class PersistenceService<K, V extends Document> implements Manager<K, V> {
 
     private final Map<K, V> inMemoryDocumentMap = new HashMap<>();
     public abstract DocumentRepository<K, V> getDocumentRepository();

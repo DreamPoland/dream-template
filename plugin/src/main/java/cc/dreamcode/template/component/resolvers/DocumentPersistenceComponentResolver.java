@@ -4,7 +4,7 @@ import cc.dreamcode.template.PluginMain;
 import cc.dreamcode.template.component.ComponentResolver;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.config.subconfig.StorageConfig;
-import cc.dreamcode.template.features.persistence.PersistenceSerdesPack;
+import cc.dreamcode.template.persistence.PersistenceSerdesPack;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.zaxxer.hikari.HikariConfig;

@@ -1,6 +1,6 @@
 package cc.dreamcode.template.features.user;
 
-import cc.dreamcode.template.features.persistence.AbstractDocument;
+import cc.dreamcode.template.persistence.document.AbstractDocument;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

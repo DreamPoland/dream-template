@@ -1,4 +1,4 @@
-package cc.dreamcode.template.features.persistence;
+package cc.dreamcode.template.persistence.document;
 
 import eu.okaeri.persistence.document.Document;
 

@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public final class PluginFactory {
 
+    @Deprecated
     public static boolean checkPlugin(final AtomicBoolean atomicBoolean, final PluginDescriptionFile pluginDescriptionFile) {
         if (!pluginDescriptionFile.getRawName().equals("Dream-Template")) {
             atomicBoolean.set(true);

@@ -1,6 +1,6 @@
 package cc.dreamcode.template.features.user;
 
-import cc.dreamcode.template.features.persistence.service.Service;
+import cc.dreamcode.template.persistence.PersistenceService;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.persistence.repository.DocumentRepository;
 import lombok.NonNull;
@@ -11,7 +11,7 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 @RequiredArgsConstructor
-public class UserService extends Service<UUID, User> {
+public class UserService extends PersistenceService<UUID, User> {
     private @Inject UserRepository userRepository;
 
     @Override

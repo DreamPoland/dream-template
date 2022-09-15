@@ -1,4 +1,4 @@
-package cc.dreamcode.template.features.persistence;
+package cc.dreamcode.template.persistence;
 
 import eu.okaeri.configs.serdes.OkaeriSerdesPack;
 import eu.okaeri.configs.serdes.SerdesRegistry;
