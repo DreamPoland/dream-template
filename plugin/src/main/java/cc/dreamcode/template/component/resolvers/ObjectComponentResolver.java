@@ -7,6 +7,7 @@ import lombok.NonNull;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("rawtypes")
 public class ObjectComponentResolver extends ComponentResolver {
     @Override
     public boolean isAssignableFrom(@NonNull Class aClass) {
@@ -23,6 +24,7 @@ public class ObjectComponentResolver extends ComponentResolver {
         return new HashMap<>();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Object resolve(@NonNull Injector injector, @NonNull Class aClass) {
         return injector.createInstance(aClass);

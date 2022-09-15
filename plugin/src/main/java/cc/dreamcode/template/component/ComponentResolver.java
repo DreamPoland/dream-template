@@ -7,6 +7,7 @@ import lombok.NonNull;
 
 import java.util.Map;
 
+@SuppressWarnings("rawtypes")
 public abstract class ComponentResolver<T extends Class> {
 
     public abstract boolean isAssignableFrom(@NonNull T t);

@@ -13,6 +13,7 @@ import lombok.NonNull;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("rawtypes")
 public class DocumentRepositoryComponentResolver extends ComponentResolver<Class<? extends DocumentRepository>> {
 
     private @Inject PluginMain pluginMain;
