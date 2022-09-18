@@ -61,17 +61,17 @@ public final class ComponentHandler {
     }
 
     @SuppressWarnings("unchecked")
-    public <T> ComponentHandler registerObject(@NonNull Object object, Consumer<T> consumer) {
+    public <T> ComponentHandler registerObject(@NonNull T t, Consumer<T> consumer) {
         for (Class<? extends ComponentObjectResolver> componentResolvers : this.objectResolvers) {
             try {
                 final ComponentObjectResolver componentObjectResolver = componentResolvers.newInstance();
-                if (componentObjectResolver.isAssignableFrom(object.getClass())) {
+                if (componentObjectResolver.isAssignableFrom(t.getClass())) {
                     this.injector.injectFields(componentObjectResolver);
                     if (consumer != null) {
-                        consumer.accept((T) componentObjectResolver.process(this.injector, object));
+                        consumer.accept((T) componentObjectResolver.process(this.injector, t));
                     }
                     else {
-                        componentObjectResolver.process(this.injector, object);
+                        componentObjectResolver.process(this.injector, t);
                     }
                     return this;
                 }
