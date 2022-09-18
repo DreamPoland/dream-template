@@ -1,14 +1,14 @@
-package cc.dreamcode.template.component;
+package cc.dreamcode.template.component.resolvers;
 
-import cc.dreamcode.template.PluginLogger;
-import cc.dreamcode.template.PluginMain;
+import cc.dreamcode.template.TemplateLogger;
+import cc.dreamcode.template.TemplatePlugin;
 import eu.okaeri.injector.Injector;
 import lombok.NonNull;
 
 import java.util.Map;
 
 @SuppressWarnings("rawtypes")
-public abstract class ComponentResolver<T extends Class> {
+public abstract class ComponentClassResolver<T extends Class> {
 
     public abstract boolean isAssignableFrom(@NonNull T t);
     public abstract String getComponentName();
@@ -22,8 +22,8 @@ public abstract class ComponentResolver<T extends Class> {
         injector.registerInjectable(object);
 
         long took = System.currentTimeMillis() - start;
-        PluginMain.getPluginLogger().info(
-                new PluginLogger.Loader()
+        TemplatePlugin.getTemplateLogger().info(
+                new TemplateLogger.Loader()
                         .type("Added " + this.getComponentName() + " component")
                         .name(t.getSimpleName())
                         .took(took)

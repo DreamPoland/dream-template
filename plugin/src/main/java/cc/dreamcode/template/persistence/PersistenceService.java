@@ -1,7 +1,7 @@
 package cc.dreamcode.template.persistence;
 
-import cc.dreamcode.template.PluginLogger;
-import cc.dreamcode.template.PluginMain;
+import cc.dreamcode.template.TemplateLogger;
+import cc.dreamcode.template.TemplatePlugin;
 import cc.dreamcode.template.features.Manager;
 import eu.okaeri.persistence.document.Document;
 import eu.okaeri.persistence.repository.DocumentRepository;
@@ -61,8 +61,8 @@ public abstract class PersistenceService<K, V extends Document> implements Manag
                 this.inMemoryDocumentMap.put((K) v.getPath().getValue(), v));
 
         long took = System.currentTimeMillis() - start;
-        PluginMain.getPluginLogger().info(
-                new PluginLogger.Loader()
+        TemplatePlugin.getTemplateLogger().info(
+                new TemplateLogger.Loader()
                         .type("Loaded repository content")
                         .name(this.getDocumentRepository().getDocumentType().getSimpleName() + "s")
                         .took(took)

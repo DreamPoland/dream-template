@@ -1,7 +1,7 @@
-package cc.dreamcode.template.component.resolvers;
+package cc.dreamcode.template.component.classes;
 
-import cc.dreamcode.template.PluginMain;
-import cc.dreamcode.template.component.ComponentResolver;
+import cc.dreamcode.template.TemplatePlugin;
+import cc.dreamcode.template.component.resolvers.ComponentClassResolver;
 import eu.okaeri.injector.Injector;
 import eu.okaeri.injector.annotation.Inject;
 import eu.okaeri.persistence.PersistenceCollection;
@@ -14,9 +14,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("rawtypes")
-public class DocumentRepositoryComponentResolver extends ComponentResolver<Class<? extends DocumentRepository>> {
+public class DocumentRepositoryComponentClassResolver extends ComponentClassResolver<Class<? extends DocumentRepository>> {
 
-    private @Inject PluginMain pluginMain;
+    private @Inject TemplatePlugin templatePlugin;
     private @Inject DocumentPersistence documentPersistence;
 
     @Override
@@ -43,7 +43,7 @@ public class DocumentRepositoryComponentResolver extends ComponentResolver<Class
                 .newProxy(
                         this.documentPersistence,
                         persistenceCollection,
-                        this.pluginMain.getClass().getClassLoader()
+                        this.templatePlugin.getClass().getClassLoader()
                 );
     }
 }

@@ -6,7 +6,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-public class UserActionHandler implements Listener {
+public class UserController implements Listener {
 
     private @Inject UserService userService;
 

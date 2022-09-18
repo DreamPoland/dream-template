@@ -1,8 +1,8 @@
-package cc.dreamcode.template.component.resolvers;
+package cc.dreamcode.template.component.classes;
 
 
-import cc.dreamcode.template.PluginMain;
-import cc.dreamcode.template.component.ComponentResolver;
+import cc.dreamcode.template.TemplatePlugin;
+import cc.dreamcode.template.component.resolvers.ComponentClassResolver;
 import cc.dreamcode.template.exception.PluginRuntimeException;
 import cc.dreamcode.template.stereotypes.Scheduler;
 import com.google.common.collect.ImmutableMap;
@@ -12,9 +12,9 @@ import lombok.NonNull;
 
 import java.util.Map;
 
-public class RunnableComponentResolver extends ComponentResolver<Class<? extends Runnable>> {
+public class RunnableComponentClassResolver extends ComponentClassResolver<Class<? extends Runnable>> {
 
-    private @Inject PluginMain pluginMain;
+    private @Inject TemplatePlugin templatePlugin;
 
     @Override
     public boolean isAssignableFrom(@NonNull Class<? extends Runnable> runnableClass) {
@@ -50,11 +50,11 @@ public class RunnableComponentResolver extends ComponentResolver<Class<? extends
         }
 
         if (scheduler.async()) {
-            this.pluginMain.getServer().getScheduler().runTaskTimerAsynchronously(this.pluginMain,
+            this.templatePlugin.getServer().getScheduler().runTaskTimerAsynchronously(this.templatePlugin,
                     runnable, scheduler.delay(), scheduler.repeat());
         }
         else {
-            this.pluginMain.getServer().getScheduler().runTaskTimer(this.pluginMain,
+            this.templatePlugin.getServer().getScheduler().runTaskTimer(this.templatePlugin,
                     runnable, scheduler.delay(), scheduler.repeat());
         }
 

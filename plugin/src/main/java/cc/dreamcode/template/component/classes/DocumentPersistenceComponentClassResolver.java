@@ -1,7 +1,7 @@
-package cc.dreamcode.template.component.resolvers;
+package cc.dreamcode.template.component.classes;
 
-import cc.dreamcode.template.PluginMain;
-import cc.dreamcode.template.component.ComponentResolver;
+import cc.dreamcode.template.TemplatePlugin;
+import cc.dreamcode.template.component.resolvers.ComponentClassResolver;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.config.subconfig.StorageConfig;
 import cc.dreamcode.template.persistence.PersistenceSerdesPack;
@@ -26,9 +26,9 @@ import lombok.NonNull;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DocumentPersistenceComponentResolver extends ComponentResolver<Class<DocumentPersistence>> {
+public class DocumentPersistenceComponentClassResolver extends ComponentClassResolver<Class<DocumentPersistence>> {
 
-    private @Inject PluginMain pluginMain;
+    private @Inject TemplatePlugin templatePlugin;
     private @Inject PluginConfig pluginConfig;
 
     @Override
@@ -60,7 +60,7 @@ public class DocumentPersistenceComponentResolver extends ComponentResolver<Clas
             case FLAT:
                 return new DocumentPersistence(
                         new FlatPersistence(
-                                this.pluginMain.getDataFolder(),
+                                this.templatePlugin.getDataFolder(),
                                 ".yml"
                         ),
                         YamlBukkitConfigurer::new,

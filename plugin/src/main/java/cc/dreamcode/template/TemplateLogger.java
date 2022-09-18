@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public final class PluginLogger {
+public final class TemplateLogger {
 
     private final Logger logger;
 

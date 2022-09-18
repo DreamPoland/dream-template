@@ -1,6 +1,6 @@
-package cc.dreamcode.template.component.resolvers;
+package cc.dreamcode.template.component.classes;
 
-import cc.dreamcode.template.component.ComponentResolver;
+import cc.dreamcode.template.component.resolvers.ComponentClassResolver;
 import eu.okaeri.injector.Injector;
 import lombok.NonNull;
 
@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("rawtypes")
-public class ObjectComponentResolver extends ComponentResolver {
+public class ObjectComponentClassResolver extends ComponentClassResolver {
     @Override
     public boolean isAssignableFrom(@NonNull Class aClass) {
         return true;

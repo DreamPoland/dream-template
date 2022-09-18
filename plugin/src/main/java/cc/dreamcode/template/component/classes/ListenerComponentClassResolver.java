@@ -1,7 +1,7 @@
-package cc.dreamcode.template.component.resolvers;
+package cc.dreamcode.template.component.classes;
 
-import cc.dreamcode.template.PluginMain;
-import cc.dreamcode.template.component.ComponentResolver;
+import cc.dreamcode.template.TemplatePlugin;
+import cc.dreamcode.template.component.resolvers.ComponentClassResolver;
 import com.google.common.collect.ImmutableMap;
 import eu.okaeri.injector.Injector;
 import eu.okaeri.injector.annotation.Inject;
@@ -15,9 +15,9 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ListenerComponentResolver extends ComponentResolver<Class<? extends Listener>> {
+public class ListenerComponentClassResolver extends ComponentClassResolver<Class<? extends Listener>> {
 
-    private @Inject PluginMain pluginMain;
+    private @Inject TemplatePlugin templatePlugin;
 
     @Override
     public boolean isAssignableFrom(@NonNull Class<? extends Listener> listenerClass) {
@@ -43,8 +43,8 @@ public class ListenerComponentResolver extends ComponentResolver<Class<? extends
     public Object resolve(@NonNull Injector injector, @NonNull Class<? extends Listener> listenerClass) {
         final Listener listener = injector.createInstance(listenerClass);
 
-        final PluginManager pm = this.pluginMain.getServer().getPluginManager();
-        pm.registerEvents(listener, this.pluginMain);
+        final PluginManager pm = this.templatePlugin.getServer().getPluginManager();
+        pm.registerEvents(listener, this.templatePlugin);
 
         return listener;
     }

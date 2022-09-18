@@ -1,6 +1,6 @@
 package cc.dreamcode.template.features.command;
 
-import cc.dreamcode.template.PluginMain;
+import cc.dreamcode.template.TemplatePlugin;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.exception.PluginValidatorException;
 import cc.dreamcode.template.features.command.annotations.RequiredPermission;
@@ -32,7 +32,7 @@ public abstract class CommandHandler extends Command implements PluginIdentifiab
     @NonNull
     @Override
     public Plugin getPlugin() {
-        return PluginMain.getPluginMain();
+        return TemplatePlugin.getTemplatePlugin();
     }
 
     public abstract void handle(@NonNull CommandSender sender, @NonNull String[] args);
@@ -84,11 +84,11 @@ public abstract class CommandHandler extends Command implements PluginIdentifiab
             whenNot(sender instanceof Player, this.messageConfig.noPlayer);
         }
 
-        return PluginMain.getPluginMain().getInjector().createInstance(commandArgHandlerClass);
+        return TemplatePlugin.getTemplatePlugin().getInjector().createInstance(commandArgHandlerClass);
     }
 
     public MenuBaseBuilder getMenu(@NonNull Class<? extends MenuBaseBuilder> menuBaseBuilder) {
-        return PluginMain.getPluginMain().getInjector().createInstance(menuBaseBuilder);
+        return TemplatePlugin.getTemplatePlugin().getInjector().createInstance(menuBaseBuilder);
     }
 
 }

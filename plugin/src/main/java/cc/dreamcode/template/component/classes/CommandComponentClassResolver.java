@@ -1,7 +1,7 @@
-package cc.dreamcode.template.component.resolvers;
+package cc.dreamcode.template.component.classes;
 
-import cc.dreamcode.template.PluginMain;
-import cc.dreamcode.template.component.ComponentResolver;
+import cc.dreamcode.template.TemplatePlugin;
+import cc.dreamcode.template.component.resolvers.ComponentClassResolver;
 import cc.dreamcode.template.features.command.CommandHandler;
 import com.google.common.collect.ImmutableMap;
 import eu.okaeri.injector.Injector;
@@ -14,9 +14,9 @@ import org.bukkit.plugin.SimplePluginManager;
 import java.lang.reflect.Field;
 import java.util.Map;
 
-public class CommandComponentResolver extends ComponentResolver<Class<? extends CommandHandler>> {
+public class CommandComponentClassResolver extends ComponentClassResolver<Class<? extends CommandHandler>> {
 
-    private @Inject PluginMain pluginMain;
+    private @Inject TemplatePlugin templatePlugin;
 
     @Override
     public boolean isAssignableFrom(@NonNull Class<? extends CommandHandler> aClass) {
@@ -40,13 +40,13 @@ public class CommandComponentResolver extends ComponentResolver<Class<? extends 
     @Override
     public Object resolve(@NonNull Injector injector, @NonNull Class<? extends CommandHandler> commandHandlerClass) {
         final CommandHandler commandHandler = injector.createInstance(commandHandlerClass);
-        SimpleCommandMap simpleCommandMap = this.getSimpleCommandMap(this.pluginMain.getServer());
+        SimpleCommandMap simpleCommandMap = this.getSimpleCommandMap(this.templatePlugin.getServer());
 
         if (simpleCommandMap == null) {
             return commandHandler;
         }
 
-        simpleCommandMap.register(this.pluginMain.getDescription().getName(), commandHandler);
+        simpleCommandMap.register(this.templatePlugin.getDescription().getName(), commandHandler);
         return commandHandler;
     }
 

@@ -1,4 +1,4 @@
-package cc.dreamcode.template;
+package cc.dreamcode.template.boot;
 
 import cc.dreamcode.template.exception.PluginRuntimeException;
 import org.bukkit.plugin.PluginDescriptionFile;

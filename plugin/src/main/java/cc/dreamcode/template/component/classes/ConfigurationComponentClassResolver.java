@@ -1,7 +1,7 @@
-package cc.dreamcode.template.component.resolvers;
+package cc.dreamcode.template.component.classes;
 
-import cc.dreamcode.template.PluginMain;
-import cc.dreamcode.template.component.ComponentResolver;
+import cc.dreamcode.template.TemplatePlugin;
+import cc.dreamcode.template.component.resolvers.ComponentClassResolver;
 import cc.dreamcode.template.config.ConfigSerdesPack;
 import cc.dreamcode.template.exception.PluginRuntimeException;
 import cc.dreamcode.template.stereotypes.Configuration;
@@ -20,9 +20,9 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ConfigurationComponentResolver extends ComponentResolver<Class<OkaeriConfig>> {
+public class ConfigurationComponentClassResolver extends ComponentClassResolver<Class<OkaeriConfig>> {
 
-    private @Inject PluginMain pluginMain;
+    private @Inject TemplatePlugin templatePlugin;
 
     @Override
     public boolean isAssignableFrom(@NonNull Class<OkaeriConfig> okaeriConfigClass) {
@@ -65,7 +65,7 @@ public class ConfigurationComponentResolver extends ComponentResolver<Class<Okae
 
         return ConfigManager.create(okaeriConfigClass, (it) -> {
             it.withConfigurer(new YamlBukkitConfigurer(), new SerdesBukkit(), new ConfigSerdesPack());
-            it.withBindFile(new File(this.pluginMain.getDataFolder(), configuration.child()));
+            it.withBindFile(new File(this.templatePlugin.getDataFolder(), configuration.child()));
             it.saveDefaults();
             it.load(true);
         });
