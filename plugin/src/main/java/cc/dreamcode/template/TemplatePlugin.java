@@ -13,9 +13,11 @@ import cc.dreamcode.template.features.nms.NmsFactory;
 import cc.dreamcode.template.features.user.UserController;
 import cc.dreamcode.template.features.user.UserRepository;
 import cc.dreamcode.template.features.user.UserService;
+import eu.okaeri.injector.Injector;
 import eu.okaeri.persistence.document.DocumentPersistence;
 import eu.okaeri.tasker.bukkit.BukkitTasker;
 import lombok.Getter;
+import lombok.NonNull;
 import org.bukkit.plugin.java.annotation.dependency.SoftDependency;
 import org.bukkit.plugin.java.annotation.plugin.ApiVersion;
 import org.bukkit.plugin.java.annotation.plugin.Description;
@@ -32,6 +34,7 @@ import java.util.stream.Stream;
 @Website("DreamCode - https://discord.gg/dreamcode")
 @ApiVersion(ApiVersion.Target.v1_13)
 
+// If are you using plugin-hooks, add them here via soft-dependency as well
 @SoftDependency("FunnyGuilds")
 public final class TemplatePlugin extends PluginBootLoader {
 
@@ -40,46 +43,32 @@ public final class TemplatePlugin extends PluginBootLoader {
 
     @Override
     public void load() {
+        // Static content for api.
         templatePlugin = this;
         templateLogger = new TemplateLogger(templatePlugin.getLogger());
     }
 
     @Override
-    public void start() {
-        if (!PluginFactory.checkPlugin(this.getPluginDisabled(), this.getDescription())) {
-            return;
-        }
-
+    public void start(@NonNull ComponentHandler componentHandler) {
         // Component system inspired by okaeri-platform
-        // These simple structure can register all content of this plugin.
-        // Remember to sort it by type of class:
-        // --> Config -> DocumentPersistence -> DocumentRepository -> Services -> Managers -> object/other...
-        new ComponentHandler(this.getInjector())
-                .registerObject(BukkitTasker.newPool(this))
-                .registerObject(NmsFactory.getNmsAccessor())
-                .registerComponent(PluginConfig.class)
-                .registerComponent(MessageConfig.class)
-                .registerComponent(DocumentPersistence.class)
-                .registerComponent(UserRepository.class)
-                .registerComponent(UserService.class)
-                .registerComponent(HookManager.class, hookManager ->
-                        this.createInstance(HookFactory.class).tryLoadAllDepends(Stream.of(
-                                FunnyGuildsHook.class
-                        ).collect(Collectors.toList()), hookManager))
-                .registerComponent(UserController.class)
-                .registerComponent(MenuActionHandler.class);
-
-        TemplatePlugin.getTemplateLogger().info(String.format("Active version: v%s - Author: %s",
-                getDescription().getVersion(),
-                getDescription().getAuthors()));
+        // These simple structure can register all content of this plugin. (A-Z)
+        componentHandler.registerObject(BukkitTasker.newPool(this));
+        componentHandler.registerObject(NmsFactory.getNmsAccessor());
+        componentHandler.registerComponent(PluginConfig.class);
+        componentHandler.registerComponent(MessageConfig.class);
+        componentHandler.registerComponent(DocumentPersistence.class);
+        componentHandler.registerComponent(UserRepository.class);
+        componentHandler.registerComponent(UserService.class);
+        componentHandler.registerComponent(HookManager.class, hookManager ->
+                this.createInstance(HookFactory.class).tryLoadAllDepends(Stream.of(
+                        FunnyGuildsHook.class
+                ).collect(Collectors.toList()), hookManager));
+        componentHandler.registerComponent(UserController.class);
+        componentHandler.registerComponent(MenuActionHandler.class);
     }
 
     @Override
-    public void stop() {
+    public void stop(@NonNull Injector injector) {
         // features need to be call by stop server
-
-        TemplatePlugin.getTemplateLogger().info(String.format("Active version: v%s - Author: %s",
-                getDescription().getVersion(),
-                getDescription().getAuthors()));
     }
 }

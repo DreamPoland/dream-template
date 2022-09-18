@@ -32,7 +32,15 @@ public final class ComponentHandler {
             .add(GenericComponentObjectResolver.class)
             .build();
 
-    @SuppressWarnings("unchecked")
+    /**
+     * This method can register all content of this plugin.
+     * When class is undefined, object will be bound for injection only.
+     * Class with constructor can only be register with RegisterObject method.
+     *
+     * @param componentClass class to register & bind
+     * @param consumer apply changes after register.
+     */
+    @SuppressWarnings("ALL")
     public <T> ComponentHandler registerComponent(@NonNull Class<T> componentClass, Consumer<T> consumer) {
         for (Class<? extends ComponentClassResolver> componentResolvers : this.classResolvers) {
             try {
@@ -56,11 +64,25 @@ public final class ComponentHandler {
         return this;
     }
 
+    /**
+     * This method can register all content of this plugin.
+     * When class is undefined, object will be bound for injection only.
+     * Class with constructor can only be register with RegisterObject method.
+     *
+     * @param componentClass class to register & bind
+     */
     public ComponentHandler registerComponent(@NonNull Class<?> componentClass) {
         return this.registerComponent(componentClass, null);
     }
 
-    @SuppressWarnings("unchecked")
+    /**
+     * This method can register any existing objects of this plugin.
+     * RegisterObject method does not bind injected fields etc.
+     *
+     * @param t object to bind
+     * @param consumer apply changes after bind.
+     */
+    @SuppressWarnings("ALL")
     public <T> ComponentHandler registerObject(@NonNull T t, Consumer<T> consumer) {
         for (Class<? extends ComponentObjectResolver> componentResolvers : this.objectResolvers) {
             try {
@@ -83,6 +105,12 @@ public final class ComponentHandler {
         return this;
     }
 
+    /**
+     * This method can register any existing objects of this plugin.
+     * RegisterObject method does not bind injected fields etc.
+     *
+     * @param object object to bind
+     */
     public ComponentHandler registerObject(@NonNull Object object) {
         return this.registerObject(object, null);
     }

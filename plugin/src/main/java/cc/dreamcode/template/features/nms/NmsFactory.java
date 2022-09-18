@@ -22,7 +22,7 @@ import com.cryptomorin.xseries.ReflectionUtils;
  * NmsAccessor collect all version into one api, witch you can easily send packets to minecraft clients.
  * When you don't have to use it, just remove class & nms implements from gradle dependencies.
  */
-public class NmsFactory {
+public final class NmsFactory {
     public static NmsAccessor getNmsAccessor() {
         TemplatePlugin.getTemplateLogger().info(
                 new TemplateLogger.Loader()

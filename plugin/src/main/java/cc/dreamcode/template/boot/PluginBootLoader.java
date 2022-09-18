@@ -1,5 +1,7 @@
 package cc.dreamcode.template.boot;
 
+import cc.dreamcode.template.TemplatePlugin;
+import cc.dreamcode.template.component.ComponentHandler;
 import cc.dreamcode.template.exception.PluginRuntimeException;
 import eu.okaeri.injector.Injector;
 import eu.okaeri.injector.OkaeriInjector;
@@ -34,13 +36,21 @@ public abstract class PluginBootLoader extends JavaPlugin {
             return;
         }
 
+        if (!PluginFactory.checkPlugin(this.getPluginDisabled(), this.getDescription())) {
+            return;
+        }
+
         try {
-            this.start();
+            this.start(new ComponentHandler(this.injector));
         }
         catch (Exception e) {
             this.getPluginDisabled().set(true);
             throw new PluginRuntimeException("An error was caught when plugin are starting...", e, this);
         }
+
+        TemplatePlugin.getTemplateLogger().info(String.format("Active version: v%s - Author: %s",
+                getDescription().getVersion(),
+                getDescription().getAuthors()));
     }
 
     @Override
@@ -50,18 +60,22 @@ public abstract class PluginBootLoader extends JavaPlugin {
         }
 
         try {
-            this.stop();
+            this.stop(this.injector);
         }
         catch (Exception e) {
             throw new PluginRuntimeException("An error was caught when plugin are stopping...", e);
         }
+
+        TemplatePlugin.getTemplateLogger().info(String.format("Active version: v%s - Author: %s",
+                getDescription().getVersion(),
+                getDescription().getAuthors()));
     }
 
     public abstract void load();
 
-    public abstract void start();
+    public abstract void start(@NonNull ComponentHandler componentHandler);
 
-    public abstract void stop();
+    public abstract void stop(@NonNull Injector injector);
 
     public <T> void registerInjectable(@NonNull T object) {
         this.injector.registerInjectable(object);
