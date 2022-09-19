@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class PluginBootLoader extends JavaPlugin {
@@ -83,6 +84,14 @@ public abstract class PluginBootLoader extends JavaPlugin {
 
     public <T> T createInstance(@NonNull Class<T> type) {
         return this.injector.createInstance(type);
+    }
+
+    public <T> Optional<T> getInject(@NonNull String name, @NonNull Class<T> value) {
+        return this.injector.get(name, value);
+    }
+
+    public <T> Optional<T> getInject(@NonNull Class<T> value) {
+        return this.getInject("", value);
     }
 
 }
