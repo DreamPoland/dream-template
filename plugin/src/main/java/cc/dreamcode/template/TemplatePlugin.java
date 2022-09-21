@@ -68,7 +68,7 @@ public final class TemplatePlugin extends PluginBootLoader {
     }
 
     @Override
-    public void stop(@NonNull Injector injector) {
+    public void stop() {
         // features need to be call by stop server
     }
 }

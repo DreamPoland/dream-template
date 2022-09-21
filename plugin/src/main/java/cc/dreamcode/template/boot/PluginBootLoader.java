@@ -61,7 +61,7 @@ public abstract class PluginBootLoader extends JavaPlugin {
         }
 
         try {
-            this.stop(this.injector);
+            this.stop();
         }
         catch (Exception e) {
             throw new PluginRuntimeException("An error was caught when plugin are stopping...", e);
@@ -76,7 +76,7 @@ public abstract class PluginBootLoader extends JavaPlugin {
 
     public abstract void start(@NonNull ComponentHandler componentHandler);
 
-    public abstract void stop(@NonNull Injector injector);
+    public abstract void stop();
 
     public <T> void registerInjectable(@NonNull T object) {
         this.injector.registerInjectable(object);

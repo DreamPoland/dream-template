@@ -2,11 +2,13 @@ package cc.dreamcode.template.features.command;
 
 import cc.dreamcode.template.TemplatePlugin;
 import cc.dreamcode.template.config.MessageConfig;
+import cc.dreamcode.template.exception.PluginRuntimeException;
 import cc.dreamcode.template.exception.PluginValidatorException;
 import cc.dreamcode.template.features.command.annotations.RequiredPermission;
 import cc.dreamcode.template.features.command.annotations.RequiredPlayer;
 import cc.dreamcode.template.features.menu.MenuBaseBuilder;
 import cc.dreamcode.template.features.notice.NoticeSender;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 import eu.okaeri.injector.annotation.Inject;
 import lombok.NonNull;
 import org.bukkit.command.Command;
@@ -19,8 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class CommandHandler extends Command implements PluginIdentifiableCommand, NoticeSender, CommandValidator {
-
-    private @Inject MessageConfig messageConfig;
 
     public CommandHandler(String name, List<String> aliases) {
         super(name);
@@ -35,21 +35,24 @@ public abstract class CommandHandler extends Command implements PluginIdentifiab
         return TemplatePlugin.getTemplatePlugin();
     }
 
-    public abstract void handle(@NonNull CommandSender sender, @NonNull String[] args);
+    protected abstract void handle(@NonNull CommandSender sender, @NonNull String[] args);
 
-    public abstract List<String> tab(@NonNull Player player, @NonNull String[] args);
+    protected abstract List<String> tab(@NonNull Player player, @NonNull String[] args);
 
     @Override
     public boolean execute(@NonNull CommandSender sender, @NonNull String commandLabel, @NonNull String[] arguments) {
+        final MessageConfig messageConfig = TemplatePlugin.getTemplatePlugin().getInject(MessageConfig.class)
+                .orElseThrow(() -> new PluginRuntimeException("Plugin can not get an object from a injector."));
+
         try {
             RequiredPermission requiredPermission = getClass().getAnnotation(RequiredPermission.class);
             if (requiredPermission != null) {
-                whenNot(sender.hasPermission(requiredPermission.permission()), this.messageConfig.noPermission);
+                whenNot(sender.hasPermission(requiredPermission.permission()), messageConfig.noPermission);
             }
 
             RequiredPlayer requiredPlayer = getClass().getAnnotation(RequiredPlayer.class);
             if (requiredPlayer != null) {
-                whenNot(sender instanceof Player, this.messageConfig.noPlayer);
+                whenNot(sender instanceof Player, messageConfig.noPlayer);
             }
 
             handle(sender, arguments);
@@ -74,21 +77,24 @@ public abstract class CommandHandler extends Command implements PluginIdentifiab
     }
 
     public CommandArgHandler getArgument(@NonNull CommandSender sender, @NonNull Class<? extends CommandArgHandler> commandArgHandlerClass) {
+        final MessageConfig messageConfig = TemplatePlugin.getTemplatePlugin().getInject(MessageConfig.class)
+                .orElseThrow(() -> new PluginRuntimeException("Plugin can not get an object from a injector."));
+
         RequiredPermission requiredPermission = commandArgHandlerClass.getAnnotation(RequiredPermission.class);
         if (requiredPermission != null) {
-            whenNot(sender.hasPermission(requiredPermission.permission()), this.messageConfig.noPermission);
+            whenNot(sender.hasPermission(requiredPermission.permission()), messageConfig.noPermission);
         }
 
         RequiredPlayer requiredPlayer = commandArgHandlerClass.getAnnotation(RequiredPlayer.class);
         if (requiredPlayer != null) {
-            whenNot(sender instanceof Player, this.messageConfig.noPlayer);
+            whenNot(sender instanceof Player, messageConfig.noPlayer);
         }
 
-        return TemplatePlugin.getTemplatePlugin().getInjector().createInstance(commandArgHandlerClass);
+        return TemplatePlugin.getTemplatePlugin().createInstance(commandArgHandlerClass);
     }
 
     public MenuBaseBuilder getMenu(@NonNull Class<? extends MenuBaseBuilder> menuBaseBuilder) {
-        return TemplatePlugin.getTemplatePlugin().getInjector().createInstance(menuBaseBuilder);
+        return TemplatePlugin.getTemplatePlugin().createInstance(menuBaseBuilder);
     }
 
 }

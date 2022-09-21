@@ -23,6 +23,18 @@ allprojects {
         }
     }
 
+    checkstyle {
+        toolVersion '10.3.1'
+        maxWarnings = 0
+    }
+
+    tasks.withType(Checkstyle) {
+        reports {
+            xml.required = false
+            html.required = true
+        }
+    }
+
     repositories {
         mavenCentral()
         maven { url "https://papermc.io/repo/repository/maven-public/" }
