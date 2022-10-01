@@ -1,15 +1,13 @@
 package cc.dreamcode.template.features.command;
 
+import cc.dreamcode.menu.serdes.bukkit.MenuSetup;
 import cc.dreamcode.template.TemplatePlugin;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.exception.PluginRuntimeException;
 import cc.dreamcode.template.exception.PluginValidatorException;
 import cc.dreamcode.template.features.command.annotations.RequiredPermission;
 import cc.dreamcode.template.features.command.annotations.RequiredPlayer;
-import cc.dreamcode.template.features.menu.MenuBaseBuilder;
 import cc.dreamcode.template.features.notice.NoticeSender;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
-import eu.okaeri.injector.annotation.Inject;
 import lombok.NonNull;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -93,8 +91,8 @@ public abstract class CommandHandler extends Command implements PluginIdentifiab
         return TemplatePlugin.getTemplatePlugin().createInstance(commandArgHandlerClass);
     }
 
-    public MenuBaseBuilder getMenu(@NonNull Class<? extends MenuBaseBuilder> menuBaseBuilder) {
-        return TemplatePlugin.getTemplatePlugin().createInstance(menuBaseBuilder);
+    public MenuSetup getMenuSetup(@NonNull Class<? extends MenuSetup> menuSetup) {
+        return TemplatePlugin.getTemplatePlugin().createInstance(menuSetup);
     }
 
 }

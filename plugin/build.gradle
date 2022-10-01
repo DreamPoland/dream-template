@@ -38,7 +38,7 @@ dependencies {
     implementation 'fr.mrmicky:fastboard:1.2.1'
 
     // -- NMS Items helper --
-    implementation 'com.github.cryptomorin:XSeries:9.0.0'
+    implementation 'com.github.cryptomorin:XSeries:9.1.0'
 
     // -- NBT-API --
     implementation 'de.tr7zw:item-nbt-api-plugin:2.9.2'
@@ -49,6 +49,7 @@ dependencies {
     // -- dream-menu --
     implementation "cc.dreamcode.menu:core:0.3-SNAPSHOT"
     implementation "cc.dreamcode.menu:bukkit:0.3-SNAPSHOT"
+    implementation "cc.dreamcode.menu:serdes-bukkit:0.3-SNAPSHOT"
     implementation "cc.dreamcode.menu:serdes-bukkit-okaeri:0.3-SNAPSHOT"
 
     // -- Plugin Hooks --
@@ -74,6 +75,7 @@ shadowJar {
     relocate "de.tr7zw", "cc.dreamcode.template.libs.de.tr7zw"
     relocate "fr.mrmicky.fastboard", "cc.dreamcode.template.libs.fastboard"
     relocate "com.iridium", "cc.dreamcode.template.libs.com.iridium"
+    relocate "cc.dreamcode.menu", "cc.dreamcode.template.libs.cc.dreamcode.menu"
 
     relocate "io.lettuce", "cc.dreamcode.template.libs.io.lettuce"
     relocate "io.netty", "cc.dreamcode.template.libs.io.netty"
