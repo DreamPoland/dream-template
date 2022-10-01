@@ -1,4 +1,4 @@
-package cc.dreamcode.template.config.subconfig;
+package cc.dreamcode.template.persistence.config;
 
 import cc.dreamcode.template.persistence.PersistenceType;
 import eu.okaeri.configs.OkaeriConfig;

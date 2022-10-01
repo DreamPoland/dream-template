@@ -1,6 +1,6 @@
 package cc.dreamcode.template.config;
 
-import cc.dreamcode.template.features.menu.MenuSerdes;
+import cc.dreamcode.menu.serdes.bukkit.okaeri.MenuBuilderSerdes;
 import cc.dreamcode.template.features.notice.NoticeSerdes;
 import cc.dreamcode.template.features.randomizer.DoubleRandomizerSerdes;
 import cc.dreamcode.template.features.randomizer.IntRandomizerSerdes;
@@ -16,8 +16,8 @@ public class ConfigSerdesPack implements OkaeriSerdesPack {
     @Override
     public void register(@NonNull SerdesRegistry registry) {
         registry.register(new NoticeSerdes());
-        registry.register(new MenuSerdes());
         registry.register(new DoubleRandomizerSerdes());
         registry.register(new IntRandomizerSerdes());
+        registry.register(new MenuBuilderSerdes());
     }
 }

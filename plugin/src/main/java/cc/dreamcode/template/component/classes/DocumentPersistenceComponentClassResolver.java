@@ -3,7 +3,7 @@ package cc.dreamcode.template.component.classes;
 import cc.dreamcode.template.TemplatePlugin;
 import cc.dreamcode.template.component.resolvers.ComponentClassResolver;
 import cc.dreamcode.template.config.PluginConfig;
-import cc.dreamcode.template.config.subconfig.StorageConfig;
+import cc.dreamcode.template.persistence.config.StorageConfig;
 import cc.dreamcode.template.persistence.PersistenceSerdesPack;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;

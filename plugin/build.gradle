@@ -46,6 +46,11 @@ dependencies {
     // -- RGB-CHAT --
     implementation 'com.iridium:IridiumColorAPI:1.0.6'
 
+    // -- dream-menu --
+    implementation "cc.dreamcode.menu:core:0.3-SNAPSHOT"
+    implementation "cc.dreamcode.menu:bukkit:0.3-SNAPSHOT"
+    implementation "cc.dreamcode.menu:serdes-bukkit-okaeri:0.3-SNAPSHOT"
+
     // -- Plugin Hooks --
     //compileOnly 'net.dzikoysk.funnyguilds:plugin:4.10.1'
 

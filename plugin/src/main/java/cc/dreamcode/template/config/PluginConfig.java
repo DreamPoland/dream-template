@@ -1,6 +1,6 @@
 package cc.dreamcode.template.config;
 
-import cc.dreamcode.template.config.subconfig.StorageConfig;
+import cc.dreamcode.template.persistence.config.StorageConfig;
 import cc.dreamcode.template.stereotypes.Configuration;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Comment;

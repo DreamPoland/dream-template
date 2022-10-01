@@ -1,19 +1,17 @@
 package cc.dreamcode.template;
 
+import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
 import cc.dreamcode.template.boot.PluginBootLoader;
-import cc.dreamcode.template.boot.PluginFactory;
 import cc.dreamcode.template.component.ComponentHandler;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.features.hook.HookFactory;
 import cc.dreamcode.template.features.hook.HookManager;
 import cc.dreamcode.template.features.hook.plugins.FunnyGuildsHook;
-import cc.dreamcode.template.features.menu.MenuActionHandler;
 import cc.dreamcode.template.features.nms.NmsFactory;
 import cc.dreamcode.template.features.user.UserController;
 import cc.dreamcode.template.features.user.UserRepository;
 import cc.dreamcode.template.features.user.UserService;
-import eu.okaeri.injector.Injector;
 import eu.okaeri.persistence.document.DocumentPersistence;
 import eu.okaeri.tasker.bukkit.BukkitTasker;
 import lombok.Getter;
@@ -64,7 +62,7 @@ public final class TemplatePlugin extends PluginBootLoader {
                         FunnyGuildsHook.class
                 ).collect(Collectors.toList()), hookManager));
         componentHandler.registerComponent(UserController.class);
-        componentHandler.registerComponent(MenuActionHandler.class);
+        componentHandler.registerObject(BukkitMenuProvider.create(this));
     }
 
     @Override
