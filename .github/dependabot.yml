@@ -11,3 +11,5 @@ updates:
       interval: "daily"
     ignore:
     - dependency-name: spigot
+      versions:
+      - "> 1.8.8-R0.1-SNAPSHOT"

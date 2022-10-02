@@ -23,7 +23,7 @@ dependencies {
     implementation 'eu.okaeri:okaeri-configs-json-simple:4.0.6'
 
     // -- additional jdbc backend --
-    implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.6'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.8'
 
     // -- injector --
     implementation 'eu.okaeri:okaeri-injector:2.1.0'
@@ -41,7 +41,7 @@ dependencies {
     implementation 'com.github.cryptomorin:XSeries:9.1.0'
 
     // -- NBT-API --
-    implementation 'de.tr7zw:item-nbt-api-plugin:2.9.2'
+    implementation 'de.tr7zw:item-nbt-api-plugin:2.10.0'
 
     // -- RGB-CHAT --
     implementation 'com.iridium:IridiumColorAPI:1.0.6'
