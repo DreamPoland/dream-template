@@ -41,7 +41,7 @@ dependencies {
     implementation 'com.github.cryptomorin:XSeries:9.1.0'
 
     // -- NBT-API --
-    implementation 'de.tr7zw:item-nbt-api-plugin:2.9.2'
+    implementation 'de.tr7zw:item-nbt-api-plugin:2.10.0'
 
     // -- RGB-CHAT --
     implementation 'com.iridium:IridiumColorAPI:1.0.6'
