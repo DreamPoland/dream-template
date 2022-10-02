@@ -84,7 +84,7 @@ public abstract class PluginBootLoader extends JavaPlugin {
 
         TemplatePlugin.getTemplateLogger().info(
                 new TemplateLogger.Loader()
-                        .type("Added inject")
+                        .type("Added injectable object")
                         .name(object.getClass().getSimpleName())
                         .build()
         );

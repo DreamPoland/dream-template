@@ -47,10 +47,10 @@ dependencies {
     implementation 'com.iridium:IridiumColorAPI:1.0.6'
 
     // -- dream-menu --
-    implementation "cc.dreamcode.menu:core:0.3.4"
-    implementation "cc.dreamcode.menu:bukkit:0.3.4"
-    implementation "cc.dreamcode.menu:serdes-bukkit:0.3.4"
-    implementation "cc.dreamcode.menu:serdes-bukkit-okaeri:0.3.4"
+    implementation "cc.dreamcode.menu:core:0.3.6"
+    implementation "cc.dreamcode.menu:bukkit:0.3.6"
+    implementation "cc.dreamcode.menu:serdes-bukkit:0.3.6"
+    implementation "cc.dreamcode.menu:serdes-bukkit-okaeri:0.3.6"
 
     // -- Plugin Hooks --
     //compileOnly 'net.dzikoysk.funnyguilds:plugin:4.10.1'
