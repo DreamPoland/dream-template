@@ -1,5 +1,6 @@
 package cc.dreamcode.template.boot;
 
+import cc.dreamcode.template.TemplateLogger;
 import cc.dreamcode.template.TemplatePlugin;
 import cc.dreamcode.template.component.ComponentHandler;
 import cc.dreamcode.template.exception.PluginRuntimeException;
@@ -78,8 +79,15 @@ public abstract class PluginBootLoader extends JavaPlugin {
 
     public abstract void stop();
 
-    public <T> void registerInjectable(@NonNull T object) {
+    public void registerInjectable(@NonNull Object object) {
         this.injector.registerInjectable(object);
+
+        TemplatePlugin.getTemplateLogger().info(
+                new TemplateLogger.Loader()
+                        .type("Added inject")
+                        .name(object.getClass().getSimpleName())
+                        .build()
+        );
     }
 
     public <T> T createInstance(@NonNull Class<T> type) {

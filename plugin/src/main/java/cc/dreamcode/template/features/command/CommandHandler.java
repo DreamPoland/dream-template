@@ -1,6 +1,9 @@
 package cc.dreamcode.template.features.command;
 
-import cc.dreamcode.menu.serdes.bukkit.MenuSetup;
+import cc.dreamcode.menu.bukkit.setup.BukkitMenuPaginatedPlayerSetup;
+import cc.dreamcode.menu.bukkit.setup.BukkitMenuPaginatedSetup;
+import cc.dreamcode.menu.bukkit.setup.BukkitMenuPlayerSetup;
+import cc.dreamcode.menu.bukkit.setup.BukkitMenuSetup;
 import cc.dreamcode.template.TemplatePlugin;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.exception.PluginRuntimeException;
@@ -91,7 +94,19 @@ public abstract class CommandHandler extends Command implements PluginIdentifiab
         return TemplatePlugin.getTemplatePlugin().createInstance(commandArgHandlerClass);
     }
 
-    public MenuSetup getMenuSetup(@NonNull Class<? extends MenuSetup> menuSetup) {
+    public BukkitMenuSetup getMenuSetup(@NonNull Class<? extends BukkitMenuSetup> menuSetup) {
+        return TemplatePlugin.getTemplatePlugin().createInstance(menuSetup);
+    }
+
+    public BukkitMenuPaginatedSetup getMenuPaginatedSetup(@NonNull Class<? extends BukkitMenuPaginatedSetup> menuSetup) {
+        return TemplatePlugin.getTemplatePlugin().createInstance(menuSetup);
+    }
+
+    public BukkitMenuPlayerSetup getMenuPlayerSetup(@NonNull Class<? extends BukkitMenuPlayerSetup> menuSetup) {
+        return TemplatePlugin.getTemplatePlugin().createInstance(menuSetup);
+    }
+
+    public BukkitMenuPaginatedPlayerSetup getMenuPaginatedPlayerSetup(@NonNull Class<? extends BukkitMenuPaginatedPlayerSetup> menuSetup) {
         return TemplatePlugin.getTemplatePlugin().createInstance(menuSetup);
     }
 

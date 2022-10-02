@@ -8,6 +8,7 @@ import cc.dreamcode.template.stereotypes.Configuration;
 import com.google.common.collect.ImmutableMap;
 import eu.okaeri.configs.ConfigManager;
 import eu.okaeri.configs.OkaeriConfig;
+import eu.okaeri.configs.serdes.commons.SerdesCommons;
 import eu.okaeri.configs.yaml.bukkit.YamlBukkitConfigurer;
 import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
 import eu.okaeri.injector.Injector;
@@ -64,7 +65,7 @@ public class ConfigurationComponentClassResolver extends ComponentClassResolver<
         }
 
         return ConfigManager.create(okaeriConfigClass, (it) -> {
-            it.withConfigurer(new YamlBukkitConfigurer(), new SerdesBukkit(), new ConfigSerdesPack());
+            it.withConfigurer(new YamlBukkitConfigurer(), new SerdesBukkit(), new SerdesCommons(), new ConfigSerdesPack());
             it.withBindFile(new File(this.templatePlugin.getDataFolder(), configuration.child()));
             it.saveDefaults();
             it.load(true);

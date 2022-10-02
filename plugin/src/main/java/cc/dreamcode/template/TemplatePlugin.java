@@ -48,10 +48,13 @@ public final class TemplatePlugin extends PluginBootLoader {
 
     @Override
     public void start(@NonNull ComponentHandler componentHandler) {
+        // Injectable object registering. (library etc.)
+        this.registerInjectable(BukkitTasker.newPool(this));
+        this.registerInjectable(NmsFactory.getNmsAccessor());
+        this.registerInjectable(BukkitMenuProvider.create(this));
+
         // Component system inspired by okaeri-platform
         // These simple structure can register all content of this plugin. (A-Z)
-        componentHandler.registerObject(BukkitTasker.newPool(this));
-        componentHandler.registerObject(NmsFactory.getNmsAccessor());
         componentHandler.registerComponent(PluginConfig.class);
         componentHandler.registerComponent(MessageConfig.class);
         componentHandler.registerComponent(DocumentPersistence.class);
@@ -62,7 +65,6 @@ public final class TemplatePlugin extends PluginBootLoader {
                         FunnyGuildsHook.class
                 ).collect(Collectors.toList()), hookManager));
         componentHandler.registerComponent(UserController.class);
-        componentHandler.registerObject(BukkitMenuProvider.create(this));
     }
 
     @Override
