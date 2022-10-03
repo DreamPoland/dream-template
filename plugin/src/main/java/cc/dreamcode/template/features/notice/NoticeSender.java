@@ -1,18 +1,14 @@
 package cc.dreamcode.template.features.notice;
 
+import cc.dreamcode.template.exception.PluginRuntimeException;
 import com.cryptomorin.xseries.messages.ActionBar;
 import com.cryptomorin.xseries.messages.Titles;
 import com.iridium.iridiumcolorapi.IridiumColorAPI;
 import fr.mrmicky.fastboard.FastBoard;
-import jdk.tools.jlink.plugin.PluginException;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 /**
  * NoticeSender is interface for sending formatted messages to player.
@@ -41,7 +37,7 @@ public interface NoticeSender {
             case TITLE_SUBTITLE: {
                 String[] split = text.split("%NEWLINE%");
                 if (split.length == 0) {
-                    throw new PluginException("Notice with TITLE_SUBTITLE need have %NEWLINE% to include title with subtitle.");
+                    throw new PluginRuntimeException("Notice with TITLE_SUBTITLE need have %NEWLINE% to include title with subtitle.");
                 }
                 Titles.sendTitle(player, split[0], split[1]);
                 break;
