@@ -32,4 +32,8 @@ public class Notice {
         return PlaceholderContext.of(CompiledMessage.of(this.text));
     }
 
+    public static String lineSeparator() {
+        return "%NEWLINE%";
+    }
+
 }
