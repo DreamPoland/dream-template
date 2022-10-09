@@ -1,9 +1,5 @@
 package cc.dreamcode.template.features.command;
 
-import cc.dreamcode.menu.bukkit.setup.BukkitMenuPaginatedPlayerSetup;
-import cc.dreamcode.menu.bukkit.setup.BukkitMenuPaginatedSetup;
-import cc.dreamcode.menu.bukkit.setup.BukkitMenuPlayerSetup;
-import cc.dreamcode.menu.bukkit.setup.BukkitMenuSetup;
 import cc.dreamcode.template.TemplatePlugin;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.exception.PluginRuntimeException;
@@ -20,8 +16,11 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
-public abstract class CommandHandler extends Command implements PluginIdentifiableCommand, NoticeSender, CommandValidator {
+public abstract class CommandHandler extends Command implements PluginIdentifiableCommand, NoticeSender, CommandValidator, CommandPlatform {
+
+    private final List<Class<? extends ArgumentHandler>> argumentHandlers = new ArrayList<>();
 
     public CommandHandler(String name, List<String> aliases) {
         super(name);
@@ -36,27 +35,26 @@ public abstract class CommandHandler extends Command implements PluginIdentifiab
         return TemplatePlugin.getTemplatePlugin();
     }
 
-    protected abstract void handle(@NonNull CommandSender sender, @NonNull String[] args);
-
-    protected abstract List<String> tab(@NonNull Player player, @NonNull String[] args);
-
     @Override
     public boolean execute(@NonNull CommandSender sender, @NonNull String commandLabel, @NonNull String[] arguments) {
         final MessageConfig messageConfig = TemplatePlugin.getTemplatePlugin().getInject(MessageConfig.class)
                 .orElseThrow(() -> new PluginRuntimeException("Plugin can not get an object from a injector."));
 
+        final CommandPlatform commandPlatform = this.getCommandMethods(arguments);
         try {
-            RequiredPermission requiredPermission = getClass().getAnnotation(RequiredPermission.class);
+            RequiredPermission requiredPermission = commandPlatform.getClass().getAnnotation(RequiredPermission.class);
             if (requiredPermission != null) {
-                whenNot(sender.hasPermission(requiredPermission.permission()), messageConfig.noPermission);
+                whenNot(sender.hasPermission(requiredPermission.permission().equals("")
+                        ? "rpl." + this.getName()
+                        : requiredPermission.permission()), messageConfig.noPermission);
             }
 
-            RequiredPlayer requiredPlayer = getClass().getAnnotation(RequiredPlayer.class);
+            RequiredPlayer requiredPlayer = commandPlatform.getClass().getAnnotation(RequiredPlayer.class);
             if (requiredPlayer != null) {
                 whenNot(sender instanceof Player, messageConfig.noPlayer);
             }
 
-            handle(sender, arguments);
+            commandPlatform.handle(sender, arguments);
         }
         catch (PluginValidatorException e) {
             if (e.getReplaceMap().isEmpty()) {
@@ -70,44 +68,43 @@ public abstract class CommandHandler extends Command implements PluginIdentifiab
     }
 
     public @NonNull List<String> tabComplete(@NonNull CommandSender sender, @NonNull String label, @NonNull String[] args) {
-        List<String> completions = tab((Player) sender, args);
-        if (completions == null) {
-            return new ArrayList<>();
+        final List<String> completions = new ArrayList<>();
+        final List<String> commandCompletions = this.getCommandMethods(args).tab((Player) sender, args);
+        if (commandCompletions != null) {
+            completions.addAll(commandCompletions);
         }
+
+        this.argumentHandlers
+                .stream()
+                .map(argumentClass -> TemplatePlugin.getTemplatePlugin().createInstance(argumentClass))
+                .filter(argumentHandler -> args.length == argumentHandler.getArg())
+                .forEach(argumentHandler -> {
+                    RequiredPermission requiredPermission = argumentHandler.getClass().getAnnotation(RequiredPermission.class);
+                    if (requiredPermission == null || !sender.hasPermission(requiredPermission.permission())) {
+                        return;
+                    }
+
+                    completions.add(argumentHandler.getName());
+                });
+
         return completions;
     }
 
-    public ArgumentHandler getArgument(@NonNull CommandSender sender, @NonNull Class<? extends ArgumentHandler> commandArgHandlerClass) {
-        final MessageConfig messageConfig = TemplatePlugin.getTemplatePlugin().getInject(MessageConfig.class)
-                .orElseThrow(() -> new PluginRuntimeException("Plugin can not get an object from a injector."));
+    private CommandPlatform getCommandMethods(@NonNull String[] args) {
+        final AtomicReference<CommandPlatform> commandMethodsReference = new AtomicReference<>(this);
+        this.argumentHandlers
+                .stream()
+                .map(argumentClass -> TemplatePlugin.getTemplatePlugin().createInstance(argumentClass))
+                .filter(argumentHandler -> args.length >= argumentHandler.getArg() &&
+                        args[argumentHandler.getArg() - 1].equalsIgnoreCase(argumentHandler.getName()))
+                .findFirst()
+                .ifPresent(commandMethodsReference::set);
 
-        RequiredPermission requiredPermission = commandArgHandlerClass.getAnnotation(RequiredPermission.class);
-        if (requiredPermission != null) {
-            whenNot(sender.hasPermission(requiredPermission.permission()), messageConfig.noPermission);
-        }
-
-        RequiredPlayer requiredPlayer = commandArgHandlerClass.getAnnotation(RequiredPlayer.class);
-        if (requiredPlayer != null) {
-            whenNot(sender instanceof Player, messageConfig.noPlayer);
-        }
-
-        return TemplatePlugin.getTemplatePlugin().createInstance(commandArgHandlerClass);
+        return commandMethodsReference.get();
     }
 
-    public BukkitMenuSetup getMenuSetup(@NonNull Class<? extends BukkitMenuSetup> menuSetup) {
-        return TemplatePlugin.getTemplatePlugin().createInstance(menuSetup);
-    }
-
-    public BukkitMenuPaginatedSetup getMenuPaginatedSetup(@NonNull Class<? extends BukkitMenuPaginatedSetup> menuSetup) {
-        return TemplatePlugin.getTemplatePlugin().createInstance(menuSetup);
-    }
-
-    public BukkitMenuPlayerSetup getMenuPlayerSetup(@NonNull Class<? extends BukkitMenuPlayerSetup> menuSetup) {
-        return TemplatePlugin.getTemplatePlugin().createInstance(menuSetup);
-    }
-
-    public BukkitMenuPaginatedPlayerSetup getMenuPaginatedPlayerSetup(@NonNull Class<? extends BukkitMenuPaginatedPlayerSetup> menuSetup) {
-        return TemplatePlugin.getTemplatePlugin().createInstance(menuSetup);
+    public void addArgument(@NonNull Class<? extends ArgumentHandler> argumentClass) {
+        this.argumentHandlers.add(argumentClass);
     }
 
 }

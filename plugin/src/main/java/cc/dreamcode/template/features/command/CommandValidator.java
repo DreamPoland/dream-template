@@ -9,6 +9,7 @@ import java.util.Optional;
 /**
  * Validator for checking simple question and answer when false to command sender.
  */
+@SuppressWarnings("ALL")
 public interface CommandValidator {
 
     default <T> T whenNull(T t, Notice notice) {
