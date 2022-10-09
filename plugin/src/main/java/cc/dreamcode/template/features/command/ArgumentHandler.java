@@ -4,7 +4,7 @@ import cc.dreamcode.template.features.notice.NoticeSender;
 import lombok.NonNull;
 import org.bukkit.command.CommandSender;
 
-public interface CommandArgHandler extends NoticeSender, CommandValidator {
+public interface ArgumentHandler extends NoticeSender, CommandValidator {
 
     void handle(@NonNull CommandSender sender, @NonNull String[] args);
 

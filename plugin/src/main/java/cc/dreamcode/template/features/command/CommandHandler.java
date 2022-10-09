@@ -77,7 +77,7 @@ public abstract class CommandHandler extends Command implements PluginIdentifiab
         return completions;
     }
 
-    public CommandArgHandler getArgument(@NonNull CommandSender sender, @NonNull Class<? extends CommandArgHandler> commandArgHandlerClass) {
+    public ArgumentHandler getArgument(@NonNull CommandSender sender, @NonNull Class<? extends ArgumentHandler> commandArgHandlerClass) {
         final MessageConfig messageConfig = TemplatePlugin.getTemplatePlugin().getInject(MessageConfig.class)
                 .orElseThrow(() -> new PluginRuntimeException("Plugin can not get an object from a injector."));
 
