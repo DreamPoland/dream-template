@@ -28,10 +28,17 @@ public class UserService extends PersistenceService<UUID, User> {
             return CompletableFuture.completedFuture(user);
         }
 
-        return CompletableFuture.supplyAsync(() -> this.getDocumentRepository().findOrCreateByPath(player.getUniqueId()));
+        return CompletableFuture.supplyAsync(() -> {
+            final User user = this.getDocumentRepository().findOrCreateByPath(player.getUniqueId());
+            user.setName(player.getName());
+
+            return user;
+        });
     }
 
     public Optional<User> get(@NonNull OfflinePlayer player) {
-        return this.getByKey(player.getUniqueId());
+        final Optional<User> userOptional = this.getByKey(player.getUniqueId());
+        userOptional.ifPresent(user -> user.setName(player.getName()));
+        return userOptional;
     }
 }
