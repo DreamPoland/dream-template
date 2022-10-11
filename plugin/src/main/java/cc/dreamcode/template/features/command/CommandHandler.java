@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public abstract class CommandHandler extends Command implements PluginIdentifiableCommand, NoticeSender, CommandValidator, CommandPlatform {
+public abstract class CommandHandler extends Command implements PluginIdentifiableCommand, NoticeSender, CommandPlatform {
 
     private final List<Class<? extends ArgumentHandler>> argumentHandlers = new ArrayList<>();
 
@@ -43,15 +43,15 @@ public abstract class CommandHandler extends Command implements PluginIdentifiab
         final CommandPlatform commandPlatform = this.getCommandMethods(arguments);
         try {
             RequiredPermission requiredPermission = commandPlatform.getClass().getAnnotation(RequiredPermission.class);
-            if (requiredPermission != null) {
-                whenNot(sender.hasPermission(requiredPermission.permission().equals("")
-                        ? "rpl." + this.getName()
-                        : requiredPermission.permission()), messageConfig.noPermission);
+            if (requiredPermission != null && !sender.hasPermission(requiredPermission.permission().equals("")
+                    ? "rpl." + this.getName()
+                    : requiredPermission.permission())) {
+                throw new PluginValidatorException(messageConfig.noPermission);
             }
 
             RequiredPlayer requiredPlayer = commandPlatform.getClass().getAnnotation(RequiredPlayer.class);
-            if (requiredPlayer != null) {
-                whenNot(sender instanceof Player, messageConfig.noPlayer);
+            if (requiredPlayer != null && !(sender instanceof Player)) {
+                throw new PluginValidatorException(messageConfig.notPlayer);
             }
 
             commandPlatform.handle(sender, arguments);

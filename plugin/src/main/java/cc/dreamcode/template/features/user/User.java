@@ -10,9 +10,7 @@ import java.util.UUID;
 @EqualsAndHashCode(callSuper = false)
 public class User extends AbstractDocument {
 
-    private String name; // nick of this user
-
-    private String value = "default values -- add data";
+    private String name;
 
     public UUID getUniqueId() {
         return this.getPath().toUUID();

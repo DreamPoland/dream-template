@@ -7,8 +7,8 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.OfflinePlayer;
 
-import java.util.*;
-import java.util.concurrent.CompletableFuture;
+import java.util.Optional;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 public class UserService extends PersistenceService<UUID, User> {
@@ -19,26 +19,31 @@ public class UserService extends PersistenceService<UUID, User> {
         return this.userRepository;
     }
 
-    public CompletableFuture<User> getOrCreate(@NonNull OfflinePlayer player) {
+    public User getOrCreate(@NonNull OfflinePlayer player) {
         final Optional<User> optionalUser = this.get(player);
         if (optionalUser.isPresent()) {
             final User user = optionalUser.get();
             user.setName(player.getName());
 
-            return CompletableFuture.completedFuture(user);
+            return user;
         }
 
-        return CompletableFuture.supplyAsync(() -> {
-            final User user = this.getDocumentRepository().findOrCreateByPath(player.getUniqueId());
-            user.setName(player.getName());
+        final User user = this.getDocumentRepository().findOrCreateByPath(player.getUniqueId());
+        user.setName(player.getName());
 
-            return user;
-        });
+        return user;
     }
 
     public Optional<User> get(@NonNull OfflinePlayer player) {
         final Optional<User> userOptional = this.getByKey(player.getUniqueId());
         userOptional.ifPresent(user -> user.setName(player.getName()));
         return userOptional;
+    }
+
+    public Optional<User> getByName(@NonNull String name) {
+        return this.getSet()
+                .stream()
+                .filter(user -> user.getName().equalsIgnoreCase(name))
+                .findFirst();
     }
 }

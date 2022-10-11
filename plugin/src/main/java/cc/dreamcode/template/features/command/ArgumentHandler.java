@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public abstract class ArgumentHandler implements NoticeSender, CommandValidator, CommandPlatform {
+public abstract class ArgumentHandler implements NoticeSender, CommandPlatform {
 
     private final String name;
     private final int arg;
