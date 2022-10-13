@@ -18,6 +18,10 @@ public class CustomOptional<T> {
         return new CustomOptional<>(optional);
     }
 
+    public static <T> CustomOptional<T> ofNullable(T t) {
+        return new CustomOptional<>(Optional.ofNullable(t));
+    }
+
     public void ifPresentOrElse(Consumer<T> target, Runnable runnable) {
         if (this.optional.isPresent()) {
             this.optional.ifPresent(target);
