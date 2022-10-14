@@ -1,13 +1,8 @@
 package cc.dreamcode.template.config;
 
-import cc.dreamcode.template.persistence.config.StorageConfig;
 import cc.dreamcode.template.stereotypes.Configuration;
 import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Comment;
-import eu.okaeri.configs.annotation.Header;
-import eu.okaeri.configs.annotation.NameModifier;
-import eu.okaeri.configs.annotation.NameStrategy;
-import eu.okaeri.configs.annotation.Names;
+import eu.okaeri.configs.annotation.*;
 
 @Configuration(
         child = "config.yml"
@@ -17,8 +12,5 @@ import eu.okaeri.configs.annotation.Names;
 public class PluginConfig extends OkaeriConfig {
     @Comment("Debug pokazuje dodatkowe informacje do konsoli. Lepiej wylaczyc. :P")
     public boolean debug = true;
-
-    @Comment("Uzupelnij ponizsze menu danymi.")
-    public StorageConfig storageConfig = new StorageConfig();
 
 }

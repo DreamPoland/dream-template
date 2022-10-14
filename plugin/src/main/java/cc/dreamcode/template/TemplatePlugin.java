@@ -9,10 +9,6 @@ import cc.dreamcode.template.features.hook.HookFactory;
 import cc.dreamcode.template.features.hook.HookManager;
 import cc.dreamcode.template.features.hook.plugins.FunnyGuildsHook;
 import cc.dreamcode.template.features.nms.NmsFactory;
-import cc.dreamcode.template.features.user.UserController;
-import cc.dreamcode.template.features.user.UserRepository;
-import cc.dreamcode.template.features.user.UserService;
-import eu.okaeri.persistence.document.DocumentPersistence;
 import eu.okaeri.tasker.bukkit.BukkitTasker;
 import lombok.Getter;
 import lombok.NonNull;
@@ -57,14 +53,10 @@ public final class TemplatePlugin extends PluginBootLoader {
         // These simple structure can register all content of this plugin. (A-Z)
         componentHandler.registerComponent(PluginConfig.class);
         componentHandler.registerComponent(MessageConfig.class);
-        componentHandler.registerComponent(DocumentPersistence.class);
-        componentHandler.registerComponent(UserRepository.class);
-        componentHandler.registerComponent(UserService.class);
         componentHandler.registerComponent(HookManager.class, hookManager ->
                 this.createInstance(HookFactory.class).tryLoadAllDepends(Stream.of(
                         FunnyGuildsHook.class
                 ).collect(Collectors.toList()), hookManager));
-        componentHandler.registerComponent(UserController.class);
     }
 
     @Override

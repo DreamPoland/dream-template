@@ -17,9 +17,6 @@ public final class ComponentHandler {
     private final Injector injector;
     private final List<Class<? extends ComponentClassResolver>> classResolvers = new ImmutableList.Builder<Class<? extends ComponentClassResolver>>()
             .add(ConfigurationComponentClassResolver.class)
-            .add(DocumentPersistenceComponentClassResolver.class)
-            .add(DocumentRepositoryComponentClassResolver.class)
-            .add(PersistenceServiceComponentClassResolver.class)
             .add(CommandComponentClassResolver.class)
             .add(ListenerComponentClassResolver.class)
             .add(RunnableComponentClassResolver.class)
