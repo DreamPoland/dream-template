@@ -13,7 +13,7 @@ public class StorageConfig extends OkaeriConfig {
 
     @Comment({"W jakiej formie maja byc zapisywane dane o graczu?",
             "Dostepne zapisy: (FLAT, MYSQL, MONGO, REDIS)"})
-    public StorageType storageType = StorageType.FLAT;
+    public StorageType storageType = StorageType.MONGODB;
 
     @Comment({"Jaki prefix ustawic dla danych?",
             "Dla FLAT prefix nie jest uzywany."})
