@@ -23,7 +23,7 @@ public class ExampleUserController implements Listener {
 
         user.setName(player.getName()); // example setter, update name
 
-        user.saveASync(); // remember, all changes need to be saved (async or no)
+        user.saveAsync(); // remember, all changes need to be saved (async or no)
 
         player.sendMessage("hi, " + user.getName()); // send message after changes
     }
