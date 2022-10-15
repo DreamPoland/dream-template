@@ -1,4 +1,4 @@
-package cc.dreamcode.template.features.builder;
+package cc.dreamcode.template.features.command.builder;
 
 import lombok.NoArgsConstructor;
 

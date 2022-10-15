@@ -1,4 +1,4 @@
-package cc.dreamcode.template.stereotypes;
+package cc.dreamcode.template.config.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

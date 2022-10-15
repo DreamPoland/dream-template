@@ -1,6 +1,7 @@
 package cc.dreamcode.template.config;
 
-import cc.dreamcode.template.stereotypes.Configuration;
+import cc.dreamcode.template.config.annotations.Configuration;
+import cc.dreamcode.template.storage.config.StorageConfig;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.*;
 
@@ -13,4 +14,6 @@ public class PluginConfig extends OkaeriConfig {
     @Comment("Debug pokazuje dodatkowe informacje do konsoli. Lepiej wylaczyc. :P")
     public boolean debug = true;
 
+    @Comment("Uzupelnij ponizsze menu danymi.")
+    public StorageConfig storageConfig = new StorageConfig();
 }

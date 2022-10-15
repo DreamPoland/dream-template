@@ -2,7 +2,7 @@ package cc.dreamcode.template.component;
 
 import cc.dreamcode.template.component.classes.*;
 import cc.dreamcode.template.component.resolvers.ComponentClassResolver;
-import com.google.common.collect.ImmutableList;
+import cc.dreamcode.template.features.command.builder.ListBuilder;
 import eu.okaeri.injector.Injector;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +15,10 @@ import java.util.function.Consumer;
 public final class ComponentHandler {
 
     private final Injector injector;
-    private final List<Class<? extends ComponentClassResolver>> classResolvers = new ImmutableList.Builder<Class<? extends ComponentClassResolver>>()
+    private final List<Class<? extends ComponentClassResolver>> classResolvers = new ListBuilder<Class<? extends ComponentClassResolver>>()
             .add(ConfigurationComponentClassResolver.class)
+            .add(DocumentRepositoryComponentClassResolver.class)
+            .add(DocumentPersistenceComponentClassResolver.class)
             .add(CommandComponentClassResolver.class)
             .add(ListenerComponentClassResolver.class)
             .add(RunnableComponentClassResolver.class)

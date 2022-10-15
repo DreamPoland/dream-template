@@ -4,7 +4,7 @@ import cc.dreamcode.template.TemplatePlugin;
 import cc.dreamcode.template.component.resolvers.ComponentClassResolver;
 import cc.dreamcode.template.config.ConfigSerdesPack;
 import cc.dreamcode.template.exception.PluginRuntimeException;
-import cc.dreamcode.template.stereotypes.Configuration;
+import cc.dreamcode.template.config.annotations.Configuration;
 import com.google.common.collect.ImmutableMap;
 import eu.okaeri.configs.ConfigManager;
 import eu.okaeri.configs.OkaeriConfig;

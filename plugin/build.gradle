@@ -14,6 +14,15 @@ dependencies {
     implementation "eu.okaeri:okaeri-configs-serdes-bukkit:4.0.6"
     implementation "eu.okaeri:okaeri-configs-serdes-commons:4.0.6"
 
+    // -- json configure --
+    implementation 'eu.okaeri:okaeri-configs-json-simple:4.0.6'
+
+    // -- persistence data --
+    implementation 'eu.okaeri:okaeri-persistence-flat:1.5.13'
+    implementation 'eu.okaeri:okaeri-persistence-jdbc:1.5.13'
+    implementation 'eu.okaeri:okaeri-persistence-redis:1.5.13'
+    implementation 'eu.okaeri:okaeri-persistence-mongo:1.5.13'
+
     // -- injector --
     implementation 'eu.okaeri:okaeri-injector:2.1.0'
 
