@@ -26,7 +26,6 @@
 package cc.dreamcode.template.features.scheduler;
 
 import cc.dreamcode.template.TemplatePlugin;
-import eu.okaeri.injector.annotation.Inject;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -39,8 +38,6 @@ import java.util.stream.Collectors;
 
 // Scheduler from LuckPerms <3
 public class SchedulerService {
-
-    private @Inject TemplatePlugin templatePlugin;
 
     @Getter @Setter private ScheduledThreadPoolExecutor scheduler;
     @Getter @Setter private ForkJoinPool async;
