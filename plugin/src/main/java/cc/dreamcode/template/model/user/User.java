@@ -1,4 +1,4 @@
-package cc.dreamcode.template.model;
+package cc.dreamcode.template.model.user;
 
 import eu.okaeri.persistence.document.Document;
 import lombok.Data;

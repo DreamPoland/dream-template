@@ -1,7 +1,7 @@
-package cc.dreamcode.template.model.repositories;
+package cc.dreamcode.template.model.user;
 
 import cc.dreamcode.template.model.FutureImpl;
-import cc.dreamcode.template.model.User;
+import cc.dreamcode.template.model.user.User;
 import eu.okaeri.persistence.repository.DocumentRepository;
 import eu.okaeri.persistence.repository.annotation.DocumentCollection;
 import lombok.NonNull;

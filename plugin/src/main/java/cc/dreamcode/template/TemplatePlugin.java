@@ -10,7 +10,7 @@ import cc.dreamcode.template.features.hook.HookManager;
 import cc.dreamcode.template.features.hook.plugins.FunnyGuildsHook;
 import cc.dreamcode.template.features.nms.NmsFactory;
 import cc.dreamcode.template.features.scheduler.SchedulerService;
-import cc.dreamcode.template.model.repositories.UserRepository;
+import cc.dreamcode.template.model.user.UserRepository;
 import eu.okaeri.persistence.document.DocumentPersistence;
 import eu.okaeri.tasker.bukkit.BukkitTasker;
 import lombok.Getter;
