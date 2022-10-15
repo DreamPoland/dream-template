@@ -1,6 +1,7 @@
 package cc.dreamcode.template.component.classes;
 
 import cc.dreamcode.template.TemplatePlugin;
+import cc.dreamcode.template.builder.MapBuilder;
 import cc.dreamcode.template.component.resolvers.ComponentClassResolver;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.storage.StorageSerdesPack;
@@ -25,7 +26,6 @@ import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisURI;
 import lombok.NonNull;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class DocumentPersistenceComponentClassResolver extends ComponentClassResolver<Class<DocumentPersistence>> {
@@ -45,7 +45,11 @@ public class DocumentPersistenceComponentClassResolver extends ComponentClassRes
 
     @Override
     public Map<String, Object> getMetas(@NonNull Injector injector, @NonNull Class<DocumentPersistence> documentPersistenceClass) {
-        return new HashMap<>();
+        final StorageConfig storageConfig = this.pluginConfig.storageConfig;
+        return new MapBuilder<String, Object>()
+                .put("type", storageConfig.storageType.getName())
+                .put("prefix", storageConfig.prefix)
+                .build();
     }
 
     @Override

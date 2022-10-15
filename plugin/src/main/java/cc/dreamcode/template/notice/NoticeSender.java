@@ -8,7 +8,11 @@ import fr.mrmicky.fastboard.FastBoard;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * NoticeSender is interface for sending formatted messages to player.

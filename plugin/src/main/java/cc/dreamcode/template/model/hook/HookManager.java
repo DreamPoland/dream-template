@@ -2,7 +2,11 @@ package cc.dreamcode.template.model.hook;
 
 import cc.dreamcode.template.model.Manager;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 public class HookManager implements Manager<PluginHookType, PluginHook> {
 

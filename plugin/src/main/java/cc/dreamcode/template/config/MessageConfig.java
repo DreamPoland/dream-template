@@ -28,7 +28,6 @@ public class MessageConfig extends OkaeriConfig {
     public Notice playerIsMe = new Notice(Notice.Type.CHAT, "&4Nie rob tego &cna sobie.");
     public Notice amountIsZero = new Notice(Notice.Type.CHAT, "&cPodana liczba nie moze wynosic 0 oraz nie moze byc liczba negatywna.");
     public Notice dataLoaded = new Notice(Notice.Type.CHAT, "&cData zostalo zaladowane z database!");
-
-
+    
 
 }

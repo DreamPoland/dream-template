@@ -2,7 +2,11 @@ package cc.dreamcode.template.storage.config;
 
 import cc.dreamcode.template.storage.StorageType;
 import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.*;
+import eu.okaeri.configs.annotation.Comment;
+import eu.okaeri.configs.annotation.NameModifier;
+import eu.okaeri.configs.annotation.NameStrategy;
+import eu.okaeri.configs.annotation.Names;
+import eu.okaeri.configs.annotation.Variable;
 
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public class StorageConfig extends OkaeriConfig {

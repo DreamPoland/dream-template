@@ -3,7 +3,11 @@ package cc.dreamcode.template.config;
 import cc.dreamcode.template.config.annotations.Configuration;
 import cc.dreamcode.template.storage.config.StorageConfig;
 import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.*;
+import eu.okaeri.configs.annotation.Comment;
+import eu.okaeri.configs.annotation.Header;
+import eu.okaeri.configs.annotation.NameModifier;
+import eu.okaeri.configs.annotation.NameStrategy;
+import eu.okaeri.configs.annotation.Names;
 
 @Configuration(
         child = "config.yml"
