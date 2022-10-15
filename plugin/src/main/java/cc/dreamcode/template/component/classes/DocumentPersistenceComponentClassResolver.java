@@ -5,9 +5,9 @@ import cc.dreamcode.template.builder.MapBuilder;
 import cc.dreamcode.template.component.resolvers.ComponentClassResolver;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.storage.StorageSerdesPack;
-import cc.dreamcode.template.storage.config.StorageConfig;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
+import cc.dreamcode.template.config.storage.StorageConfig;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import com.zaxxer.hikari.HikariConfig;
 import eu.okaeri.configs.json.simple.JsonSimpleConfigurer;
 import eu.okaeri.configs.serdes.commons.SerdesCommons;
@@ -57,10 +57,8 @@ public class DocumentPersistenceComponentClassResolver extends ComponentClassRes
         final StorageConfig storageConfig = this.pluginConfig.storageConfig;
         final PersistencePath persistencePath = PersistencePath.of(storageConfig.prefix);
 
-        try {
-            Class.forName("org.mariadb.jdbc.Driver");
-        }
-        catch (ClassNotFoundException ignored) { }
+        try { Class.forName("org.mariadb.jdbc.Driver"); } catch (ClassNotFoundException ignored) { }
+        try { Class.forName("org.h2.Driver"); } catch (ClassNotFoundException ignored) { }
 
         switch (storageConfig.storageType) {
             case FLAT:
@@ -116,19 +114,14 @@ public class DocumentPersistenceComponentClassResolver extends ComponentClassRes
                         new SerdesCommons(),
                         new StorageSerdesPack()
                 );
-            case MONGODB:
-                MongoClientURI mongoUri = new MongoClientURI(storageConfig.uri);
-                MongoClient mongoClient = new MongoClient(mongoUri);
-
-                if (mongoUri.getDatabase() == null) {
-                    throw new IllegalArgumentException("Mongo URI database not found: " + mongoUri.getURI());
-                }
+            case MONGO:
+                MongoClient mongoClient = MongoClients.create(storageConfig.uri);
 
                 return new DocumentPersistence(
                         new MongoPersistence(
                                 persistencePath,
                                 mongoClient,
-                                mongoUri.getDatabase()
+                                storageConfig.prefix
                         ),
                         JsonSimpleConfigurer::new,
                         new SerdesBukkit(),

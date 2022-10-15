@@ -10,7 +10,7 @@ public enum StorageType {
     MYSQL("MySQL"),
     H2("H2"),
     REDIS("Redis"),
-    MONGODB("MongoDB");
+    MONGO("MongoDB");
 
     private final String name;
 }

@@ -18,10 +18,10 @@ dependencies {
     implementation 'eu.okaeri:okaeri-configs-json-simple:4.0.6'
 
     // -- persistence data --
-    implementation 'eu.okaeri:okaeri-persistence-flat:1.5.13'
-    implementation 'eu.okaeri:okaeri-persistence-jdbc:1.5.13'
-    implementation 'eu.okaeri:okaeri-persistence-redis:1.5.13'
-    implementation 'eu.okaeri:okaeri-persistence-mongo:1.5.13'
+    implementation 'eu.okaeri:okaeri-persistence-flat:2.0.0-beta.1'
+    implementation 'eu.okaeri:okaeri-persistence-jdbc:2.0.0-beta.1'
+    implementation 'eu.okaeri:okaeri-persistence-redis:2.0.0-beta.1'
+    implementation 'eu.okaeri:okaeri-persistence-mongo:2.0.0-beta.1'
 
     // -- injector --
     implementation 'eu.okaeri:okaeri-injector:2.1.0'
