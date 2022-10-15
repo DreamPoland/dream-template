@@ -18,7 +18,7 @@ public class StorageConfig extends OkaeriConfig {
             "Dla FLAT prefix nie jest uzywany."})
     public String prefix = "dreamtemplate";
 
-    @Comment("FLAT   : not applicable, plugin controlled")
+    @Comment("FLAT   : nie jest wymagane podawanie dodatkowych informacji")
     @Comment("REDIS  : redis://localhost")
     @Comment("MONGO  : mongodb://localhost:27017/?maxPoolSize=20&w=majority")
     @Comment("MYSQL  : jdbc:mysql://localhost:3306/db?user=root&password=1234")
