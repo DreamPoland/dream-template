@@ -12,7 +12,7 @@ import eu.okaeri.configs.annotation.Variable;
 public class StorageConfig extends OkaeriConfig {
 
     @Comment({"W jakiej formie maja byc zapisywane dane o graczu?",
-            "Dostepne zapisy: (FLAT, MYSQL, MONGO, REDIS)"})
+            "Dostepne zapisy: (FLAT, MYSQL, MONGO, REDIS, H2)"})
     public StorageType storageType = StorageType.MONGODB;
 
     @Comment({"Jaki prefix ustawic dla danych?",
