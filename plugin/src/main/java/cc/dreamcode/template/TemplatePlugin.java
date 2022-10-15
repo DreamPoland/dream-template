@@ -72,7 +72,6 @@ public final class TemplatePlugin extends PluginBootLoader {
                     new SchedulerService.ExceptionHandler(),
                     false
             ));
-            schedulerService.setSync(r -> this.getServer().getScheduler().scheduleSyncDelayedTask(this, r));
         });
         componentHandler.registerComponent(PluginConfig.class);
         componentHandler.registerComponent(MessageConfig.class);

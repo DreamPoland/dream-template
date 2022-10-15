@@ -31,7 +31,6 @@ import lombok.NonNull;
 import lombok.Setter;
 
 import java.util.Arrays;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinWorkerThread;
 import java.util.concurrent.ScheduledFuture;
@@ -46,7 +45,6 @@ public class SchedulerService {
 
     @Getter @Setter private ScheduledThreadPoolExecutor scheduler;
     @Getter @Setter private ForkJoinPool async;
-    @Getter @Setter private Executor sync;
 
     public cc.dreamcode.template.scheduler.SchedulerTask asyncLater(@NonNull Runnable task, long delay, TimeUnit unit) {
         ScheduledFuture<?> future = this.scheduler.schedule(() -> this.async.execute(task), delay, unit);
