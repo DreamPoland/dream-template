@@ -1,7 +1,7 @@
 package cc.dreamcode.template.config;
 
 import cc.dreamcode.template.config.annotations.Configuration;
-import cc.dreamcode.template.features.notice.Notice;
+import cc.dreamcode.template.notice.Notice;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Header;
 import eu.okaeri.configs.annotation.Headers;

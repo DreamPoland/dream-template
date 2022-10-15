@@ -3,8 +3,8 @@ package cc.dreamcode.template.component.classes;
 
 import cc.dreamcode.template.component.resolvers.ComponentClassResolver;
 import cc.dreamcode.template.exception.PluginRuntimeException;
-import cc.dreamcode.template.features.scheduler.SchedulerService;
-import cc.dreamcode.template.features.scheduler.annotations.Scheduler;
+import cc.dreamcode.template.scheduler.SchedulerService;
+import cc.dreamcode.template.scheduler.annotations.Scheduler;
 import com.google.common.collect.ImmutableMap;
 import eu.okaeri.injector.Injector;
 import eu.okaeri.injector.annotation.Inject;

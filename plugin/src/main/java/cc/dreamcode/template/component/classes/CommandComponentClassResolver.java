@@ -2,7 +2,7 @@ package cc.dreamcode.template.component.classes;
 
 import cc.dreamcode.template.TemplatePlugin;
 import cc.dreamcode.template.component.resolvers.ComponentClassResolver;
-import cc.dreamcode.template.features.command.CommandHandler;
+import cc.dreamcode.template.command.CommandHandler;
 import com.google.common.collect.ImmutableMap;
 import eu.okaeri.injector.Injector;
 import eu.okaeri.injector.annotation.Inject;

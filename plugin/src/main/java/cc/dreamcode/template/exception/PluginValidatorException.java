@@ -1,6 +1,6 @@
 package cc.dreamcode.template.exception;
 
-import cc.dreamcode.template.features.notice.Notice;
+import cc.dreamcode.template.notice.Notice;
 import lombok.Getter;
 
 import java.util.HashMap;

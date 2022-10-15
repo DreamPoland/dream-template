@@ -2,7 +2,7 @@ package cc.dreamcode.template.model;
 
 import cc.dreamcode.template.TemplatePlugin;
 import cc.dreamcode.template.exception.PluginRuntimeException;
-import cc.dreamcode.template.features.scheduler.SchedulerService;
+import cc.dreamcode.template.scheduler.SchedulerService;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;

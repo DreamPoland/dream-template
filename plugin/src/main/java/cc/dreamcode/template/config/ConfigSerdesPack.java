@@ -1,9 +1,9 @@
 package cc.dreamcode.template.config;
 
 import cc.dreamcode.menu.serdes.bukkit.okaeri.MenuBuilderSerdes;
-import cc.dreamcode.template.features.notice.NoticeSerdes;
-import cc.dreamcode.template.features.randomizer.DoubleRandomizerSerdes;
-import cc.dreamcode.template.features.randomizer.IntRandomizerSerdes;
+import cc.dreamcode.template.notice.NoticeSerdes;
+import cc.dreamcode.template.randomizer.DoubleRandomizerSerdes;
+import cc.dreamcode.template.randomizer.IntRandomizerSerdes;
 import eu.okaeri.configs.serdes.OkaeriSerdesPack;
 import eu.okaeri.configs.serdes.SerdesRegistry;
 import lombok.NonNull;

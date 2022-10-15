@@ -2,7 +2,7 @@ package cc.dreamcode.template.component;
 
 import cc.dreamcode.template.component.classes.*;
 import cc.dreamcode.template.component.resolvers.ComponentClassResolver;
-import cc.dreamcode.template.features.builder.ListBuilder;
+import cc.dreamcode.template.builder.ListBuilder;
 import eu.okaeri.injector.Injector;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

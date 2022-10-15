@@ -4,7 +4,7 @@ import cc.dreamcode.template.TemplateLogger;
 import cc.dreamcode.template.TemplatePlugin;
 import cc.dreamcode.template.component.ComponentHandler;
 import cc.dreamcode.template.exception.PluginRuntimeException;
-import cc.dreamcode.template.features.scheduler.SchedulerService;
+import cc.dreamcode.template.scheduler.SchedulerService;
 import eu.okaeri.injector.Injector;
 import eu.okaeri.injector.OkaeriInjector;
 import lombok.Getter;
