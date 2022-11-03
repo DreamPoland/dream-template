@@ -1,11 +1,11 @@
 package cc.dreamcode.template.component.classes;
 
 import cc.dreamcode.template.TemplatePlugin;
-import cc.dreamcode.template.builder.MapBuilder;
 import cc.dreamcode.template.component.resolvers.ComponentClassResolver;
 import cc.dreamcode.template.config.PluginConfig;
-import cc.dreamcode.template.storage.StorageSerdesPack;
 import cc.dreamcode.template.config.storage.StorageConfig;
+import cc.dreamcode.template.storage.StorageSerdesPack;
+import cc.dreamcode.utilities.builders.MapBuilder;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.zaxxer.hikari.HikariConfig;

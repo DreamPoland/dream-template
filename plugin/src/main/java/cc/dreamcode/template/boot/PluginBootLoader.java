@@ -4,7 +4,6 @@ import cc.dreamcode.template.TemplateLogger;
 import cc.dreamcode.template.TemplatePlugin;
 import cc.dreamcode.template.component.ComponentHandler;
 import cc.dreamcode.template.exception.PluginRuntimeException;
-import cc.dreamcode.template.scheduler.SchedulerService;
 import eu.okaeri.injector.Injector;
 import eu.okaeri.injector.OkaeriInjector;
 import lombok.Getter;
@@ -63,9 +62,7 @@ public abstract class PluginBootLoader extends JavaPlugin {
         }
 
         try {
-            this.getInject(SchedulerService.class).ifPresent(SchedulerService::shutdownScheduler);
             this.stop();
-            this.getInject(SchedulerService.class).ifPresent(SchedulerService::shutdownExecutor);
         }
         catch (Exception e) {
             throw new PluginRuntimeException("An error was caught when plugin are stopping...", e);

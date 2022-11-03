@@ -1,4 +1,4 @@
-package cc.dreamcode.template.command.annotations;
+package cc.dreamcode.template.component.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,8 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface RequiredPlayer {
-
+public @interface Scheduler {
+    boolean async() default true;
+    long delay();
+    long interval();
 }

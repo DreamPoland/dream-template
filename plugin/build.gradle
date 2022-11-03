@@ -42,7 +42,20 @@ dependencies {
     implementation 'de.tr7zw:item-nbt-api-plugin:2.10.0'
 
     // -- RGB-CHAT --
-    implementation 'com.iridium:IridiumColorAPI:1.0.6'
+    implementation 'com.iridium:IridiumColorAPI:1.0.6-dc'
+
+    // -- dream-utilities --
+    implementation "cc.dreamcode:utilities:1.0"
+    implementation "cc.dreamcode:utilities-bukkit:1.0"
+
+    // -- dream-notice --
+    implementation "cc.dreamcode.notice:core:1.0"
+    implementation "cc.dreamcode.notice:bukkit:1.0"
+    implementation "cc.dreamcode.notice:bukkit-okaeri-serdes:1.0"
+
+    // -- dream-command --
+    implementation "cc.dreamcode:dream-command-core:1.0.1"
+    implementation "cc.dreamcode:dream-command-bukkit:1.0.1"
 
     // -- dream-menu --
     implementation "cc.dreamcode.menu:core:0.3.6"
@@ -50,8 +63,7 @@ dependencies {
     implementation "cc.dreamcode.menu:serdes-bukkit:0.3.6"
     implementation "cc.dreamcode.menu:serdes-bukkit-okaeri:0.3.6"
 
-    // -- Plugin Hooks --
-    //compileOnly 'net.dzikoysk.funnyguilds:plugin:4.10.1'
+    // -- hooks --
 
     // -- lombok --
     compileOnly 'org.projectlombok:lombok:1.18.24'
@@ -73,6 +85,7 @@ shadowJar {
     relocate "fr.mrmicky.fastboard", "cc.dreamcode.template.libs.fastboard"
     relocate "com.iridium", "cc.dreamcode.template.libs.com.iridium"
     relocate "cc.dreamcode.menu", "cc.dreamcode.template.libs.cc.dreamcode.menu"
+    relocate "cc.dreamcode.utilities", "cc.dreamcode.template.libs.cc.dreamcode.utilities"
 
     relocate "io.lettuce", "cc.dreamcode.template.libs.io.lettuce"
     relocate "io.netty", "cc.dreamcode.template.libs.io.netty"

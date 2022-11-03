@@ -1,7 +1,5 @@
 package cc.dreamcode.template.component;
 
-import cc.dreamcode.template.builder.ListBuilder;
-import cc.dreamcode.template.component.classes.CommandComponentClassResolver;
 import cc.dreamcode.template.component.classes.ConfigurationComponentClassResolver;
 import cc.dreamcode.template.component.classes.DocumentPersistenceComponentClassResolver;
 import cc.dreamcode.template.component.classes.DocumentRepositoryComponentClassResolver;
@@ -9,6 +7,7 @@ import cc.dreamcode.template.component.classes.ListenerComponentClassResolver;
 import cc.dreamcode.template.component.classes.ObjectComponentClassResolver;
 import cc.dreamcode.template.component.classes.RunnableComponentClassResolver;
 import cc.dreamcode.template.component.resolvers.ComponentClassResolver;
+import cc.dreamcode.utilities.builders.ListBuilder;
 import eu.okaeri.injector.Injector;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +24,6 @@ public final class ComponentHandler {
             .add(ConfigurationComponentClassResolver.class)
             .add(DocumentRepositoryComponentClassResolver.class)
             .add(DocumentPersistenceComponentClassResolver.class)
-            .add(CommandComponentClassResolver.class)
             .add(ListenerComponentClassResolver.class)
             .add(RunnableComponentClassResolver.class)
             .add(ObjectComponentClassResolver.class)

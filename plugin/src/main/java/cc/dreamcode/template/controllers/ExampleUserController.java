@@ -1,7 +1,7 @@
 package cc.dreamcode.template.controllers;
 
-import cc.dreamcode.template.model.user.User;
-import cc.dreamcode.template.model.user.UserRepository;
+import cc.dreamcode.template.user.User;
+import cc.dreamcode.template.user.UserRepository;
 import eu.okaeri.injector.annotation.Inject;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

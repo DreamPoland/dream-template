@@ -47,7 +47,6 @@ allprojects {
         maven { url "https://repo.panda-lang.org/releases" }
         maven { url "https://storehouse.okaeri.eu/repository/maven-public" }
         maven { url "https://repo.codemc.io/repository/maven-public/" }
-        maven { url 'https://nexus.iridiumdevelopment.net/repository/maven-releases/' }
         maven { url "https://repo.dreamcode.cc/releases" }
     }
 }
