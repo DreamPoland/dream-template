@@ -2,6 +2,7 @@ package cc.dreamcode.template;
 
 import cc.dreamcode.command.bukkit.BukkitCommandProvider;
 import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
+import cc.dreamcode.notice.bukkit.BukkitNoticeProvider;
 import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
 import cc.dreamcode.platform.bukkit.component.CommandComponentClassResolver;
 import cc.dreamcode.platform.bukkit.component.ConfigurationComponentClassResolver;
@@ -41,6 +42,7 @@ public final class TemplatePlugin extends DreamBukkitPlatform {
         this.registerInjectable(BukkitTasker.newPool(this));
         this.registerInjectable(NmsFactory.getNmsAccessor());
         this.registerInjectable(BukkitMenuProvider.create(this));
+        this.registerInjectable(BukkitNoticeProvider.create(this));
         this.registerInjectable(BukkitCommandProvider.create(this, this.getInjector()));
 
         componentManager.registerResolver(CommandComponentClassResolver.class);
