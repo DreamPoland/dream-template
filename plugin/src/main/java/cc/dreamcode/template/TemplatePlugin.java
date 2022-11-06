@@ -2,17 +2,23 @@ package cc.dreamcode.template;
 
 import cc.dreamcode.command.bukkit.BukkitCommandProvider;
 import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
-import cc.dreamcode.template.boot.PluginBootLoader;
-import cc.dreamcode.template.component.ComponentHandler;
+import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
+import cc.dreamcode.platform.bukkit.component.CommandComponentClassResolver;
+import cc.dreamcode.platform.bukkit.component.ConfigurationComponentClassResolver;
+import cc.dreamcode.platform.bukkit.component.DocumentPersistenceComponentClassResolver;
+import cc.dreamcode.platform.bukkit.component.DocumentRepositoryComponentClassResolver;
+import cc.dreamcode.platform.bukkit.component.ListenerComponentClassResolver;
+import cc.dreamcode.platform.bukkit.component.RunnableComponentClassResolver;
+import cc.dreamcode.platform.component.ComponentManager;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.nms.NmsFactory;
 import cc.dreamcode.template.user.UserRepository;
+import eu.okaeri.configs.serdes.OkaeriSerdesPack;
 import eu.okaeri.persistence.document.DocumentPersistence;
 import eu.okaeri.tasker.bukkit.BukkitTasker;
 import lombok.Getter;
 import lombok.NonNull;
-import org.bukkit.plugin.java.annotation.dependency.SoftDependency;
 import org.bukkit.plugin.java.annotation.plugin.ApiVersion;
 import org.bukkit.plugin.java.annotation.plugin.Description;
 import org.bukkit.plugin.java.annotation.plugin.Plugin;
@@ -24,39 +30,49 @@ import org.bukkit.plugin.java.annotation.plugin.author.Author;
 @Description("Template plugin by DreamCode.")
 @Website("DreamCode - https://discord.gg/dreamcode")
 @ApiVersion(ApiVersion.Target.v1_13)
-
-// If are you using plugin-hooks, add them here via soft-dependency as well
-@SoftDependency("FunnyGuilds")
-public final class TemplatePlugin extends PluginBootLoader {
+public final class TemplatePlugin extends DreamBukkitPlatform {
 
     @Getter private static TemplatePlugin templatePlugin;
-    @Getter private static TemplateLogger templateLogger;
 
     @Override
-    public void load() {
-        // Static content for api.
+    public void load(@NonNull ComponentManager componentManager) {
         templatePlugin = this;
-        templateLogger = new TemplateLogger(templatePlugin.getLogger());
-    }
 
-    @Override
-    public void start(@NonNull ComponentHandler componentHandler) {
-        // Injectable object registering. (library etc.)
         this.registerInjectable(BukkitTasker.newPool(this));
         this.registerInjectable(NmsFactory.getNmsAccessor());
         this.registerInjectable(BukkitMenuProvider.create(this));
         this.registerInjectable(BukkitCommandProvider.create(this, this.getInjector()));
 
-        // Component system inspired by okaeri-platform
-        // These simple structure can register all content of this plugin. (A-Z)
-        componentHandler.registerComponent(PluginConfig.class);
-        componentHandler.registerComponent(MessageConfig.class);
-        componentHandler.registerComponent(DocumentPersistence.class);
-        componentHandler.registerComponent(UserRepository.class);
+        componentManager.registerResolver(CommandComponentClassResolver.class);
+        componentManager.registerResolver(ListenerComponentClassResolver.class);
+        componentManager.registerResolver(RunnableComponentClassResolver.class);
     }
 
     @Override
-    public void stop() {
+    public void enable(@NonNull ComponentManager componentManager) {
+        componentManager.registerResolver(ConfigurationComponentClassResolver.class);
+        componentManager.registerComponent(MessageConfig.class);
+        componentManager.registerComponent(PluginConfig.class, pluginConfig -> {
+            // register persistence + repositories
+            this.registerInjectable(pluginConfig.storageConfig);
+
+            componentManager.registerResolver(DocumentPersistenceComponentClassResolver.class);
+            componentManager.registerResolver(DocumentRepositoryComponentClassResolver.class);
+
+            componentManager.registerComponent(DocumentPersistence.class);
+            componentManager.registerComponent(UserRepository.class);
+        });
+    }
+
+    @Override
+    public void disable(@NonNull ComponentManager componentManager) {
         // features need to be call by stop server
+    }
+
+    @Override
+    public OkaeriSerdesPack getPluginSerdesPack() {
+        return registry -> {
+
+        };
     }
 }

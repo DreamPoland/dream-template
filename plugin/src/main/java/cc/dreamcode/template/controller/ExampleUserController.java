@@ -1,5 +1,6 @@
-package cc.dreamcode.template.controllers;
+package cc.dreamcode.template.controller;
 
+import cc.dreamcode.template.TemplatePlugin;
 import cc.dreamcode.template.user.User;
 import cc.dreamcode.template.user.UserRepository;
 import eu.okaeri.injector.annotation.Inject;
@@ -14,6 +15,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
  */
 public class ExampleUserController implements Listener {
 
+    private @Inject TemplatePlugin templatePlugin;
     private @Inject UserRepository userRepository;
 
     @EventHandler
@@ -23,7 +25,7 @@ public class ExampleUserController implements Listener {
 
         user.setName(player.getName()); // example setter, update name
 
-        user.saveAsync(); // remember, all changes need to be saved (async or no)
+        this.templatePlugin.runAsync(user::save);// remember, all changes need to be saved (async)
 
         player.sendMessage("hi, " + user.getName()); // send message after changes
     }

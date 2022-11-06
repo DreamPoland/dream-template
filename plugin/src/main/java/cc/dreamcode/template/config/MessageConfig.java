@@ -2,7 +2,7 @@ package cc.dreamcode.template.config;
 
 import cc.dreamcode.notice.NoticeType;
 import cc.dreamcode.notice.bukkit.BukkitNotice;
-import cc.dreamcode.template.config.annotations.Configuration;
+import cc.dreamcode.platform.bukkit.component.annotation.Configuration;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Header;
 import eu.okaeri.configs.annotation.Headers;
@@ -27,8 +27,6 @@ public class MessageConfig extends OkaeriConfig {
     public BukkitNotice notPlayer = new BukkitNotice(NoticeType.CHAT, "&4Nie jestes graczem.");
     public BukkitNotice notNumber = new BukkitNotice(NoticeType.CHAT, "&4Podana liczba &cnie jest cyfra.");
     public BukkitNotice playerIsMe = new BukkitNotice(NoticeType.CHAT, "&4Nie rob tego &cna sobie.");
-    public BukkitNotice amountIsZero = new BukkitNotice(NoticeType.CHAT, "&cPodana liczba nie moze wynosic 0 oraz nie moze byc liczba negatywna.");
-    public BukkitNotice dataLoaded = new BukkitNotice(NoticeType.CHAT, "&cData zostalo zaladowane z database!");
     
 
 }

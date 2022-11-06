@@ -1,8 +1,8 @@
 package cc.dreamcode.template.nms;
 
-import cc.dreamcode.template.TemplateLogger;
+import cc.dreamcode.platform.DreamLogger;
+import cc.dreamcode.platform.bukkit.exception.BukkitPluginException;
 import cc.dreamcode.template.TemplatePlugin;
-import cc.dreamcode.template.exception.PluginRuntimeException;
 import cc.dreamcode.template.nms.api.NmsAccessor;
 import cc.dreamcode.template.nms.v1_10_R1.V1_10_R1_NmsAccessor;
 import cc.dreamcode.template.nms.v1_11_R1.V1_11_R1_NmsAccessor;
@@ -24,8 +24,8 @@ import com.cryptomorin.xseries.ReflectionUtils;
  */
 public final class NmsFactory {
     public static NmsAccessor getNmsAccessor() {
-        TemplatePlugin.getTemplateLogger().info(
-                new TemplateLogger.Loader()
+        TemplatePlugin.getTemplatePlugin().getDreamLogger().info(
+                new DreamLogger.Builder()
                         .type("Connect with minecraft version")
                         .name(ReflectionUtils.VERSION)
                         .build()
@@ -69,7 +69,7 @@ public final class NmsFactory {
                 return new V1_19_R1_NmsAccessor();
             }
             default: {
-                throw new PluginRuntimeException("Plugin doesn't support this server version, change to 1.8 - 1.19 (latest subversion).");
+                throw new BukkitPluginException("Plugin doesn't support this server version, change to 1.8 - 1.19 (latest subversion).");
             }
         }
     }

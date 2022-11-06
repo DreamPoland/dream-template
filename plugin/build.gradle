@@ -44,26 +44,28 @@ dependencies {
     // -- RGB-CHAT --
     implementation 'com.iridium:IridiumColorAPI:1.0.6-dc'
 
+    // -- dream-platform --
+    implementation "cc.dreamcode.platform:core:1.0.3"
+    implementation "cc.dreamcode.platform:bukkit:1.0.3"
+
     // -- dream-utilities --
-    implementation "cc.dreamcode:utilities:1.0"
-    implementation "cc.dreamcode:utilities-bukkit:1.0"
+    implementation "cc.dreamcode:utilities:1.0.1"
+    implementation "cc.dreamcode:utilities-bukkit:1.0.1"
 
     // -- dream-notice --
-    implementation "cc.dreamcode.notice:core:1.0"
-    implementation "cc.dreamcode.notice:bukkit:1.0"
-    implementation "cc.dreamcode.notice:bukkit-okaeri-serdes:1.0"
+    implementation "cc.dreamcode.notice:core:1.0.1"
+    implementation "cc.dreamcode.notice:bukkit:1.0.1"
+    implementation "cc.dreamcode.notice:bukkit-okaeri-serdes:1.0.1"
 
     // -- dream-command --
-    implementation "cc.dreamcode:dream-command-core:1.0.1"
-    implementation "cc.dreamcode:dream-command-bukkit:1.0.1"
+    implementation "cc.dreamcode.command:core:1.0.4"
+    implementation "cc.dreamcode.command:bukkit:1.0.4"
 
     // -- dream-menu --
     implementation "cc.dreamcode.menu:core:0.3.6"
     implementation "cc.dreamcode.menu:bukkit:0.3.6"
     implementation "cc.dreamcode.menu:serdes-bukkit:0.3.6"
     implementation "cc.dreamcode.menu:serdes-bukkit-okaeri:0.3.6"
-
-    // -- hooks --
 
     // -- lombok --
     compileOnly 'org.projectlombok:lombok:1.18.24'
