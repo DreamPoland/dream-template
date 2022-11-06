@@ -77,7 +77,7 @@ dependencies {
 shadowJar {
     checkstyleTest
 
-    archiveFileName = "Dream-Template-${project.version}_1.8-1.19.jar"
+    archiveFileName = "Dream-Template-${project.version} (1.8-1.19).jar"
 
     minimize()
 
@@ -86,8 +86,12 @@ shadowJar {
     relocate "de.tr7zw", "cc.dreamcode.template.libs.de.tr7zw"
     relocate "fr.mrmicky.fastboard", "cc.dreamcode.template.libs.fastboard"
     relocate "com.iridium", "cc.dreamcode.template.libs.com.iridium"
-    relocate "cc.dreamcode.menu", "cc.dreamcode.template.libs.cc.dreamcode.menu"
+
+    relocate "cc.dreamcode.platform", "cc.dreamcode.template.libs.cc.dreamcode.platform"
     relocate "cc.dreamcode.utilities", "cc.dreamcode.template.libs.cc.dreamcode.utilities"
+    relocate "cc.dreamcode.menu", "cc.dreamcode.template.libs.cc.dreamcode.menu"
+    relocate "cc.dreamcode.command", "cc.dreamcode.template.libs.cc.dreamcode.command"
+    relocate "cc.dreamcode.notice", "cc.dreamcode.template.libs.cc.dreamcode.notice"
 
     relocate "io.lettuce", "cc.dreamcode.template.libs.io.lettuce"
     relocate "io.netty", "cc.dreamcode.template.libs.io.netty"
