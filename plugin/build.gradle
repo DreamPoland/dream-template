@@ -45,8 +45,8 @@ dependencies {
     implementation 'com.iridium:IridiumColorAPI:1.0.6-dc'
 
     // -- dream-platform --
-    implementation "cc.dreamcode.platform:core:1.0.3"
-    implementation "cc.dreamcode.platform:bukkit:1.0.3"
+    implementation "cc.dreamcode.platform:core:1.0.4"
+    implementation "cc.dreamcode.platform:bukkit:1.0.4"
 
     // -- dream-utilities --
     implementation "cc.dreamcode:utilities:1.0.1"

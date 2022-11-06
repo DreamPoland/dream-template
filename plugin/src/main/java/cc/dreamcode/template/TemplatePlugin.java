@@ -65,7 +65,7 @@ public final class TemplatePlugin extends DreamBukkitPlatform {
     }
 
     @Override
-    public void disable(@NonNull ComponentManager componentManager) {
+    public void disable() {
         // features need to be call by stop server
     }
 
