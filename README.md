@@ -16,7 +16,7 @@ Build to jar by ``shadowJar`` gradle task.
 ------
 
 **Libraries**: <33
-- [Dream-Platform](https://github.com/DreamPoland/dream-platform) by [DreamCode](https://github.com/DreamPoland) (boot-loader)
+- [Dream-Platform](https://github.com/DreamPoland/dream-platform) by [DreamCode](https://github.com/DreamPoland) (boot-loader?)
 - [Dream-Menu](https://github.com/DreamPoland/dream-menu) by [DreamCode](https://github.com/DreamPoland)
 - [Dream-Command](https://github.com/DreamPoland/dream-command) by [DreamCode](https://github.com/DreamPoland)
 - [Dream-Notice](https://github.com/DreamPoland/dream-notice) by [DreamCode](https://github.com/DreamPoland)
