@@ -86,6 +86,7 @@ shadowJar {
     relocate "de.tr7zw", "cc.dreamcode.template.libs.de.tr7zw"
     relocate "fr.mrmicky.fastboard", "cc.dreamcode.template.libs.fastboard"
     relocate "com.iridium", "cc.dreamcode.template.libs.com.iridium"
+    relocate "net.kyori.adventure", "cc.dreamcode.template.libs.net.kyori.adventure"
 
     relocate "cc.dreamcode.platform", "cc.dreamcode.template.libs.cc.dreamcode.platform"
     relocate "cc.dreamcode.utilities", "cc.dreamcode.template.libs.cc.dreamcode.utilities"
