@@ -42,8 +42,8 @@ dependencies {
     implementation 'de.tr7zw:item-nbt-api-plugin:2.10.0'
 
     // -- dream-platform --
-    implementation "cc.dreamcode.platform:core:1.0.5"
-    implementation "cc.dreamcode.platform:bukkit:1.0.5"
+    implementation "cc.dreamcode.platform:core:1.0.6"
+    implementation "cc.dreamcode.platform:bukkit:1.0.6"
 
     // -- dream-utilities --
     implementation "cc.dreamcode:utilities:1.0.1"
