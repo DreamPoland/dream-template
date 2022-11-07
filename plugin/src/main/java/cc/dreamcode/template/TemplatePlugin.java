@@ -38,7 +38,10 @@ public final class TemplatePlugin extends DreamBukkitPlatform {
     @Override
     public void load(@NonNull ComponentManager componentManager) {
         templatePlugin = this;
+    }
 
+    @Override
+    public void enable(@NonNull ComponentManager componentManager) {
         this.registerInjectable(BukkitTasker.newPool(this));
         this.registerInjectable(NmsFactory.getNmsAccessor());
         this.registerInjectable(BukkitMenuProvider.create(this));
@@ -48,10 +51,7 @@ public final class TemplatePlugin extends DreamBukkitPlatform {
         componentManager.registerResolver(CommandComponentClassResolver.class);
         componentManager.registerResolver(ListenerComponentClassResolver.class);
         componentManager.registerResolver(RunnableComponentClassResolver.class);
-    }
 
-    @Override
-    public void enable(@NonNull ComponentManager componentManager) {
         componentManager.registerResolver(ConfigurationComponentClassResolver.class);
         componentManager.registerComponent(MessageConfig.class);
         componentManager.registerComponent(PluginConfig.class, pluginConfig -> {
