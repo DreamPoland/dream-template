@@ -74,7 +74,7 @@ dependencies {
 shadowJar {
     checkstyleTest
 
-    archiveFileName = "Dream-Template-${project.version} (1.8-1.19).jar"
+    archiveFileName = "Dream-Template-${project.version} (MC 1.8-1.19).jar"
 
     minimize()
 
