@@ -2,6 +2,7 @@ package cc.dreamcode.template;
 
 import cc.dreamcode.command.bungee.BungeeCommandProvider;
 import cc.dreamcode.notice.bungee.BungeeNoticeProvider;
+import cc.dreamcode.notice.bungee.okaeri_serdes.BungeeNoticeSerdes;
 import cc.dreamcode.platform.bungee.DreamBungeePlatform;
 import cc.dreamcode.platform.bungee.component.CommandComponentClassResolver;
 import cc.dreamcode.platform.bungee.component.ConfigurationComponentClassResolver;
@@ -66,7 +67,7 @@ public final class BungeeTemplatePlugin extends DreamBungeePlatform {
     @Override
     public OkaeriSerdesPack getPluginSerdesPack() {
         return registry -> {
-
+            registry.register(new BungeeNoticeSerdes());
         };
     }
 }
