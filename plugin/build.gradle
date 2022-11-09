@@ -54,8 +54,8 @@ dependencies {
     implementation "cc.dreamcode.notice:bukkit-okaeri-serdes:1.1"
 
     // -- dream-command --
-    implementation "cc.dreamcode.command:core:1.1-SNAPSHOT"
-    implementation "cc.dreamcode.command:bukkit:1.1-SNAPSHOT"
+    implementation "cc.dreamcode.command:core:1.1"
+    implementation "cc.dreamcode.command:bukkit:1.1"
 
     // -- dream-menu --
     implementation "cc.dreamcode.menu:core:0.3.6"

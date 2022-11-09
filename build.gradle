@@ -48,7 +48,6 @@ allprojects {
         maven { url "https://storehouse.okaeri.eu/repository/maven-public" }
         maven { url "https://repo.codemc.io/repository/maven-public/" }
         maven { url "https://repo.dreamcode.cc/releases" }
-        maven { url "https://repo.dreamcode.cc/snapshots" }
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     }
 }
