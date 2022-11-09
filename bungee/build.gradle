@@ -1,16 +1,13 @@
 dependencies {
-    // -- bukkit-nms --
-    project(":nms").getSubprojects().forEach(nms -> implementation nms)
-
-    // -- spigot api --
-    compileOnly 'org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT'
+    // -- bungee-cord --
+    compileOnly 'net.md-5:bungeecord-api:1.19-R0.1-SNAPSHOT'
 
     // -- bukkit plugin.yml replacer --
     compileOnly group: 'eu.hexagonmc', name: 'spigot-annotations', version: '1.2'
 
     // -- configs--
-    implementation "eu.okaeri:okaeri-configs-yaml-bukkit:4.0.6"
-    implementation "eu.okaeri:okaeri-configs-serdes-bukkit:4.0.6"
+    implementation "eu.okaeri:okaeri-configs-yaml-bungee:4.0.6"
+    implementation "eu.okaeri:okaeri-configs-serdes-bungee:4.0.6"
     implementation "eu.okaeri:okaeri-configs-serdes-commons:4.0.6"
 
     // -- json configure --
@@ -26,42 +23,23 @@ dependencies {
     implementation 'eu.okaeri:okaeri-injector:2.1.0'
 
     // -- placeholders --
-    implementation 'eu.okaeri:okaeri-placeholders-bukkit:4.0.3'
-
-    // -- tasker --
-    implementation 'eu.okaeri:okaeri-tasker-bukkit:1.1.9'
-
-    // -- scoreboard --
-    implementation 'fr.mrmicky:fastboard:1.2.1'
-
-    // -- NMS Items helper --
-    implementation 'com.github.cryptomorin:XSeries:9.1.0'
-
-    // -- NBT-API --
-    implementation 'de.tr7zw:item-nbt-api-plugin:2.10.0'
+    implementation 'eu.okaeri:okaeri-placeholders-bungee:4.0.3'
 
     // -- dream-platform --
     implementation "cc.dreamcode.platform:core:1.0.8"
-    implementation "cc.dreamcode.platform:bukkit:1.0.8"
+    implementation "cc.dreamcode.platform:bungee:1.0.8"
 
     // -- dream-utilities --
     implementation "cc.dreamcode:utilities:1.0.1"
-    implementation "cc.dreamcode:utilities-bukkit:1.0.1"
 
     // -- dream-notice --
     implementation "cc.dreamcode.notice:core:1.1"
-    implementation "cc.dreamcode.notice:bukkit:1.1"
-    implementation "cc.dreamcode.notice:bukkit-okaeri-serdes:1.1"
+    implementation "cc.dreamcode.notice:bungee:1.1"
+    implementation "cc.dreamcode.notice:bungee-okaeri-serdes:1.1"
 
     // -- dream-command --
     implementation "cc.dreamcode.command:core:1.1-SNAPSHOT"
-    implementation "cc.dreamcode.command:bukkit:1.1-SNAPSHOT"
-
-    // -- dream-menu --
-    implementation "cc.dreamcode.menu:core:0.3.6"
-    implementation "cc.dreamcode.menu:bukkit:0.3.6"
-    implementation "cc.dreamcode.menu:serdes-bukkit:0.3.6"
-    implementation "cc.dreamcode.menu:serdes-bukkit-okaeri:0.3.6"
+    implementation "cc.dreamcode.command:bungee:1.1-SNAPSHOT"
 
     // -- lombok --
     compileOnly 'org.projectlombok:lombok:1.18.24'
@@ -73,19 +51,15 @@ dependencies {
 shadowJar {
     checkstyleTest
 
-    archiveFileName = "Dream-Template-${project.version} (MC 1.8-1.19).jar"
+    archiveFileName = "Dream-Template-${project.version} (Bungee).jar"
 
     minimize()
 
-    relocate "com.cryptomorin", "cc.dreamcode.template.libs.com.cryptomorin"
     relocate "eu.okaeri", "cc.dreamcode.template.libs.eu.okaeri"
-    relocate "de.tr7zw", "cc.dreamcode.template.libs.de.tr7zw"
-    relocate "fr.mrmicky.fastboard", "cc.dreamcode.template.libs.fastboard"
     relocate "net.kyori.adventure", "cc.dreamcode.template.libs.net.kyori.adventure"
 
     relocate "cc.dreamcode.platform", "cc.dreamcode.template.libs.cc.dreamcode.platform"
     relocate "cc.dreamcode.utilities", "cc.dreamcode.template.libs.cc.dreamcode.utilities"
-    relocate "cc.dreamcode.menu", "cc.dreamcode.template.libs.cc.dreamcode.menu"
     relocate "cc.dreamcode.command", "cc.dreamcode.template.libs.cc.dreamcode.command"
     relocate "cc.dreamcode.notice", "cc.dreamcode.template.libs.cc.dreamcode.notice"
 

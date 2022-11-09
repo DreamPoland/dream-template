@@ -15,29 +15,27 @@ import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.nms.NmsFactory;
 import cc.dreamcode.template.user.UserRepository;
+import eu.hexagonmc.spigot.annotation.plugin.Plugin;
 import eu.okaeri.configs.serdes.OkaeriSerdesPack;
 import eu.okaeri.persistence.document.DocumentPersistence;
 import eu.okaeri.tasker.bukkit.BukkitTasker;
 import lombok.Getter;
 import lombok.NonNull;
-import org.bukkit.plugin.java.annotation.plugin.ApiVersion;
-import org.bukkit.plugin.java.annotation.plugin.Description;
-import org.bukkit.plugin.java.annotation.plugin.Plugin;
-import org.bukkit.plugin.java.annotation.plugin.Website;
-import org.bukkit.plugin.java.annotation.plugin.author.Author;
 
-@Plugin(name = "Dream-Template", version = "1.0-SNAPSHOT")
-@Author("Ravis96")
-@Description("Template plugin by DreamCode.")
-@Website("DreamCode - https://discord.gg/dreamcode")
-@ApiVersion(ApiVersion.Target.v1_13)
-public final class TemplatePlugin extends DreamBukkitPlatform {
+@Plugin(
+        name = "Dream-Template",
+        version = "1.0-SNAPSHOT",
+        spigot = @Plugin.Spigot(
+                authors = "Author (dreamcode.cc)"
+        )
+)
+public final class BukkitTemplatePlugin extends DreamBukkitPlatform {
 
-    @Getter private static TemplatePlugin templatePlugin;
+    @Getter private static BukkitTemplatePlugin bukkitTemplatePlugin;
 
     @Override
     public void load(@NonNull ComponentManager componentManager) {
-        templatePlugin = this;
+        bukkitTemplatePlugin = this;
     }
 
     @Override

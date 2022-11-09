@@ -2,7 +2,7 @@ package cc.dreamcode.template.nms;
 
 import cc.dreamcode.platform.DreamLogger;
 import cc.dreamcode.platform.bukkit.exception.BukkitPluginException;
-import cc.dreamcode.template.TemplatePlugin;
+import cc.dreamcode.template.BukkitTemplatePlugin;
 import cc.dreamcode.template.nms.api.NmsAccessor;
 import cc.dreamcode.template.nms.v1_10_R1.V1_10_R1_NmsAccessor;
 import cc.dreamcode.template.nms.v1_11_R1.V1_11_R1_NmsAccessor;
@@ -24,7 +24,7 @@ import com.cryptomorin.xseries.ReflectionUtils;
  */
 public final class NmsFactory {
     public static NmsAccessor getNmsAccessor() {
-        TemplatePlugin.getTemplatePlugin().getDreamLogger().info(
+        BukkitTemplatePlugin.getBukkitTemplatePlugin().getDreamLogger().info(
                 new DreamLogger.Builder()
                         .type("Connect with minecraft version")
                         .name(ReflectionUtils.VERSION)
