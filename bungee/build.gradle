@@ -39,7 +39,7 @@ dependencies {
 
     // -- dream-command --
     implementation "cc.dreamcode.command:core:1.1-SNAPSHOT"
-    implementation "cc.dreamcode.command:bungee:1.1-SNAPSHOT"
+    implementation "cc.dreamcode.command:bungee:1.1"
 
     // -- lombok --
     compileOnly 'org.projectlombok:lombok:1.18.24'
