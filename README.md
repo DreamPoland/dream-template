@@ -29,5 +29,5 @@ Build to jar by ``shadowJar`` gradle task.
 - [FastBoard](https://github.com/MrMicky-FR/FastBoard) by [MrMicky](https://github.com/MrMicky-FR)
 - [XSeries](https://github.com/MrMicky-FR) by [CryptoMorin](https://github.com/CryptoMorin)
 - [Item-NBT-API](https://github.com/tr7zw/Item-NBT-API) by [tr7zw](https://github.com/tr7zw)
-- [IridiumColorAPI](https://github.com/Iridium-Development/IridiumColorAPI) by [Iridium-Development](https://github.com/Iridium-Development)
+- [Adventure](https://github.com/KyoriPowered/adventure) by [KyoriPowered](https://github.com/KyoriPowered)
 - and [Lombok](https://github.com/projectlombok/lombok) for clean dev by [ProjectLombok](https://github.com/projectlombok)
