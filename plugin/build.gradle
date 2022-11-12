@@ -45,8 +45,8 @@ dependencies {
     implementation "cc.dreamcode.platform:bukkit:1.0.8"
 
     // -- dream-utilities --
-    implementation "cc.dreamcode:utilities:1.0.1"
-    implementation "cc.dreamcode:utilities-bukkit:1.0.1"
+    implementation "cc.dreamcode:utilities:1.0.2"
+    implementation "cc.dreamcode:utilities-bukkit:1.0.2"
 
     // -- dream-notice --
     implementation "cc.dreamcode.notice:core:1.1"
