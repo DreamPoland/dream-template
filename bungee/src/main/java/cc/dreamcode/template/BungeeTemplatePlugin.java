@@ -21,7 +21,8 @@ import lombok.Getter;
 import lombok.NonNull;
 
 @Plugin(
-        name = "Dream-Template",
+        name = "Dream-Bungee-Template",
+        description = "Project template for bungee plugins by dreamcode.cc",
         version = "1.0-SNAPSHOT",
         bungee = @Plugin.Bungee(
                 author = "Author (dreamcode.cc)"

@@ -25,10 +25,14 @@ import lombok.Getter;
 import lombok.NonNull;
 
 @Plugin(
-        name = "Dream-Template",
+        name = "Dream-Bukkit-Template",
+        description = "Project template for bukkit plugins by dreamcode.cc",
         version = "1.0-SNAPSHOT",
         spigot = @Plugin.Spigot(
-                authors = "Author (dreamcode.cc)"
+                website = "https://dreamcode.cc",
+                authors = "Author",
+                prefix = "Dream-Bukkit-Template",
+                database = true
         )
 )
 public final class BukkitTemplatePlugin extends DreamBukkitPlatform {
