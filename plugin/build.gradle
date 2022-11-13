@@ -59,10 +59,10 @@ dependencies {
     implementation "cc.dreamcode.command:bukkit:1.1.1"
 
     // -- dream-menu --
-    implementation "cc.dreamcode.menu:core:0.3.6"
-    implementation "cc.dreamcode.menu:bukkit:0.3.6"
-    implementation "cc.dreamcode.menu:serdes-bukkit:0.3.6"
-    implementation "cc.dreamcode.menu:serdes-bukkit-okaeri:0.3.6"
+    implementation "cc.dreamcode.menu:core:0.4"
+    implementation "cc.dreamcode.menu:bukkit:0.4"
+    implementation "cc.dreamcode.menu:serdes-bukkit:0.4"
+    implementation "cc.dreamcode.menu:serdes-bukkit-okaeri:0.4"
 
     // -- lombok --
     compileOnly 'org.projectlombok:lombok:1.18.24'
