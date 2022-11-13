@@ -1,7 +1,7 @@
 package cc.dreamcode.template.controller;
 
+import cc.dreamcode.platform.bungee.exception.BungeePluginException;
 import cc.dreamcode.template.BungeeTemplatePlugin;
-import cc.dreamcode.template.user.User;
 import cc.dreamcode.template.user.UserRepository;
 import eu.okaeri.injector.annotation.Inject;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -21,13 +21,16 @@ public class ExampleUserController implements Listener {
     @EventHandler
     public void onPlayerJoin(PostLoginEvent e) {
         final ProxiedPlayer player = e.getPlayer();
-        final User user = this.userRepository.findOrCreateByPlayer(player).join(); // get user from repository
+        this.userRepository.findOrCreateByPlayer(player).whenCompleteAsync((user, throwable) -> {
+            if (throwable != null) {
+                throw new BungeePluginException("An error was caught when CompletableFuture is complete. (PostLoginEvent)", throwable);
+            }
 
-        user.setName(player.getName()); // example setter, update name
+            user.setName(player.getName()); // example setter (only for example)
+            user.save(); // save after changes (async)
 
-        this.bungeeTemplatePlugin.runAsync(user::save);// remember, all changes need to be saved (async)
-
-        player.sendMessage("hi, " + user.getName()); // send message after changes
+            player.sendMessage("hi, " + user.getName()); // send message after save
+        });
     }
 
 }
