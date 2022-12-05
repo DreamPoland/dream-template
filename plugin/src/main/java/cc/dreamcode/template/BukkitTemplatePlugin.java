@@ -31,8 +31,7 @@ import lombok.NonNull;
         spigot = @Plugin.Spigot(
                 website = "https://dreamcode.cc",
                 authors = "Author",
-                prefix = "Dream-Bukkit-Template",
-                database = true
+                prefix = "Dream-Bukkit-Template"
         )
 )
 public final class BukkitTemplatePlugin extends DreamBukkitPlatform {
