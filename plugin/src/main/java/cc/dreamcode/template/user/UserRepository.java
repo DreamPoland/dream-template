@@ -13,17 +13,13 @@ import java.util.concurrent.CompletableFuture;
 public interface UserRepository extends DocumentRepository<UUID, User> {
 
     default CompletableFuture<User> findOrCreate(@NonNull UUID uuid, String userName) {
-        CompletableFuture<User> completableFuture = new CompletableFuture<>();
-
-        CompletableFuture.runAsync(() -> {
+        return CompletableFuture.supplyAsync(() -> {
             User user = this.findOrCreateByPath(uuid);
             if (userName != null) {
                 user.setName(userName);
             }
-            completableFuture.complete(user);
+            return user;
         });
-
-        return completableFuture;
     }
 
     default CompletableFuture<User> findOrCreateByUUID(@NonNull UUID uuid) {
@@ -35,19 +31,11 @@ public interface UserRepository extends DocumentRepository<UUID, User> {
     }
 
     default CompletableFuture<Optional<User>> findByName(@NonNull String name, boolean ignoreCase) {
-        CompletableFuture<Optional<User>> completableFuture = new CompletableFuture<>();
-
-        CompletableFuture.runAsync(() -> {
-            Optional<User> optionalUser = this.streamAll()
-                    .filter(user -> ignoreCase
-                            ? user.getName().equalsIgnoreCase(name)
-                            : user.getName().equals(name))
-                    .findFirst();
-
-            completableFuture.complete(optionalUser);
-        });
-
-        return completableFuture;
+        return CompletableFuture.supplyAsync(() -> this.streamAll()
+                .filter(user -> ignoreCase
+                        ? user.getName().equalsIgnoreCase(name)
+                        : user.getName().equals(name))
+                .findFirst());
     }
 
 }
