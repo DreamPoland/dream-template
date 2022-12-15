@@ -15,7 +15,7 @@ import eu.okaeri.configs.annotation.Names;
 )
 @Headers({
         @Header("## Dream-Template (Message-Config) ##"),
-        @Header("Dostepne type: (CHAT, ACTION_BAR, SUBTITLE, TITLE, TITLE_SUBTITLE, SIDEBAR)")
+        @Header("Dostepne type: (CHAT, ACTION_BAR, SUBTITLE, TITLE, TITLE_SUBTITLE)")
 })
 @Names(strategy = NameStrategy.HYPHEN_CASE, modifier = NameModifier.TO_LOWER_CASE)
 public class MessageConfig extends OkaeriConfig {
