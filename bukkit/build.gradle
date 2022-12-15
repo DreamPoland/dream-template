@@ -1,6 +1,6 @@
 dependencies {
     // -- bukkit-versions --
-    implementation project(':bukkit:mcversion:api')
+    project(":bukkit:mcversion").getSubprojects().forEach(mcv -> implementation mcv)
 
     // -- spigot api -- (base)
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'

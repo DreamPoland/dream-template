@@ -15,7 +15,7 @@ import cc.dreamcode.platform.bukkit.component.RunnableComponentClassResolver;
 import cc.dreamcode.platform.component.ComponentManager;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
-import cc.dreamcode.template.mcversion.api.VersionProvider;
+import cc.dreamcode.template.mcversion.VersionProvider;
 import cc.dreamcode.template.user.UserRepository;
 import eu.hexagonmc.spigot.annotation.plugin.Plugin;
 import eu.okaeri.configs.serdes.OkaeriSerdesPack;

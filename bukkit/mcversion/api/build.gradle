@@ -1,6 +1,4 @@
 dependencies {
-    project(":bukkit:mcversion").getSubprojects().forEach(mcv -> implementation mcv)
-
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
 
     implementation 'com.github.cryptomorin:XSeries:9.1.0'

@@ -1,5 +1,6 @@
-package cc.dreamcode.template.mcversion.api;
+package cc.dreamcode.template.mcversion;
 
+import cc.dreamcode.template.mcversion.api.VersionAccessor;
 import cc.dreamcode.template.mcversion.v1_12_R1.V1_12_R1_VersionAccessor;
 import cc.dreamcode.template.mcversion.v1_16_R3.V1_16_R3_VersionAccessor;
 import cc.dreamcode.template.mcversion.v1_17_R1.V1_17_R1_VersionAccessor;
