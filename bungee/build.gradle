@@ -52,7 +52,7 @@ dependencies {
 shadowJar {
     checkstyleTest
 
-    archiveFileName = "Dream-Template-${project.version} (Bungee).jar"
+    archiveFileName = "Dream-Template-Bungee-${project.version}.jar"
 
     minimize()
 
