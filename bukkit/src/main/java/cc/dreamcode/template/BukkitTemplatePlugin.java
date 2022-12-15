@@ -45,8 +45,8 @@ public final class BukkitTemplatePlugin extends DreamBukkitPlatform {
 
     @Override
     public void enable(@NonNull ComponentManager componentManager) {
-        this.registerInjectable(BukkitTasker.newPool(this));
         this.registerInjectable(VersionProvider.getVersionAccessor());
+        this.registerInjectable(BukkitTasker.newPool(this));
         this.registerInjectable(BukkitMenuProvider.create(this));
         this.registerInjectable(BukkitNoticeProvider.create(this));
         this.registerInjectable(BukkitCommandProvider.create(this, this.getInjector()));
