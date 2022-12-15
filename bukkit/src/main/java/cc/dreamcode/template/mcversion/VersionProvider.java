@@ -11,23 +11,23 @@ import com.cryptomorin.xseries.ReflectionUtils;
 
 public class VersionProvider {
     public static VersionAccessor getVersionAccessor() {
-        switch (ReflectionUtils.VER) {
-            case 8: {
+        switch (ReflectionUtils.VERSION) {
+            case "v1_8_R3": {
                 return new V1_8_R3_VersionAccessor();
             }
-            case 12: {
+            case "v1_12_R1": {
                 return new V1_12_R1_VersionAccessor();
             }
-            case 16: {
+            case "v1_16_R3": {
                 return new V1_16_R3_VersionAccessor();
             }
-            case 17: {
+            case "v1_17_R1": {
                 return new V1_17_R1_VersionAccessor();
             }
-            case 18: {
+            case "v1_18_R2": {
                 return new V1_18_R2_VersionAccessor();
             }
-            case 19: {
+            case "v1_19_R2": {
                 return new V1_19_R2_VersionAccessor();
             }
             default: {
