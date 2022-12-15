@@ -15,8 +15,8 @@ Build to jar by ``shadowJar`` gradle task.
 
 Working with NMS:
 -----
-- Implement ProtocolLib and work with it.
-- Implement all spigot jars to mc-version modules.
+- Add ProtocolLib to build.gradle and work with it.
+- Add craftbukkit packages into mc-version modules.
 
 ------
 
