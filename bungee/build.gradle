@@ -27,8 +27,8 @@ dependencies {
     implementation 'eu.okaeri:okaeri-placeholders-bungee:4.0.3'
 
     // -- dream-platform --
-    implementation "cc.dreamcode.platform:core:1.0.13"
-    implementation "cc.dreamcode.platform:bungee:1.0.13"
+    implementation "cc.dreamcode.platform:core:1.0.14"
+    implementation "cc.dreamcode.platform:bungee:1.0.14"
 
     // -- dream-utilities --
     implementation "cc.dreamcode:utilities:1.0.5"
@@ -39,8 +39,8 @@ dependencies {
     implementation "cc.dreamcode.notice:bungee-okaeri-serdes:1.1"
 
     // -- dream-command --
-    implementation "cc.dreamcode.command:core:1.1.1"
-    implementation "cc.dreamcode.command:bungee:1.1.1"
+    implementation "cc.dreamcode.command:core:1.2"
+    implementation "cc.dreamcode.command:bungee:1.2"
 
     // -- lombok --
     compileOnly 'org.projectlombok:lombok:1.18.24'
