@@ -47,7 +47,12 @@ public final class BungeeTemplatePlugin extends DreamBungeePlatform {
         componentManager.registerResolver(RunnableComponentClassResolver.class);
 
         componentManager.registerResolver(ConfigurationComponentClassResolver.class);
-        componentManager.registerComponent(MessageConfig.class);
+        componentManager.registerComponent(MessageConfig.class, messageConfig -> {
+            this.getInject(BungeeCommandProvider.class).ifPresent(bungeeCommandProvider -> {
+                bungeeCommandProvider.setNoPermissionMessage(messageConfig.noPermission);
+                bungeeCommandProvider.setNoPlayerMessage(messageConfig.noPlayer);
+            });
+        });
         componentManager.registerComponent(PluginConfig.class, pluginConfig -> {
             // register persistence + repositories
             this.registerInjectable(pluginConfig.storageConfig);
