@@ -76,7 +76,7 @@ public final class BukkitTemplatePlugin extends DreamBukkitPlatform {
 
     @Override
     public void disable() {
-        // features need to be call by stop server
+        // features need to be call when server is stopping
     }
 
     @Override

@@ -67,7 +67,7 @@ public final class BungeeTemplatePlugin extends DreamBungeePlatform {
 
     @Override
     public void disable() {
-        // features need to be call by stop server
+        // features need to be call when server is stopping
     }
 
     @Override
