@@ -10,12 +10,12 @@ dependencies {
     annotationProcessor group: 'eu.hexagonmc', name: 'spigot-annotations', version: '1.2'
 
     // -- configs--
-    implementation "eu.okaeri:okaeri-configs-yaml-bukkit:4.0.6"
-    implementation "eu.okaeri:okaeri-configs-serdes-bukkit:4.0.6"
-    implementation "eu.okaeri:okaeri-configs-serdes-commons:4.0.6"
+    implementation "eu.okaeri:okaeri-configs-yaml-bukkit:4.0.8"
+    implementation "eu.okaeri:okaeri-configs-serdes-bukkit:4.0.8"
+    implementation "eu.okaeri:okaeri-configs-serdes-commons:4.0.8"
 
     // -- json configure --
-    implementation 'eu.okaeri:okaeri-configs-json-simple:4.0.6'
+    implementation 'eu.okaeri:okaeri-configs-json-simple:4.0.8'
 
     // -- persistence data --
     implementation 'eu.okaeri:okaeri-persistence-flat:2.0.0-beta.1'
@@ -33,30 +33,30 @@ dependencies {
     implementation 'eu.okaeri:okaeri-tasker-bukkit:1.1.9'
 
     // -- Multi-Version Items helper --
-    implementation 'com.github.cryptomorin:XSeries:9.1.0'
+    implementation 'com.github.cryptomorin:XSeries:9.2.0'
 
     // -- dream-platform --
-    implementation "cc.dreamcode.platform:core:1.0.14"
-    implementation "cc.dreamcode.platform:bukkit:1.0.14"
+    implementation "cc.dreamcode.platform:core:1.0.15"
+    implementation "cc.dreamcode.platform:bukkit:1.0.15"
 
     // -- dream-utilities --
     implementation "cc.dreamcode:utilities:1.0.5"
     implementation "cc.dreamcode:utilities-bukkit:1.0.5"
 
     // -- dream-notice --
-    implementation "cc.dreamcode.notice:core:1.1"
-    implementation "cc.dreamcode.notice:bukkit:1.1"
-    implementation "cc.dreamcode.notice:bukkit-okaeri-serdes:1.1"
+    implementation "cc.dreamcode.notice:core:1.1.1"
+    implementation "cc.dreamcode.notice:bukkit:1.1.1"
+    implementation "cc.dreamcode.notice:bukkit-okaeri-serdes:1.1.1"
 
     // -- dream-command --
-    implementation "cc.dreamcode.command:core:1.2"
-    implementation "cc.dreamcode.command:bukkit:1.2"
+    implementation "cc.dreamcode.command:core:1.2.1"
+    implementation "cc.dreamcode.command:bukkit:1.2.1"
 
     // -- dream-menu --
-    implementation "cc.dreamcode.menu:core:0.4.2"
-    implementation "cc.dreamcode.menu:bukkit:0.4.2"
-    implementation "cc.dreamcode.menu:serdes-bukkit:0.4.2"
-    implementation "cc.dreamcode.menu:serdes-bukkit-okaeri:0.4.2"
+    implementation "cc.dreamcode.menu:core:0.4.3"
+    implementation "cc.dreamcode.menu:bukkit:0.4.3"
+    implementation "cc.dreamcode.menu:serdes-bukkit:0.4.3"
+    implementation "cc.dreamcode.menu:serdes-bukkit-okaeri:0.4.3"
 
     // -- lombok --
     compileOnly 'org.projectlombok:lombok:1.18.24'
