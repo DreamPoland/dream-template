@@ -37,8 +37,8 @@ dependencies {
     implementation 'com.github.cryptomorin:XSeries:9.2.0'
 
     // -- dream-platform --
-    implementation "cc.dreamcode.platform:core:1.2"
-    implementation "cc.dreamcode.platform:bukkit:1.2"
+    implementation "cc.dreamcode.platform:core:1.2.6"
+    implementation "cc.dreamcode.platform:bukkit:1.2.6"
 
     // -- dream-utilities --
     implementation "cc.dreamcode:utilities:1.0.5"
