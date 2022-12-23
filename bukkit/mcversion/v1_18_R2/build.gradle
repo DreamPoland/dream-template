@@ -1,3 +1,7 @@
+repositories {
+    maven { url "https://repo.codemc.io/repository/nms" }
+}
+
 dependencies {
     implementation project(":bukkit:mcversion:api")
 

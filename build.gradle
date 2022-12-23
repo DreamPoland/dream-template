@@ -41,14 +41,19 @@ allprojects {
 
     repositories {
         mavenCentral()
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
-        maven { url "https://storehouse.okaeri.eu/repository/maven-public" }
-        maven { url "https://repo.codemc.io/repository/nms" }
         maven { url "https://repo.dreamcode.cc/releases" }
+        maven { url "https://storehouse.okaeri.eu/repository/maven-public" }
     }
 }
 
 subprojects {
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.24'
+        annotationProcessor 'org.projectlombok:lombok:1.18.24'
+        testCompileOnly 'org.projectlombok:lombok:1.18.24'
+        testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+    }
+
     apply plugin: 'com.github.johnrengelman.shadow'
 
     sourceCompatibility = JavaVersion.VERSION_1_8

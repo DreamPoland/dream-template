@@ -3,6 +3,7 @@ package cc.dreamcode.template;
 import cc.dreamcode.command.bungee.BungeeCommandProvider;
 import cc.dreamcode.notice.bungee.BungeeNoticeProvider;
 import cc.dreamcode.notice.bungee.okaeri_serdes.BungeeNoticeSerdes;
+import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bungee.DreamBungeePlatform;
 import cc.dreamcode.platform.bungee.component.CommandComponentClassResolver;
 import cc.dreamcode.platform.bungee.component.ConfigurationComponentClassResolver;
@@ -59,6 +60,11 @@ public final class BungeeTemplatePlugin extends DreamBungeePlatform {
     @Override
     public void disable() {
         // features need to be call when server is stopping
+    }
+
+    @Override
+    public DreamVersion getDreamVersion() {
+        return DreamVersion.create("Dream-Template", "1.0", "author");
     }
 
     @Override

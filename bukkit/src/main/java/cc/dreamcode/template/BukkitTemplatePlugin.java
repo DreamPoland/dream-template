@@ -5,6 +5,7 @@ import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
 import cc.dreamcode.menu.serdes.bukkit.okaeri.MenuBuilderSerdes;
 import cc.dreamcode.notice.bukkit.BukkitNoticeProvider;
 import cc.dreamcode.notice.bukkit.okaeri_serdes.BukkitNoticeSerdes;
+import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
 import cc.dreamcode.platform.bukkit.component.CommandComponentClassResolver;
 import cc.dreamcode.platform.bukkit.component.ConfigurationComponentClassResolver;
@@ -66,6 +67,11 @@ public final class BukkitTemplatePlugin extends DreamBukkitPlatform {
     @Override
     public void disable() {
         // features need to be call when server is stopping
+    }
+
+    @Override
+    public DreamVersion getDreamVersion() {
+        return DreamVersion.create("Dream-Template", "1.0", "author");
     }
 
     @Override

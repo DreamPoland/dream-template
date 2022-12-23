@@ -1,3 +1,8 @@
+repositories {
+    maven { url "https://repo.codemc.io/repository/nms" }
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+
 dependencies {
     // -- bukkit-versions --
     project(":bukkit:mcversion").getSubprojects().forEach(mcv -> implementation mcv)
@@ -32,8 +37,8 @@ dependencies {
     implementation 'com.github.cryptomorin:XSeries:9.2.0'
 
     // -- dream-platform --
-    implementation "cc.dreamcode.platform:core:1.1.1"
-    implementation "cc.dreamcode.platform:bukkit:1.1.1"
+    implementation "cc.dreamcode.platform:core:1.2"
+    implementation "cc.dreamcode.platform:bukkit:1.2"
 
     // -- dream-utilities --
     implementation "cc.dreamcode:utilities:1.0.5"
@@ -53,12 +58,6 @@ dependencies {
     implementation "cc.dreamcode.menu:bukkit:0.4.3"
     implementation "cc.dreamcode.menu:serdes-bukkit:0.4.3"
     implementation "cc.dreamcode.menu:serdes-bukkit-okaeri:0.4.3"
-
-    // -- lombok --
-    compileOnly 'org.projectlombok:lombok:1.18.24'
-    annotationProcessor 'org.projectlombok:lombok:1.18.24'
-    testCompileOnly 'org.projectlombok:lombok:1.18.24'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 }
 
 shadowJar {
