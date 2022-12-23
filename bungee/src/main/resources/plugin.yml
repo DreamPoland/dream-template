@@ -1,4 +1,4 @@
-main: "cc.dreamcode.template.BukkitTemplatePlugin"
+main: "cc.dreamcode.template.BungeeTemplatePlugin"
 version: "1.0"
 name: "Dream-Template"
 description: "Dream-Template written by dreamcode.cc"
