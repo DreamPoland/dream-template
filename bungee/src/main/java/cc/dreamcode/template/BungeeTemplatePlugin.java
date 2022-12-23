@@ -14,20 +14,11 @@ import cc.dreamcode.platform.component.ComponentManager;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.user.UserRepository;
-import eu.hexagonmc.spigot.annotation.plugin.Plugin;
 import eu.okaeri.configs.serdes.OkaeriSerdesPack;
 import eu.okaeri.persistence.document.DocumentPersistence;
 import lombok.Getter;
 import lombok.NonNull;
 
-@Plugin(
-        name = "Dream-Bungee-Template",
-        description = "Project template for bungee plugins by dreamcode.cc",
-        version = "1.0-SNAPSHOT",
-        bungee = @Plugin.Bungee(
-                author = "Author (dreamcode.cc)"
-        )
-)
 public final class BungeeTemplatePlugin extends DreamBungeePlatform {
 
     @Getter private static BungeeTemplatePlugin bukkitTemplatePlugin;

@@ -5,10 +5,6 @@ dependencies {
     // -- spigot api -- (base)
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
 
-    // -- spigot annotations --
-    compileOnly group: 'eu.hexagonmc', name: 'spigot-annotations', version: '1.2'
-    annotationProcessor group: 'eu.hexagonmc', name: 'spigot-annotations', version: '1.2'
-
     // -- configs--
     implementation "eu.okaeri:okaeri-configs-yaml-bukkit:4.0.8"
     implementation "eu.okaeri:okaeri-configs-serdes-bukkit:4.0.8"
@@ -36,8 +32,8 @@ dependencies {
     implementation 'com.github.cryptomorin:XSeries:9.2.0'
 
     // -- dream-platform --
-    implementation "cc.dreamcode.platform:core:1.0.15"
-    implementation "cc.dreamcode.platform:bukkit:1.0.15"
+    implementation "cc.dreamcode.platform:core:1.1.1"
+    implementation "cc.dreamcode.platform:bukkit:1.1.1"
 
     // -- dream-utilities --
     implementation "cc.dreamcode:utilities:1.0.5"

@@ -17,23 +17,12 @@ import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.mcversion.VersionProvider;
 import cc.dreamcode.template.user.UserRepository;
-import eu.hexagonmc.spigot.annotation.plugin.Plugin;
 import eu.okaeri.configs.serdes.OkaeriSerdesPack;
 import eu.okaeri.persistence.document.DocumentPersistence;
 import eu.okaeri.tasker.bukkit.BukkitTasker;
 import lombok.Getter;
 import lombok.NonNull;
 
-@Plugin(
-        name = "Dream-Bukkit-Template",
-        description = "Project template for bukkit plugins by dreamcode.cc",
-        version = "1.0-SNAPSHOT",
-        spigot = @Plugin.Spigot(
-                website = "https://dreamcode.cc",
-                authors = "Author",
-                prefix = "Dream-Bukkit-Template"
-        )
-)
 public final class BukkitTemplatePlugin extends DreamBukkitPlatform {
 
     @Getter private static BukkitTemplatePlugin bukkitTemplatePlugin;
