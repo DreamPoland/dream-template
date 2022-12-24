@@ -10,3 +10,4 @@ include 'bukkit:mcversion:v1_18_R2'
 include 'bukkit:mcversion:v1_19_R2'
 
 include 'bungee'
+include 'discord4j'

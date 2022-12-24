@@ -7,12 +7,12 @@ import cc.dreamcode.notice.bukkit.BukkitNoticeProvider;
 import cc.dreamcode.notice.bukkit.okaeri_serdes.BukkitNoticeSerdes;
 import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
-import cc.dreamcode.platform.bukkit.component.CommandComponentClassResolver;
-import cc.dreamcode.platform.bukkit.component.ConfigurationComponentClassResolver;
-import cc.dreamcode.platform.bukkit.component.DocumentPersistenceComponentClassResolver;
-import cc.dreamcode.platform.bukkit.component.DocumentRepositoryComponentClassResolver;
-import cc.dreamcode.platform.bukkit.component.ListenerComponentClassResolver;
-import cc.dreamcode.platform.bukkit.component.RunnableComponentClassResolver;
+import cc.dreamcode.platform.bukkit.component.CommandComponentResolver;
+import cc.dreamcode.platform.bukkit.component.ConfigurationComponentResolver;
+import cc.dreamcode.platform.bukkit.component.DocumentPersistenceComponentResolver;
+import cc.dreamcode.platform.bukkit.component.DocumentRepositoryComponentResolver;
+import cc.dreamcode.platform.bukkit.component.ListenerComponentResolver;
+import cc.dreamcode.platform.bukkit.component.RunnableComponentResolver;
 import cc.dreamcode.platform.component.ComponentManager;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
@@ -41,11 +41,11 @@ public final class BukkitTemplatePlugin extends DreamBukkitPlatform {
         this.registerInjectable(BukkitNoticeProvider.create(this));
         this.registerInjectable(BukkitCommandProvider.create(this, this.getInjector()));
 
-        componentManager.registerResolver(CommandComponentClassResolver.class);
-        componentManager.registerResolver(ListenerComponentClassResolver.class);
-        componentManager.registerResolver(RunnableComponentClassResolver.class);
+        componentManager.registerResolver(CommandComponentResolver.class);
+        componentManager.registerResolver(ListenerComponentResolver.class);
+        componentManager.registerResolver(RunnableComponentResolver.class);
 
-        componentManager.registerResolver(ConfigurationComponentClassResolver.class);
+        componentManager.registerResolver(ConfigurationComponentResolver.class);
         componentManager.registerComponent(MessageConfig.class, messageConfig -> {
             this.getInject(BukkitCommandProvider.class).ifPresent(bukkitCommandProvider -> {
                 bukkitCommandProvider.setNoPermissionMessage(messageConfig.noPermission);
@@ -56,8 +56,8 @@ public final class BukkitTemplatePlugin extends DreamBukkitPlatform {
             // register persistence + repositories
             this.registerInjectable(pluginConfig.storageConfig);
 
-            componentManager.registerResolver(DocumentPersistenceComponentClassResolver.class);
-            componentManager.registerResolver(DocumentRepositoryComponentClassResolver.class);
+            componentManager.registerResolver(DocumentPersistenceComponentResolver.class);
+            componentManager.registerResolver(DocumentRepositoryComponentResolver.class);
 
             componentManager.registerComponent(DocumentPersistence.class);
             componentManager.registerComponent(UserRepository.class);

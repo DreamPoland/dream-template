@@ -5,12 +5,12 @@ import cc.dreamcode.notice.bungee.BungeeNoticeProvider;
 import cc.dreamcode.notice.bungee.okaeri_serdes.BungeeNoticeSerdes;
 import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bungee.DreamBungeePlatform;
-import cc.dreamcode.platform.bungee.component.CommandComponentClassResolver;
-import cc.dreamcode.platform.bungee.component.ConfigurationComponentClassResolver;
-import cc.dreamcode.platform.bungee.component.DocumentPersistenceComponentClassResolver;
-import cc.dreamcode.platform.bungee.component.DocumentRepositoryComponentClassResolver;
-import cc.dreamcode.platform.bungee.component.ListenerComponentClassResolver;
-import cc.dreamcode.platform.bungee.component.RunnableComponentClassResolver;
+import cc.dreamcode.platform.bungee.component.CommandComponentResolver;
+import cc.dreamcode.platform.bungee.component.ConfigurationComponentResolver;
+import cc.dreamcode.platform.bungee.component.DocumentPersistenceComponentResolver;
+import cc.dreamcode.platform.bungee.component.DocumentRepositoryComponentResolver;
+import cc.dreamcode.platform.bungee.component.ListenerComponentResolver;
+import cc.dreamcode.platform.bungee.component.RunnableComponentResolver;
 import cc.dreamcode.platform.component.ComponentManager;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
@@ -34,11 +34,11 @@ public final class BungeeTemplatePlugin extends DreamBungeePlatform {
         this.registerInjectable(BungeeNoticeProvider.create(this));
         this.registerInjectable(BungeeCommandProvider.create(this, this.getInjector()));
 
-        componentManager.registerResolver(CommandComponentClassResolver.class);
-        componentManager.registerResolver(ListenerComponentClassResolver.class);
-        componentManager.registerResolver(RunnableComponentClassResolver.class);
+        componentManager.registerResolver(CommandComponentResolver.class);
+        componentManager.registerResolver(ListenerComponentResolver.class);
+        componentManager.registerResolver(RunnableComponentResolver.class);
 
-        componentManager.registerResolver(ConfigurationComponentClassResolver.class);
+        componentManager.registerResolver(ConfigurationComponentResolver.class);
         componentManager.registerComponent(MessageConfig.class, messageConfig -> {
             this.getInject(BungeeCommandProvider.class).ifPresent(bungeeCommandProvider -> {
                 bungeeCommandProvider.setNoPermissionMessage(messageConfig.noPermission);
@@ -49,8 +49,8 @@ public final class BungeeTemplatePlugin extends DreamBungeePlatform {
             // register persistence + repositories
             this.registerInjectable(pluginConfig.storageConfig);
 
-            componentManager.registerResolver(DocumentPersistenceComponentClassResolver.class);
-            componentManager.registerResolver(DocumentRepositoryComponentClassResolver.class);
+            componentManager.registerResolver(DocumentPersistenceComponentResolver.class);
+            componentManager.registerResolver(DocumentRepositoryComponentResolver.class);
 
             componentManager.registerComponent(DocumentPersistence.class);
             componentManager.registerComponent(UserRepository.class);
