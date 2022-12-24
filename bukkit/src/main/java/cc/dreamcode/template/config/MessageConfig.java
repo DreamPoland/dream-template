@@ -2,7 +2,7 @@ package cc.dreamcode.template.config;
 
 import cc.dreamcode.notice.NoticeType;
 import cc.dreamcode.notice.bukkit.BukkitNotice;
-import cc.dreamcode.platform.bukkit.component.annotation.Configuration;
+import cc.dreamcode.platform.bukkit.component.configuration.Configuration;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Header;
 import eu.okaeri.configs.annotation.Headers;

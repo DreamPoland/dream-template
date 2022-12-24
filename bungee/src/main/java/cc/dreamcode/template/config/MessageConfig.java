@@ -2,7 +2,7 @@ package cc.dreamcode.template.config;
 
 import cc.dreamcode.notice.NoticeType;
 import cc.dreamcode.notice.bungee.BungeeNotice;
-import cc.dreamcode.platform.bungee.component.annotation.Configuration;
+import cc.dreamcode.platform.bungee.component.configuration.Configuration;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Header;
 import eu.okaeri.configs.annotation.Headers;

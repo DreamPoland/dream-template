@@ -1,6 +1,6 @@
 package cc.dreamcode.template.config;
 
-import cc.dreamcode.platform.bungee.component.annotation.Configuration;
+import cc.dreamcode.platform.bungee.component.configuration.Configuration;
 import cc.dreamcode.platform.bungee.persistence.StorageConfig;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Comment;
