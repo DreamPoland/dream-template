@@ -5,7 +5,7 @@ dependencies {
     implementation "org.slf4j:slf4j-api:2.0.6"
 
     // -- dream-platform --
-    implementation "cc.dreamcode.platform:core:1.3.2"
+    implementation "cc.dreamcode.platform:core:1.4"
     implementation "cc.dreamcode.platform:cli:1.3.2"
 
     // -- dream-utilities --

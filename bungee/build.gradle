@@ -27,7 +27,7 @@ dependencies {
     implementation 'eu.okaeri:okaeri-placeholders-bungee:4.0.3'
 
     // -- dream-platform --
-    implementation "cc.dreamcode.platform:core:1.3.2"
+    implementation "cc.dreamcode.platform:core:1.4"
     implementation "cc.dreamcode.platform:bungee:1.3.2"
 
     // -- dream-utilities --
