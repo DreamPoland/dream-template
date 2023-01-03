@@ -21,7 +21,7 @@ public class ExampleUserController implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         final Player player = e.getPlayer();
-        final User user = this.userRepository.findOrCreateByPlayer(player).join(); // async get user
+        final User user = this.userRepository.findOrCreateByPlayerFuture(player).join(); // completable-future get user
 
         user.setName(player.getName()); // example setter (only for example)
         this.bukkitTemplatePlugin.runAsync(user::save); // save after changes (async)

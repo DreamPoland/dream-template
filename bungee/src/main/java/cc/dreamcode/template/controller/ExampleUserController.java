@@ -21,7 +21,7 @@ public class ExampleUserController implements Listener {
     @EventHandler
     public void onPlayerJoin(PostLoginEvent e) {
         final ProxiedPlayer player = e.getPlayer();
-        final User user = this.userRepository.findOrCreateByPlayer(player).join(); // async get user
+        final User user = this.userRepository.findOrCreateByPlayerFuture(player).join(); // async get user
 
         user.setName(player.getName()); // example setter (only for example)
         this.bungeeTemplatePlugin.runAsync(user::save); // save after changes (async)
