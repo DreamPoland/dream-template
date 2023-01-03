@@ -3,7 +3,7 @@ package cc.dreamcode.template.user;
 import eu.okaeri.persistence.repository.DocumentRepository;
 import eu.okaeri.persistence.repository.annotation.DocumentCollection;
 import lombok.NonNull;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.HumanEntity;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -32,12 +32,12 @@ public interface UserRepository extends DocumentRepository<UUID, User> {
         return CompletableFuture.supplyAsync(() -> this.findOrCreate(uuid, null));
     }
 
-    default User findOrCreateByPlayer(@NonNull Player player) {
-        return this.findOrCreate(player.getUniqueId(), player.getName());
+    default User findOrCreateByHumanEntity(@NonNull HumanEntity humanEntity) {
+        return this.findOrCreate(humanEntity.getUniqueId(), humanEntity.getName());
     }
 
-    default CompletableFuture<User> findOrCreateByPlayerFuture(@NonNull Player player) {
-        return CompletableFuture.supplyAsync(() -> this.findOrCreate(player.getUniqueId(), player.getName()));
+    default CompletableFuture<User> findOrCreateByHumanEntityFuture(@NonNull HumanEntity humanEntity) {
+        return CompletableFuture.supplyAsync(() -> this.findOrCreate(humanEntity.getUniqueId(), humanEntity.getName()));
     }
 
     default Optional<User> findByName(@NonNull String name, boolean ignoreCase) {
