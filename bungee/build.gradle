@@ -8,7 +8,7 @@ dependencies {
 
     // -- configs--
     implementation "eu.okaeri:okaeri-configs-yaml-bungee:4.0.8"
-    implementation "eu.okaeri:okaeri-configs-serdes-bungee:4.0.8"
+    implementation "eu.okaeri:okaeri-configs-serdes-bungee:4.0.9"
     implementation "eu.okaeri:okaeri-configs-serdes-commons:4.0.8"
 
     // -- json configure --
