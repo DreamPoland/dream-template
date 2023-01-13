@@ -49,7 +49,7 @@ public final class BukkitTemplatePlugin extends DreamBukkitPlatform {
         componentManager.registerComponent(MessageConfig.class, messageConfig -> {
             this.getInject(BukkitCommandProvider.class).ifPresent(bukkitCommandProvider -> {
                 bukkitCommandProvider.setNoPermissionMessage(messageConfig.noPermission);
-                bukkitCommandProvider.setNoPlayerMessage(messageConfig.noPlayer);
+                bukkitCommandProvider.setNoPlayerMessage(messageConfig.notPlayer);
             });
         });
         componentManager.registerComponent(PluginConfig.class, pluginConfig -> {

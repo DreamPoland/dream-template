@@ -42,7 +42,7 @@ public final class BungeeTemplatePlugin extends DreamBungeePlatform {
         componentManager.registerComponent(MessageConfig.class, messageConfig -> {
             this.getInject(BungeeCommandProvider.class).ifPresent(bungeeCommandProvider -> {
                 bungeeCommandProvider.setNoPermissionMessage(messageConfig.noPermission);
-                bungeeCommandProvider.setNoPlayerMessage(messageConfig.noPlayer);
+                bungeeCommandProvider.setNoPlayerMessage(messageConfig.notPlayer);
             });
         });
         componentManager.registerComponent(PluginConfig.class, pluginConfig -> {
