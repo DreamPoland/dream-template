@@ -87,4 +87,5 @@ shadowJar {
     relocate "org.slf4j", "cc.dreamcode.template.libs.org.slf4j"
     relocate "org.mariadb", "cc.dreamcode.template.libs.org.mariadb"
     relocate "org.json", "cc.dreamcode.template.libs.org.json"
+    relocate "com.google.gson", "cc.dreamcode.backup.libs.com.google.gson"
 }
