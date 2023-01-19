@@ -49,5 +49,5 @@ shadowJar {
     relocate "com.zaxxer", "cc.dreamcode.template.libs.com.zaxxer"
     relocate "org.mariadb", "cc.dreamcode.template.libs.org.mariadb"
     relocate "org.json", "cc.dreamcode.template.libs.org.json"
-    relocate "com.google.gson", "cc.dreamcode.backup.libs.com.google.gson"
+    relocate "com.google.gson", "cc.dreamcode.template.libs.com.google.gson"
 }
