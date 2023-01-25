@@ -15,7 +15,7 @@ dependencies {
     implementation "cc.dreamcode:utilities:1.1"
 
     // -- configs--
-    implementation 'eu.okaeri:okaeri-configs-yaml-snakeyaml:4.0.8'
+    implementation 'eu.okaeri:okaeri-configs-yaml-snakeyaml:4.0.9'
     implementation 'eu.okaeri:okaeri-configs-serdes-commons:4.0.8'
 
     // -- json configure --
