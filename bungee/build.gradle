@@ -27,20 +27,20 @@ dependencies {
     implementation 'eu.okaeri:okaeri-placeholders-bungee:4.0.3'
 
     // -- dream-platform --
-    implementation "cc.dreamcode.platform:core:1.4"
-    implementation "cc.dreamcode.platform:bungee:1.4"
+    implementation "cc.dreamcode.platform:core:1.4.1"
+    implementation "cc.dreamcode.platform:bungee:1.4.1"
 
     // -- dream-utilities --
-    implementation "cc.dreamcode:utilities:1.0.5"
+    implementation "cc.dreamcode:utilities:1.1"
 
     // -- dream-notice --
-    implementation "cc.dreamcode.notice:core:1.1.1"
-    implementation "cc.dreamcode.notice:bungee:1.1.1"
-    implementation "cc.dreamcode.notice:bungee-okaeri-serdes:1.1.1"
+    implementation "cc.dreamcode.notice:core:1.2"
+    implementation "cc.dreamcode.notice:bungee:1.2"
+    implementation "cc.dreamcode.notice:bungee-okaeri-serdes:1.2"
 
     // -- dream-command --
-    implementation "cc.dreamcode.command:core:1.2.1"
-    implementation "cc.dreamcode.command:bungee:1.2.1"
+    implementation "cc.dreamcode.command:core:1.2.2"
+    implementation "cc.dreamcode.command:bungee:1.2.2"
 }
 
 shadowJar {
