@@ -54,10 +54,10 @@ dependencies {
     implementation "cc.dreamcode.command:bukkit:1.2.2"
 
     // -- dream-menu --
-    implementation "cc.dreamcode.menu:core:0.4.4"
-    implementation "cc.dreamcode.menu:bukkit:0.4.4"
-    implementation "cc.dreamcode.menu:serdes-bukkit:0.4.4"
-    implementation "cc.dreamcode.menu:serdes-bukkit-okaeri:0.4.4"
+    implementation "cc.dreamcode.menu:core:0.4.5"
+    implementation "cc.dreamcode.menu:bukkit:0.4.5"
+    implementation "cc.dreamcode.menu:serdes-bukkit:0.4.5"
+    implementation "cc.dreamcode.menu:serdes-bukkit-okaeri:0.4.5"
 }
 
 shadowJar {
