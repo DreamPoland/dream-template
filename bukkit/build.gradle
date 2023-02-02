@@ -13,7 +13,7 @@ dependencies {
     // -- configs--
     implementation "eu.okaeri:okaeri-configs-yaml-bukkit:4.0.8"
     implementation "eu.okaeri:okaeri-configs-serdes-bukkit:4.0.8"
-    implementation "eu.okaeri:okaeri-configs-serdes-commons:4.0.8"
+    implementation "eu.okaeri:okaeri-configs-serdes-commons:4.0.9"
 
     // -- json configure --
     implementation 'eu.okaeri:okaeri-configs-json-simple:4.0.8'
