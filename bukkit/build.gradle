@@ -11,12 +11,12 @@ dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
 
     // -- configs--
-    implementation "eu.okaeri:okaeri-configs-yaml-bukkit:4.0.8"
-    implementation "eu.okaeri:okaeri-configs-serdes-bukkit:4.0.8"
-    implementation "eu.okaeri:okaeri-configs-serdes-commons:4.0.8"
+    implementation "eu.okaeri:okaeri-configs-yaml-bukkit:4.0.9"
+    implementation "eu.okaeri:okaeri-configs-serdes-bukkit:4.0.9"
+    implementation "eu.okaeri:okaeri-configs-serdes-commons:4.0.9"
 
     // -- json configure --
-    implementation 'eu.okaeri:okaeri-configs-json-simple:4.0.8'
+    implementation 'eu.okaeri:okaeri-configs-json-simple:4.0.9'
 
     // -- persistence data --
     implementation 'eu.okaeri:okaeri-persistence-flat:2.0.0-beta.1'
@@ -28,7 +28,7 @@ dependencies {
     implementation 'eu.okaeri:okaeri-injector:2.1.0'
 
     // -- placeholders --
-    implementation 'eu.okaeri:okaeri-placeholders-bukkit:4.0.3'
+    implementation 'eu.okaeri:okaeri-placeholders-bukkit:4.0.4'
 
     // -- tasker --
     implementation 'eu.okaeri:okaeri-tasker-bukkit:1.1.9'
@@ -37,27 +37,27 @@ dependencies {
     implementation 'com.github.cryptomorin:XSeries:9.2.0'
 
     // -- dream-platform --
-    implementation "cc.dreamcode.platform:core:1.4.1"
-    implementation "cc.dreamcode.platform:bukkit:1.4.1"
+    implementation "cc.dreamcode.platform:core:1.4.2"
+    implementation "cc.dreamcode.platform:bukkit:1.4.2"
 
     // -- dream-utilities --
-    implementation "cc.dreamcode:utilities:1.1"
-    implementation "cc.dreamcode:utilities-bukkit:1.1"
+    implementation "cc.dreamcode:utilities:1.1.1"
+    implementation "cc.dreamcode:utilities-bukkit:1.1.1"
 
     // -- dream-notice --
-    implementation "cc.dreamcode.notice:core:1.2"
-    implementation "cc.dreamcode.notice:bukkit:1.2"
-    implementation "cc.dreamcode.notice:bukkit-okaeri-serdes:1.2"
+    implementation "cc.dreamcode.notice:core:1.2.1"
+    implementation "cc.dreamcode.notice:bukkit:1.2.1"
+    implementation "cc.dreamcode.notice:bukkit-okaeri-serdes:1.2.1"
 
     // -- dream-command --
-    implementation "cc.dreamcode.command:core:1.2.2"
-    implementation "cc.dreamcode.command:bukkit:1.2.2"
+    implementation "cc.dreamcode.command:core:1.2.3"
+    implementation "cc.dreamcode.command:bukkit:1.2.3"
 
     // -- dream-menu --
-    implementation "cc.dreamcode.menu:core:0.4.5"
-    implementation "cc.dreamcode.menu:bukkit:0.4.5"
-    implementation "cc.dreamcode.menu:serdes-bukkit:0.4.5"
-    implementation "cc.dreamcode.menu:serdes-bukkit-okaeri:0.4.5"
+    implementation "cc.dreamcode.menu:core:0.4.6"
+    implementation "cc.dreamcode.menu:bukkit:0.4.6"
+    implementation "cc.dreamcode.menu:serdes-bukkit:0.4.6"
+    implementation "cc.dreamcode.menu:serdes-bukkit-okaeri:0.4.6"
 }
 
 shadowJar {
