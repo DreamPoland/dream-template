@@ -28,7 +28,7 @@ dependencies {
     implementation 'eu.okaeri:okaeri-injector:2.1.0'
 
     // -- placeholders --
-    implementation 'eu.okaeri:okaeri-placeholders-bukkit:4.0.4'
+    implementation 'eu.okaeri:okaeri-placeholders-bukkit:4.0.5'
 
     // -- tasker --
     implementation 'eu.okaeri:okaeri-tasker-bukkit:1.1.9'
