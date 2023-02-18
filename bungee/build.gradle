@@ -7,8 +7,8 @@ dependencies {
     compileOnly 'net.md-5:bungeecord-api:1.19-R0.1-SNAPSHOT'
 
     // -- dream-platform --
-    implementation "cc.dreamcode.platform:core:1.5.1"
-    implementation "cc.dreamcode.platform:bungee:1.5.1"
+    implementation "cc.dreamcode.platform:core:1.5.2"
+    implementation "cc.dreamcode.platform:bungee:1.5.2"
 
     // -- dream-utilities --
     implementation "cc.dreamcode:utilities:1.1.2"
@@ -21,6 +21,26 @@ dependencies {
     // -- dream-command --
     implementation "cc.dreamcode.command:core:1.2.4"
     implementation "cc.dreamcode.command:bungee:1.2.4"
+
+    // -- configs--
+    implementation "eu.okaeri:okaeri-configs-yaml-bungee:4.0.9"
+    implementation "eu.okaeri:okaeri-configs-serdes-bungee:4.0.9"
+    implementation "eu.okaeri:okaeri-configs-serdes-commons:4.0.9"
+
+    // -- json configure --
+    implementation 'eu.okaeri:okaeri-configs-json-simple:4.0.9'
+
+    // -- persistence data --
+    implementation 'eu.okaeri:okaeri-persistence-flat:2.0.0-beta.1'
+    implementation 'eu.okaeri:okaeri-persistence-jdbc:2.0.0-beta.1'
+    implementation 'eu.okaeri:okaeri-persistence-redis:2.0.0-beta.1'
+    implementation 'eu.okaeri:okaeri-persistence-mongo:2.0.0-beta.1'
+
+    // -- injector --
+    implementation 'eu.okaeri:okaeri-injector:2.1.0'
+
+    // -- placeholders --
+    implementation 'eu.okaeri:okaeri-placeholders-bungee:4.0.7'
 }
 
 shadowJar {

@@ -68,9 +68,16 @@ public final class BungeeTemplatePlugin extends DreamBungeePlatform {
     }
 
     @Override
-    public OkaeriSerdesPack getPluginSerdesPack() {
+    public @NonNull OkaeriSerdesPack getConfigurationSerdesPack() {
         return registry -> {
             registry.register(new BungeeNoticeSerdes());
+        };
+    }
+
+    @Override
+    public @NonNull OkaeriSerdesPack getPersistenceSerdesPack() {
+        return registry -> {
+
         };
     }
 }

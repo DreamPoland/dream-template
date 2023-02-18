@@ -75,10 +75,18 @@ public final class BukkitTemplatePlugin extends DreamBukkitPlatform {
     }
 
     @Override
-    public OkaeriSerdesPack getPluginSerdesPack() {
+    public @NonNull OkaeriSerdesPack getConfigurationSerdesPack() {
         return registry -> {
             registry.register(new BukkitNoticeSerdes());
             registry.register(new MenuBuilderSerdes());
         };
     }
+
+    @Override
+    public @NonNull OkaeriSerdesPack getPersistenceSerdesPack() {
+        return registry -> {
+
+        };
+    }
+
 }
