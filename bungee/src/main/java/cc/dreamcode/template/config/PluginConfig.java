@@ -19,7 +19,5 @@ public class PluginConfig extends OkaeriConfig {
     public boolean debug = true;
 
     @Comment("Uzupelnij ponizsze menu danymi.")
-    public StorageConfig storageConfig = new StorageConfig() {{
-        this.setPrefix("dreamtemplate");
-    }};
+    public StorageConfig storageConfig = new StorageConfig("dreamtemplate");
 }

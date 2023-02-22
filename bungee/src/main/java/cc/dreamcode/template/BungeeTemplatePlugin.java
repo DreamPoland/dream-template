@@ -63,7 +63,7 @@ public final class BungeeTemplatePlugin extends DreamBungeePlatform {
     }
 
     @Override
-    public DreamVersion getDreamVersion() {
+    public @NonNull DreamVersion getDreamVersion() {
         return DreamVersion.create("Dream-Template", "1.0", "author");
     }
 
