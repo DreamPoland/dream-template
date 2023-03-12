@@ -20,24 +20,12 @@ public interface UserRepository extends DocumentRepository<UUID, User> {
         return user;
     }
 
-    default CompletableFuture<User> findOrCreateFuture(@NonNull UUID uuid, String userName) {
-        return CompletableFuture.supplyAsync(() -> this.findOrCreate(uuid, userName));
-    }
-
     default User findOrCreateByUUID(@NonNull UUID uuid) {
         return this.findOrCreate(uuid, null);
     }
 
-    default CompletableFuture<User> findOrCreateByUUIDFuture(@NonNull UUID uuid) {
-        return CompletableFuture.supplyAsync(() -> this.findOrCreate(uuid, null));
-    }
-
     default User findOrCreateByPlayer(@NonNull ProxiedPlayer player) {
         return this.findOrCreate(player.getUniqueId(), player.getName());
-    }
-
-    default CompletableFuture<User> findOrCreateByPlayerFuture(@NonNull ProxiedPlayer player) {
-        return CompletableFuture.supplyAsync(() -> this.findOrCreate(player.getUniqueId(), player.getName()));
     }
 
     default Optional<User> findByName(@NonNull String name, boolean ignoreCase) {
@@ -46,14 +34,6 @@ public interface UserRepository extends DocumentRepository<UUID, User> {
                         ? user.getName().equalsIgnoreCase(name)
                         : user.getName().equals(name))
                 .findFirst();
-    }
-
-    default CompletableFuture<Optional<User>> findByNameFuture(@NonNull String name, boolean ignoreCase) {
-        return CompletableFuture.supplyAsync(() -> this.streamAll()
-                .filter(user -> ignoreCase
-                        ? user.getName().equalsIgnoreCase(name)
-                        : user.getName().equals(name))
-                .findFirst());
     }
 
 }
