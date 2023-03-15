@@ -11,21 +11,21 @@ dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
 
     // -- dream-platform --
-    implementation "cc.dreamcode.platform:core:1.5.3"
-    implementation "cc.dreamcode.platform:bukkit:1.5.3"
+    implementation "cc.dreamcode.platform:core:1.5.4"
+    implementation "cc.dreamcode.platform:bukkit:1.5.4"
 
     // -- dream-utilities --
     implementation "cc.dreamcode:utilities:1.1.2"
     implementation "cc.dreamcode:utilities-bukkit:1.1.2"
 
     // -- dream-notice --
-    implementation "cc.dreamcode.notice:core:1.2.2"
-    implementation "cc.dreamcode.notice:bukkit:1.2.2"
-    implementation "cc.dreamcode.notice:bukkit-okaeri-serdes:1.2.2"
+    implementation "cc.dreamcode.notice:core:1.2.3"
+    implementation "cc.dreamcode.notice:bukkit:1.2.3"
+    implementation "cc.dreamcode.notice:bukkit-okaeri-serdes:1.2.3"
 
     // -- dream-command --
-    implementation "cc.dreamcode.command:core:1.2.4"
-    implementation "cc.dreamcode.command:bukkit:1.2.4"
+    implementation "cc.dreamcode.command:core:1.2.5"
+    implementation "cc.dreamcode.command:bukkit:1.2.5"
 
     // -- dream-menu --
     implementation "cc.dreamcode.menu:core:0.4.7"
