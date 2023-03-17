@@ -78,7 +78,6 @@ shadowJar {
     relocate "cc.dreamcode.notice", "cc.dreamcode.template.libs.cc.dreamcode.notice"
 
     relocate "io.lettuce", "cc.dreamcode.template.libs.io.lettuce"
-    relocate "io.netty", "cc.dreamcode.template.libs.io.netty"
     relocate "reactor", "cc.dreamcode.template.libs.reactor"
     relocate "org.reactivestreams", "cc.dreamcode.template.libs.org.reactivestreams"
     relocate "org.bson", "cc.dreamcode.template.libs.org.bson"
