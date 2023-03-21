@@ -7,11 +7,11 @@ import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bungee.DreamBungeePlatform;
 import cc.dreamcode.platform.bungee.component.CommandComponentResolver;
 import cc.dreamcode.platform.bungee.component.ConfigurationComponentResolver;
-import cc.dreamcode.platform.bungee.component.DocumentPersistenceComponentResolver;
-import cc.dreamcode.platform.bungee.component.DocumentRepositoryComponentResolver;
 import cc.dreamcode.platform.bungee.component.ListenerComponentResolver;
 import cc.dreamcode.platform.bungee.component.RunnableComponentResolver;
 import cc.dreamcode.platform.component.ComponentManager;
+import cc.dreamcode.platform.persistence.resolver.DocumentPersistenceComponentResolver;
+import cc.dreamcode.platform.persistence.resolver.DocumentRepositoryComponentResolver;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.user.UserRepository;
@@ -68,14 +68,14 @@ public final class BungeeTemplatePlugin extends DreamBungeePlatform {
     }
 
     @Override
-    public @NonNull OkaeriSerdesPack getConfigurationSerdesPack() {
+    public @NonNull OkaeriSerdesPack getBungeeConfigurationSerdesPack() {
         return registry -> {
             registry.register(new BungeeNoticeSerdes());
         };
     }
 
     @Override
-    public @NonNull OkaeriSerdesPack getPersistenceSerdesPack() {
+    public @NonNull OkaeriSerdesPack getBungeePersistenceSerdesPack() {
         return registry -> {
 
         };

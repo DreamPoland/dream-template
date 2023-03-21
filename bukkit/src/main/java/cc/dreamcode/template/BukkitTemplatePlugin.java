@@ -9,11 +9,11 @@ import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
 import cc.dreamcode.platform.bukkit.component.CommandComponentResolver;
 import cc.dreamcode.platform.bukkit.component.ConfigurationComponentResolver;
-import cc.dreamcode.platform.bukkit.component.DocumentPersistenceComponentResolver;
-import cc.dreamcode.platform.bukkit.component.DocumentRepositoryComponentResolver;
 import cc.dreamcode.platform.bukkit.component.ListenerComponentResolver;
 import cc.dreamcode.platform.bukkit.component.RunnableComponentResolver;
 import cc.dreamcode.platform.component.ComponentManager;
+import cc.dreamcode.platform.persistence.resolver.DocumentPersistenceComponentResolver;
+import cc.dreamcode.platform.persistence.resolver.DocumentRepositoryComponentResolver;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.mcversion.VersionProvider;
@@ -75,7 +75,7 @@ public final class BukkitTemplatePlugin extends DreamBukkitPlatform {
     }
 
     @Override
-    public @NonNull OkaeriSerdesPack getConfigurationSerdesPack() {
+    public @NonNull OkaeriSerdesPack getBukkitConfigurationSerdesPack() {
         return registry -> {
             registry.register(new BukkitNoticeSerdes());
             registry.register(new MenuBuilderSerdes());
@@ -83,7 +83,7 @@ public final class BukkitTemplatePlugin extends DreamBukkitPlatform {
     }
 
     @Override
-    public @NonNull OkaeriSerdesPack getPersistenceSerdesPack() {
+    public @NonNull OkaeriSerdesPack getBukkitPersistenceSerdesPack() {
         return registry -> {
 
         };

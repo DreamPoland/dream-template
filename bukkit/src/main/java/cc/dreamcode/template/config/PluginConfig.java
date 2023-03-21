@@ -1,7 +1,7 @@
 package cc.dreamcode.template.config;
 
 import cc.dreamcode.platform.bukkit.component.configuration.Configuration;
-import cc.dreamcode.platform.bukkit.persistence.StorageConfig;
+import cc.dreamcode.platform.persistence.StorageConfig;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Comment;
 import eu.okaeri.configs.annotation.Header;
