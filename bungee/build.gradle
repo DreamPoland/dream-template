@@ -7,9 +7,9 @@ dependencies {
     compileOnly 'net.md-5:bungeecord-api:1.19-R0.1-SNAPSHOT'
 
     // -- dream-platform --
-    implementation "cc.dreamcode.platform:core:1.6"
-    implementation "cc.dreamcode.platform:bungee:1.6"
-    implementation "cc.dreamcode.platform:persistence:1.6"
+    implementation "cc.dreamcode.platform:core:1.6.1"
+    implementation "cc.dreamcode.platform:bungee:1.6.1"
+    implementation "cc.dreamcode.platform:persistence:1.6.1"
 
     // -- dream-utilities --
     implementation "cc.dreamcode:utilities:1.1.2"
