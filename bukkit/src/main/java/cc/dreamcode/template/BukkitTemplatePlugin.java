@@ -71,7 +71,7 @@ public final class BukkitTemplatePlugin extends DreamBukkitPlatform {
 
     @Override
     public @NonNull DreamVersion getDreamVersion() {
-        return DreamVersion.create("Dream-Template", "1.0", "author");
+        return DreamVersion.create("Dream-Template", "1.0-InDEV", "author");
     }
 
     @Override
