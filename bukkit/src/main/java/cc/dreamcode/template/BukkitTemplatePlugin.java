@@ -7,7 +7,10 @@ import cc.dreamcode.notice.bukkit.BukkitNoticeProvider;
 import cc.dreamcode.notice.bukkit.okaeri_serdes.BukkitNoticeSerdes;
 import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
+import cc.dreamcode.platform.bukkit.component.CommandComponentResolver;
 import cc.dreamcode.platform.bukkit.component.ConfigurationComponentResolver;
+import cc.dreamcode.platform.bukkit.component.ListenerComponentResolver;
+import cc.dreamcode.platform.bukkit.component.RunnableComponentResolver;
 import cc.dreamcode.platform.component.ComponentManager;
 import cc.dreamcode.platform.persistence.resolver.DocumentPersistenceComponentResolver;
 import cc.dreamcode.platform.persistence.resolver.DocumentRepositoryComponentResolver;
@@ -37,6 +40,10 @@ public final class BukkitTemplatePlugin extends DreamBukkitPlatform {
         this.registerInjectable(BukkitMenuProvider.create(this));
         this.registerInjectable(BukkitNoticeProvider.create(this));
         this.registerInjectable(BukkitCommandProvider.create(this, this.getInjector()));
+
+        componentManager.registerResolver(CommandComponentResolver.class);
+        componentManager.registerResolver(ListenerComponentResolver.class);
+        componentManager.registerResolver(RunnableComponentResolver.class);
 
         componentManager.registerResolver(ConfigurationComponentResolver.class);
         componentManager.registerComponent(MessageConfig.class, messageConfig ->

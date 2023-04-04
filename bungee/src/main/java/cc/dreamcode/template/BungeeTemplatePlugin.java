@@ -5,7 +5,10 @@ import cc.dreamcode.notice.bungee.BungeeNoticeProvider;
 import cc.dreamcode.notice.bungee.okaeri_serdes.BungeeNoticeSerdes;
 import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bungee.DreamBungeePlatform;
+import cc.dreamcode.platform.bungee.component.CommandComponentResolver;
 import cc.dreamcode.platform.bungee.component.ConfigurationComponentResolver;
+import cc.dreamcode.platform.bungee.component.ListenerComponentResolver;
+import cc.dreamcode.platform.bungee.component.RunnableComponentResolver;
 import cc.dreamcode.platform.component.ComponentManager;
 import cc.dreamcode.platform.persistence.resolver.DocumentPersistenceComponentResolver;
 import cc.dreamcode.platform.persistence.resolver.DocumentRepositoryComponentResolver;
@@ -30,6 +33,10 @@ public final class BungeeTemplatePlugin extends DreamBungeePlatform {
     public void enable(@NonNull ComponentManager componentManager) {
         this.registerInjectable(BungeeNoticeProvider.create(this));
         this.registerInjectable(BungeeCommandProvider.create(this, this.getInjector()));
+
+        componentManager.registerResolver(CommandComponentResolver.class);
+        componentManager.registerResolver(ListenerComponentResolver.class);
+        componentManager.registerResolver(RunnableComponentResolver.class);
 
         componentManager.registerResolver(ConfigurationComponentResolver.class);
         componentManager.registerComponent(MessageConfig.class, messageConfig ->
