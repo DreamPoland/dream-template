@@ -2,7 +2,7 @@ package cc.dreamcode.template;
 
 import cc.dreamcode.command.bukkit.BukkitCommandProvider;
 import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
-import cc.dreamcode.menu.serdes.bukkit.okaeri.MenuBuilderSerdes;
+import cc.dreamcode.menu.bukkit.okaeri.MenuBuilderSerdes;
 import cc.dreamcode.notice.bukkit.BukkitNoticeProvider;
 import cc.dreamcode.notice.bukkit.okaeri_serdes.BukkitNoticeSerdes;
 import cc.dreamcode.platform.DreamVersion;
@@ -46,12 +46,12 @@ public final class BukkitTemplatePlugin extends DreamBukkitPlatform {
         componentManager.registerResolver(RunnableComponentResolver.class);
 
         componentManager.registerResolver(ConfigurationComponentResolver.class);
-        componentManager.registerComponent(MessageConfig.class, messageConfig -> {
-            this.getInject(BukkitCommandProvider.class).ifPresent(bukkitCommandProvider -> {
-                bukkitCommandProvider.setNoPermissionMessage(messageConfig.noPermission);
-                bukkitCommandProvider.setNoPlayerMessage(messageConfig.noPlayer);
-            });
-        });
+        componentManager.registerComponent(MessageConfig.class, messageConfig ->
+                this.getInject(BukkitCommandProvider.class).ifPresent(bukkitCommandProvider -> {
+                    bukkitCommandProvider.setRequiredPermissionMessage(messageConfig.noPermission);
+                    bukkitCommandProvider.setRequiredPlayerMessage(messageConfig.notPlayer);
+                }));
+
         componentManager.registerComponent(PluginConfig.class, pluginConfig -> {
             // register persistence + repositories
             this.registerInjectable(pluginConfig.storageConfig);
