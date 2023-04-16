@@ -11,7 +11,7 @@ Build to jar by ``shadowJar`` gradle task.
 **Required:**
 -----
 - Spigot-api 1.8.8, 1.12.2, 1.16.5, 1.17.1, 1.18.2, 1.19.3 (or implement by self)
-- Java 8+. (template works on java 8)
+- Java. (jvmTarget 8)
 
 Working with NMS:
 -----
