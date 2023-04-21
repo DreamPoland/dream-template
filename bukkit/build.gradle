@@ -17,8 +17,8 @@ dependencies {
     implementation "cc.dreamcode.platform:persistence:1.8.1"
 
     // -- dream-utilities --
-    implementation "cc.dreamcode:utilities:1.2"
-    implementation "cc.dreamcode:utilities-bukkit:1.2"
+    implementation "cc.dreamcode:utilities:1.2.4"
+    implementation "cc.dreamcode:utilities-bukkit:1.2.4"
 
     // -- dream-notice --
     implementation "cc.dreamcode.notice:core:1.2.5"
