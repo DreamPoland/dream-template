@@ -1,7 +1,7 @@
 package cc.dreamcode.template;
 
 import cc.dreamcode.command.bungee.BungeeCommandProvider;
-import cc.dreamcode.notice.bungee.okaeri_serdes.BungeeNoticeSerdes;
+import cc.dreamcode.notice.minecraft.bungee.serdes.BungeeNoticeSerdes;
 import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bungee.DreamBungeeConfig;
 import cc.dreamcode.platform.bungee.DreamBungeePlatform;

@@ -3,7 +3,7 @@ package cc.dreamcode.template;
 import cc.dreamcode.command.bukkit.BukkitCommandProvider;
 import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
 import cc.dreamcode.menu.bukkit.okaeri.MenuBuilderSerdes;
-import cc.dreamcode.notice.bukkit.okaeri_serdes.BukkitNoticeSerdes;
+import cc.dreamcode.notice.minecraft.bukkit.serdes.BukkitNoticeSerdes;
 import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bukkit.DreamBukkitConfig;
 import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
