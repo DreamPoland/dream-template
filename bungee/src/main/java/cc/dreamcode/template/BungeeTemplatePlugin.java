@@ -1,17 +1,18 @@
 package cc.dreamcode.template;
 
 import cc.dreamcode.command.bungee.BungeeCommandProvider;
-import cc.dreamcode.notice.bungee.BungeeNoticeProvider;
 import cc.dreamcode.notice.bungee.okaeri_serdes.BungeeNoticeSerdes;
 import cc.dreamcode.platform.DreamVersion;
+import cc.dreamcode.platform.bungee.DreamBungeeConfig;
 import cc.dreamcode.platform.bungee.DreamBungeePlatform;
 import cc.dreamcode.platform.bungee.component.CommandComponentResolver;
 import cc.dreamcode.platform.bungee.component.ConfigurationComponentResolver;
 import cc.dreamcode.platform.bungee.component.ListenerComponentResolver;
 import cc.dreamcode.platform.bungee.component.RunnableComponentResolver;
 import cc.dreamcode.platform.component.ComponentManager;
-import cc.dreamcode.platform.persistence.resolver.DocumentPersistenceComponentResolver;
-import cc.dreamcode.platform.persistence.resolver.DocumentRepositoryComponentResolver;
+import cc.dreamcode.platform.persistence.DreamPersistence;
+import cc.dreamcode.platform.persistence.component.DocumentPersistenceComponentResolver;
+import cc.dreamcode.platform.persistence.component.DocumentRepositoryComponentResolver;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.user.UserRepository;
@@ -20,7 +21,7 @@ import eu.okaeri.persistence.document.DocumentPersistence;
 import lombok.Getter;
 import lombok.NonNull;
 
-public final class BungeeTemplatePlugin extends DreamBungeePlatform {
+public final class BungeeTemplatePlugin extends DreamBungeePlatform implements DreamBungeeConfig, DreamPersistence {
 
     @Getter private static BungeeTemplatePlugin bukkitTemplatePlugin;
 
@@ -31,7 +32,6 @@ public final class BungeeTemplatePlugin extends DreamBungeePlatform {
 
     @Override
     public void enable(@NonNull ComponentManager componentManager) {
-        this.registerInjectable(BungeeNoticeProvider.create(this));
         this.registerInjectable(BungeeCommandProvider.create(this, this.getInjector()));
 
         componentManager.registerResolver(CommandComponentResolver.class);
@@ -41,8 +41,8 @@ public final class BungeeTemplatePlugin extends DreamBungeePlatform {
         componentManager.registerResolver(ConfigurationComponentResolver.class);
         componentManager.registerComponent(MessageConfig.class, messageConfig ->
                 this.getInject(BungeeCommandProvider.class).ifPresent(bungeeCommandProvider -> {
-                    bungeeCommandProvider.setRequiredPermissionMessage(messageConfig.noPermission);
-                    bungeeCommandProvider.setRequiredPlayerMessage(messageConfig.notPlayer);
+                    bungeeCommandProvider.setRequiredPermissionMessage(messageConfig.noPermission.getText());
+                    bungeeCommandProvider.setRequiredPlayerMessage(messageConfig.notPlayer.getText());
                 }));
 
         componentManager.registerComponent(PluginConfig.class, pluginConfig -> {
@@ -68,14 +68,14 @@ public final class BungeeTemplatePlugin extends DreamBungeePlatform {
     }
 
     @Override
-    public @NonNull OkaeriSerdesPack getBungeeConfigurationSerdesPack() {
+    public @NonNull OkaeriSerdesPack getConfigSerdesPack() {
         return registry -> {
             registry.register(new BungeeNoticeSerdes());
         };
     }
 
     @Override
-    public @NonNull OkaeriSerdesPack getBungeePersistenceSerdesPack() {
+    public @NonNull OkaeriSerdesPack getPersistenceSerdesPack() {
         return registry -> {
 
         };
