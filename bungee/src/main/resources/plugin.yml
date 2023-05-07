@@ -1,7 +1,0 @@
-main: "cc.dreamcode.template.BungeeTemplatePlugin"
-version: "1.0-InDEV"
-name: "Dream-Template"
-description: "Dream-Template written by dreamcode.cc"
-website: "https://dreamcode.cc"
-author: "author"
-prefix: "Dream-Template-Bungee"
