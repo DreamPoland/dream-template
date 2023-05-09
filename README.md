@@ -5,18 +5,17 @@ Clone this repo to your account, rename package name, then by pressing ``CTRL + 
 Finally, remove all **unnecessary** template functions.
 (support mc versions can easily removed by deleting implement in settings.gradle)
 
-Read all comment above method/class/reference to find out what it means and how to use it -
 Build to jar by ``shadowJar`` gradle task.
 
 **Required:**
 -----
 - Spigot-api 1.8.8, 1.12.2, 1.16.5, 1.17.1, 1.18.2, 1.19.3 (or implement by self)
-- Java. (jvmTarget 8)
+- Java. (java 11+, target 8)
 
 Working with NMS:
 -----
 - Add ProtocolLib to build.gradle and work with it.
-- Add craftbukkit packages into mc-version modules.
+- Add nms into mc-version modules.
 
 ------
 
@@ -31,6 +30,5 @@ Working with NMS:
 - [Okaeri-Injector](https://github.com/OkaeriPoland/okaeri-injector) by [Okaeri](https://github.com/OkaeriPoland)
 - [Okaeri-Placeholders](https://github.com/OkaeriPoland/okaeri-placeholders) by [Okaeri](https://github.com/OkaeriPoland)
 - [Okaeri-Tasker](https://github.com/OkaeriPoland/okaeri-tasker) by [Okaeri](https://github.com/OkaeriPoland)
-- [XSeries](https://github.com/MrMicky-FR) by [CryptoMorin](https://github.com/CryptoMorin)
-- [Adventure](https://github.com/KyoriPowered/adventure) by [KyoriPowered](https://github.com/KyoriPowered)
+- [XSeries](https://github.com/CryptoMorin/XSeries) by [CryptoMorin](https://github.com/CryptoMorin)
 - and [Lombok](https://github.com/projectlombok/lombok) for clean dev by [ProjectLombok](https://github.com/projectlombok)
