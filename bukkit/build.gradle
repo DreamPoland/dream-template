@@ -11,29 +11,29 @@ dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
 
     // -- dream-platform --
-    implementation "cc.dreamcode.platform:core:1.9-pre5"
-    implementation "cc.dreamcode.platform:bukkit:1.9-pre5"
-    implementation "cc.dreamcode.platform:bukkit-command:1.9-pre5"
-    implementation "cc.dreamcode.platform:bukkit-config:1.9-pre5"
-    implementation "cc.dreamcode.platform:persistence:1.9-pre5"
+    implementation "cc.dreamcode.platform:core:1.9-pre.6"
+    implementation "cc.dreamcode.platform:bukkit:1.9-pre.6"
+    implementation "cc.dreamcode.platform:bukkit-command:1.9-pre.6"
+    implementation "cc.dreamcode.platform:bukkit-config:1.9-pre.6"
+    implementation "cc.dreamcode.platform:persistence:1.9-pre.6"
 
     // -- dream-utilities --
-    implementation "cc.dreamcode:utilities:1.2.13"
-    implementation "cc.dreamcode:utilities-bukkit:1.2.13"
+    implementation "cc.dreamcode:utilities:1.2.14"
+    implementation "cc.dreamcode:utilities-bukkit:1.2.14"
 
     // -- dream-notice --
-    implementation "cc.dreamcode.notice:minecraft:1.3.2"
-    implementation "cc.dreamcode.notice:bukkit:1.3.2"
-    implementation "cc.dreamcode.notice:bukkit-serdes:1.3.2"
+    implementation "cc.dreamcode.notice:minecraft:1.3.3"
+    implementation "cc.dreamcode.notice:bukkit:1.3.3"
+    implementation "cc.dreamcode.notice:bukkit-serdes:1.3.3"
 
     // -- dream-command --
-    implementation "cc.dreamcode.command:core:1.4.2"
-    implementation "cc.dreamcode.command:bukkit:1.4.2"
+    implementation "cc.dreamcode.command:core:1.4.3"
+    implementation "cc.dreamcode.command:bukkit:1.4.3"
 
     // -- dream-menu --
-    implementation "cc.dreamcode.menu:core:1.0.12"
-    implementation "cc.dreamcode.menu:bukkit:1.0.12"
-    implementation "cc.dreamcode.menu:bukkit-serdes:1.0.12"
+    implementation "cc.dreamcode.menu:core:1.0.13"
+    implementation "cc.dreamcode.menu:bukkit:1.0.13"
+    implementation "cc.dreamcode.menu:bukkit-serdes:1.0.13"
 
     // -- configs--
     implementation "eu.okaeri:okaeri-configs-yaml-bukkit:4.0.9"
