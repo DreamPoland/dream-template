@@ -7,11 +7,11 @@ dependencies {
     compileOnly 'net.md-5:bungeecord-api:1.19-R0.1-SNAPSHOT'
 
     // -- dream-platform --
-    implementation "cc.dreamcode.platform:core:1.9-pre.6"
-    implementation "cc.dreamcode.platform:bungee:1.9-pre.6"
-    implementation "cc.dreamcode.platform:bungee-command:1.9-pre.6"
-    implementation "cc.dreamcode.platform:bungee-config:1.9-pre.6"
-    implementation "cc.dreamcode.platform:persistence:1.9-pre.6"
+    implementation "cc.dreamcode.platform:core:1.9-pre.9"
+    implementation "cc.dreamcode.platform:bungee:1.9-pre.9"
+    implementation "cc.dreamcode.platform:bungee-command:1.9-pre.9"
+    implementation "cc.dreamcode.platform:bungee-config:1.9-pre.9"
+    implementation "cc.dreamcode.platform:persistence:1.9-pre.9"
 
     // -- dream-utilities --
     implementation "cc.dreamcode:utilities:1.2.14"
@@ -34,7 +34,6 @@ dependencies {
     // -- persistence data --
     implementation 'eu.okaeri:okaeri-persistence-flat:2.0.0-beta.1'
     implementation 'eu.okaeri:okaeri-persistence-jdbc:2.0.0-beta.1'
-    implementation 'eu.okaeri:okaeri-persistence-redis:2.0.0-beta.1'
     implementation 'eu.okaeri:okaeri-persistence-mongo:2.0.0-beta.1'
 
     // -- persistence data configure --
@@ -62,15 +61,10 @@ shadowJar {
     relocate "cc.dreamcode.command", "cc.dreamcode.template.libs.cc.dreamcode.command"
     relocate "cc.dreamcode.notice", "cc.dreamcode.template.libs.cc.dreamcode.notice"
 
-    relocate "io.lettuce", "cc.dreamcode.template.libs.io.lettuce"
-    relocate "io.netty", "cc.dreamcode.template.libs.io.netty"
-    relocate "reactor", "cc.dreamcode.template.libs.reactor"
-    relocate "org.reactivestreams", "cc.dreamcode.template.libs.org.reactivestreams"
     relocate "org.bson", "cc.dreamcode.template.libs.org.bson"
     relocate "com.mongodb", "cc.dreamcode.template.libs.com.mongodb"
     relocate "com.zaxxer", "cc.dreamcode.template.libs.com.zaxxer"
     relocate "org.slf4j", "cc.dreamcode.template.libs.org.slf4j"
-    relocate "org.mariadb", "cc.dreamcode.template.libs.org.mariadb"
     relocate "org.json", "cc.dreamcode.template.libs.org.json"
     relocate "com.google.gson", "cc.dreamcode.template.libs.com.google.gson"
 }

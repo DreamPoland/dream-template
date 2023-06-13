@@ -46,6 +46,8 @@ public final class BungeeTemplatePlugin extends DreamBungeePlatform implements D
                 }));
 
         componentManager.registerComponent(PluginConfig.class, pluginConfig -> {
+            componentManager.setDebug(pluginConfig.debug);
+
             // register persistence + repositories
             this.registerInjectable(pluginConfig.storageConfig);
 
