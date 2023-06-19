@@ -33,7 +33,7 @@ dependencies {
     // -- dream-menu --
     implementation "cc.dreamcode.menu:core:1.0.13"
     implementation "cc.dreamcode.menu:bukkit:1.0.13"
-    implementation "cc.dreamcode.menu:bukkit-serdes:1.0.13"
+    implementation "cc.dreamcode.menu:bukkit-serdes:1.1.1"
 
     // -- configs--
     implementation "eu.okaeri:okaeri-configs-yaml-bukkit:4.0.9"
