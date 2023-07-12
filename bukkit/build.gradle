@@ -28,7 +28,7 @@ dependencies {
 
     // -- dream-command --
     implementation "cc.dreamcode.command:core:1.4.10"
-    implementation "cc.dreamcode.command:bukkit:1.4.10"
+    implementation "cc.dreamcode.command:bukkit:1.4.12"
 
     // -- dream-menu --
     implementation "cc.dreamcode.menu:core:1.1.2"
