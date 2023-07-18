@@ -17,6 +17,7 @@ import cc.dreamcode.platform.persistence.component.DocumentPersistenceComponentR
 import cc.dreamcode.platform.persistence.component.DocumentRepositoryComponentResolver;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
+import cc.dreamcode.template.controller.ExampleUserController;
 import cc.dreamcode.template.mcversion.VersionProvider;
 import cc.dreamcode.template.user.UserRepository;
 import eu.okaeri.configs.serdes.OkaeriSerdesPack;
@@ -65,6 +66,8 @@ public final class BukkitTemplatePlugin extends DreamBukkitPlatform implements D
             componentManager.registerComponent(DocumentPersistence.class);
             componentManager.registerComponent(UserRepository.class);
         });
+
+        componentManager.registerComponent(ExampleUserController.class);
     }
 
     @Override
