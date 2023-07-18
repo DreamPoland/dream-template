@@ -20,6 +20,7 @@ import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.mcversion.VersionProvider;
 import cc.dreamcode.template.user.UserRepository;
 import eu.okaeri.configs.serdes.OkaeriSerdesPack;
+import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
 import eu.okaeri.persistence.document.DocumentPersistence;
 import eu.okaeri.tasker.bukkit.BukkitTasker;
 import lombok.Getter;
@@ -87,7 +88,7 @@ public final class BukkitTemplatePlugin extends DreamBukkitPlatform implements D
     @Override
     public @NonNull OkaeriSerdesPack getPersistenceSerdesPack() {
         return registry -> {
-
+            registry.register(new SerdesBukkit());
         };
     }
 

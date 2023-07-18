@@ -17,6 +17,7 @@ import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.user.UserRepository;
 import eu.okaeri.configs.serdes.OkaeriSerdesPack;
+import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBungee;
 import eu.okaeri.persistence.document.DocumentPersistence;
 import lombok.Getter;
 import lombok.NonNull;
@@ -79,7 +80,7 @@ public final class BungeeTemplatePlugin extends DreamBungeePlatform implements D
     @Override
     public @NonNull OkaeriSerdesPack getPersistenceSerdesPack() {
         return registry -> {
-
+            registry.register(new SerdesBungee());
         };
     }
 }
