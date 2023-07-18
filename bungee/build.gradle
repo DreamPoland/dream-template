@@ -23,8 +23,8 @@ dependencies {
     implementation "cc.dreamcode.notice:bungee-serdes:1.3.3"
 
     // -- dream-command --
-    implementation "cc.dreamcode.command:core:1.4.10"
-    implementation "cc.dreamcode.command:bungee:1.4.10"
+    implementation "cc.dreamcode.command:core:1.4.12"
+    implementation "cc.dreamcode.command:bungee:1.4.12"
 
     // -- configs--
     implementation "eu.okaeri:okaeri-configs-yaml-bungee:4.0.9"
