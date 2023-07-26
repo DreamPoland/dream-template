@@ -3,13 +3,13 @@ Working with template:
 Clone this repo to your account, rename package name, then by pressing ``CTRL + SHIFT + R`` change all variables to your plugin name. (Template --> PluginName).
 
 Finally, remove all **unnecessary** template functions.
-(support mc versions can easily removed by deleting implement in settings.gradle)
+(support mc versions can easily be removed by deleting implement in settings.gradle)
 
 Build to jar by ``shadowJar`` gradle task.
 
 **Required:**
 -----
-- Spigot-api 1.8.8, 1.12.2, 1.16.5, 1.17.1, 1.18.2, 1.19.3 (or implement by self)
+- Spigot-api 1.8.8, 1.12.2, 1.16.5, 1.17.1, 1.18.2, 1.19.3, 1.19.4, 1.20.1 (or implement by self)
 - Java SDK. (java 11+, target 8)
 
 Working with NMS:
