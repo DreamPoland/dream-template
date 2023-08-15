@@ -19,8 +19,8 @@ dependencies {
 
     // -- dream-notice --
     implementation "cc.dreamcode.notice:minecraft:1.3.4"
-    implementation "cc.dreamcode.notice:bungee:1.3.4"
-    implementation "cc.dreamcode.notice:bungee-serdes:1.3.4"
+    implementation "cc.dreamcode.notice:bungee:1.3.5"
+    implementation "cc.dreamcode.notice:bungee-serdes:1.3.5"
 
     // -- dream-command --
     implementation "cc.dreamcode.command:core:1.4.13"
