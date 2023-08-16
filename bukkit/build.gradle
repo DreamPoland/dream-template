@@ -22,9 +22,9 @@ dependencies {
     implementation "cc.dreamcode:utilities-bukkit:1.2.15"
 
     // -- dream-notice --
-    implementation "cc.dreamcode.notice:minecraft:1.3.4"
-    implementation "cc.dreamcode.notice:bukkit:1.3.4"
-    implementation "cc.dreamcode.notice:bukkit-serdes:1.3.4"
+    implementation "cc.dreamcode.notice:minecraft:1.3.5"
+    implementation "cc.dreamcode.notice:bukkit:1.3.5"
+    implementation "cc.dreamcode.notice:bukkit-serdes:1.3.5"
 
     // -- dream-command --
     implementation "cc.dreamcode.command:core:1.4.13"
