@@ -19,7 +19,7 @@ dependencies {
 
     // -- dream-utilities --
     implementation "cc.dreamcode:utilities:1.2.15"
-    implementation "cc.dreamcode:utilities-bukkit:1.2.15"
+    implementation "cc.dreamcode:utilities-bukkit:1.2.16"
 
     // -- dream-notice --
     implementation "cc.dreamcode.notice:minecraft:1.3.5"
