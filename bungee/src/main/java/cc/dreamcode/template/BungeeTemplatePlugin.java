@@ -1,15 +1,18 @@
 package cc.dreamcode.template;
 
-import cc.dreamcode.command.bungee.BungeeCommandProvider;
+import cc.dreamcode.command.bungee.BungeeCommand;
 import cc.dreamcode.notice.minecraft.bungee.serdes.BungeeNoticeSerdes;
 import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bungee.DreamBungeeConfig;
 import cc.dreamcode.platform.bungee.DreamBungeePlatform;
-import cc.dreamcode.platform.bungee.component.CommandComponentResolver;
 import cc.dreamcode.platform.bungee.component.ConfigurationComponentResolver;
 import cc.dreamcode.platform.bungee.component.ListenerComponentResolver;
 import cc.dreamcode.platform.bungee.component.RunnableComponentResolver;
 import cc.dreamcode.platform.component.ComponentManager;
+import cc.dreamcode.platform.component.resolver.CommandBindComponentResolver;
+import cc.dreamcode.platform.component.resolver.CommandComponentResolver;
+import cc.dreamcode.platform.component.resolver.CommandExtensionComponentResolver;
+import cc.dreamcode.platform.component.resolver.CommandHandlerComponentResolver;
 import cc.dreamcode.platform.persistence.DreamPersistence;
 import cc.dreamcode.platform.persistence.component.DocumentPersistenceComponentResolver;
 import cc.dreamcode.platform.persistence.component.DocumentRepositoryComponentResolver;
@@ -33,19 +36,18 @@ public final class BungeeTemplatePlugin extends DreamBungeePlatform implements D
 
     @Override
     public void enable(@NonNull ComponentManager componentManager) {
-        this.registerInjectable(BungeeCommandProvider.create(this, this.getInjector()));
+        this.registerInjectable(BungeeCommand.create(this));
 
         componentManager.registerResolver(CommandComponentResolver.class);
+        componentManager.registerResolver(CommandBindComponentResolver.class);
+        componentManager.registerResolver(CommandHandlerComponentResolver.class);
+        componentManager.registerResolver(CommandExtensionComponentResolver.class);
+
         componentManager.registerResolver(ListenerComponentResolver.class);
         componentManager.registerResolver(RunnableComponentResolver.class);
 
         componentManager.registerResolver(ConfigurationComponentResolver.class);
-        componentManager.registerComponent(MessageConfig.class, messageConfig ->
-                this.getInject(BungeeCommandProvider.class).ifPresent(bungeeCommandProvider -> {
-                    bungeeCommandProvider.setRequiredPermissionMessage(messageConfig.noPermission.getText());
-                    bungeeCommandProvider.setRequiredPlayerMessage(messageConfig.notPlayer.getText());
-                }));
-
+        componentManager.registerComponent(MessageConfig.class);
         componentManager.registerComponent(PluginConfig.class, pluginConfig -> {
             componentManager.setDebug(pluginConfig.debug);
 

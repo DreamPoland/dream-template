@@ -1,20 +1,24 @@
 package cc.dreamcode.template;
 
-import cc.dreamcode.command.bukkit.BukkitCommandProvider;
+import cc.dreamcode.command.bukkit.BukkitCommand;
 import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
 import cc.dreamcode.menu.bukkit.okaeri.MenuBuilderSerdes;
 import cc.dreamcode.notice.minecraft.bukkit.serdes.BukkitNoticeSerdes;
 import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bukkit.DreamBukkitConfig;
 import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
-import cc.dreamcode.platform.bukkit.component.CommandComponentResolver;
 import cc.dreamcode.platform.bukkit.component.ConfigurationComponentResolver;
 import cc.dreamcode.platform.bukkit.component.ListenerComponentResolver;
 import cc.dreamcode.platform.bukkit.component.RunnableComponentResolver;
 import cc.dreamcode.platform.component.ComponentManager;
+import cc.dreamcode.platform.component.resolver.CommandBindComponentResolver;
+import cc.dreamcode.platform.component.resolver.CommandComponentResolver;
+import cc.dreamcode.platform.component.resolver.CommandExtensionComponentResolver;
+import cc.dreamcode.platform.component.resolver.CommandHandlerComponentResolver;
 import cc.dreamcode.platform.persistence.DreamPersistence;
 import cc.dreamcode.platform.persistence.component.DocumentPersistenceComponentResolver;
 import cc.dreamcode.platform.persistence.component.DocumentRepositoryComponentResolver;
+import cc.dreamcode.template.command.ExampleCommand;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.controller.ExampleUserController;
@@ -41,19 +45,18 @@ public final class BukkitTemplatePlugin extends DreamBukkitPlatform implements D
         this.registerInjectable(VersionProvider.getVersionAccessor());
         this.registerInjectable(BukkitTasker.newPool(this));
         this.registerInjectable(BukkitMenuProvider.create(this));
-        this.registerInjectable(BukkitCommandProvider.create(this, this.getInjector()));
+        this.registerInjectable(BukkitCommand.create(this));
 
         componentManager.registerResolver(CommandComponentResolver.class);
+        componentManager.registerResolver(CommandBindComponentResolver.class);
+        componentManager.registerResolver(CommandHandlerComponentResolver.class);
+        componentManager.registerResolver(CommandExtensionComponentResolver.class);
+
         componentManager.registerResolver(ListenerComponentResolver.class);
         componentManager.registerResolver(RunnableComponentResolver.class);
 
         componentManager.registerResolver(ConfigurationComponentResolver.class);
-        componentManager.registerComponent(MessageConfig.class, messageConfig ->
-                this.getInject(BukkitCommandProvider.class).ifPresent(bukkitCommandProvider -> {
-                    bukkitCommandProvider.setRequiredPermissionMessage(messageConfig.noPermission.getText());
-                    bukkitCommandProvider.setRequiredPlayerMessage(messageConfig.notPlayer.getText());
-                }));
-
+        componentManager.registerComponent(MessageConfig.class);
         componentManager.registerComponent(PluginConfig.class, pluginConfig -> {
             componentManager.setDebug(pluginConfig.debug);
 
@@ -67,6 +70,7 @@ public final class BukkitTemplatePlugin extends DreamBukkitPlatform implements D
             componentManager.registerComponent(UserRepository.class);
         });
 
+        componentManager.registerComponent(ExampleCommand.class);
         componentManager.registerComponent(ExampleUserController.class);
     }
 
