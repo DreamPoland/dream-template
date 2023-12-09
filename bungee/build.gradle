@@ -7,24 +7,24 @@ dependencies {
     compileOnly 'net.md-5:bungeecord-api:1.20-R0.1-SNAPSHOT'
 
     // -- dream-platform --
-    implementation "cc.dreamcode.platform:core:1.9.6"
-    implementation "cc.dreamcode.platform:bungee:1.9.6"
-    implementation "cc.dreamcode.platform:bungee-command:1.9.6"
-    implementation "cc.dreamcode.platform:bungee-config:1.9.6"
-    implementation "cc.dreamcode.platform:persistence:1.9.6"
+    implementation "cc.dreamcode.platform:core:1.9.7"
+    implementation "cc.dreamcode.platform:bungee:1.9.7"
+    implementation "cc.dreamcode.platform:bungee-command:1.9.7"
+    implementation "cc.dreamcode.platform:bungee-config:1.9.7"
+    implementation "cc.dreamcode.platform:persistence:1.9.7"
 
     // -- dream-utilities --
-    implementation "cc.dreamcode:utilities:1.2.17"
-    implementation "cc.dreamcode:utilities-bungee:1.2.17"
+    implementation "cc.dreamcode:utilities:1.2.20"
+    implementation "cc.dreamcode:utilities-bungee:1.2.20"
 
     // -- dream-notice --
-    implementation "cc.dreamcode.notice:minecraft:1.3.8"
-    implementation "cc.dreamcode.notice:bungee:1.3.8"
-    implementation "cc.dreamcode.notice:bungee-serdes:1.3.8"
+    implementation "cc.dreamcode.notice:minecraft:1.3.10"
+    implementation "cc.dreamcode.notice:bungee:1.3.10"
+    implementation "cc.dreamcode.notice:bungee-serdes:1.3.10"
 
     // -- dream-command --
-    implementation "cc.dreamcode.command:core:1.4.14"
-    implementation "cc.dreamcode.command:bungee:1.4.14"
+    implementation "cc.dreamcode.command:core:1.4.15"
+    implementation "cc.dreamcode.command:bungee:1.4.15"
 
     // -- configs--
     implementation "eu.okaeri:okaeri-configs-yaml-bungee:5.0.0-beta.5"
