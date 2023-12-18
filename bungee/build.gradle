@@ -10,7 +10,7 @@ dependencies {
     implementation "cc.dreamcode.platform:core:1.9.7"
     implementation "cc.dreamcode.platform:bungee:1.9.7"
     implementation "cc.dreamcode.platform:bungee-command:1.9.7"
-    implementation "cc.dreamcode.platform:bungee-config:1.9.7"
+    implementation "cc.dreamcode.platform:bungee-config:1.10.0-pre.8"
     implementation "cc.dreamcode.platform:persistence:1.9.7"
 
     // -- dream-utilities --
