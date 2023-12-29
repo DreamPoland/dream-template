@@ -18,6 +18,6 @@ public class PluginConfig extends OkaeriConfig {
     @Comment("Debug pokazuje dodatkowe informacje do konsoli. Lepiej wylaczyc. :P")
     public boolean debug = true;
 
-    @Comment("Uzupelnij ponizsze menu danymi.")
+    @Comment("Uzupelnij dane do logowania bazy danych.")
     public StorageConfig storageConfig = new StorageConfig("dreamtemplate");
 }
