@@ -1,8 +1,0 @@
-main: "cc.dreamcode.template.BukkitTemplatePlugin"
-version: "1.0-InDEV"
-name: "Dream-Template"
-description: "Dream-Template plugin written by dreamcode.cc"
-website: "https://dreamcode.cc"
-author: "author"
-prefix: "Dream-Template-Bukkit"
-api-version: 1.13
