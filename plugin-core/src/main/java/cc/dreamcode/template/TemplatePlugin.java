@@ -61,9 +61,9 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
             this.registerInjectable(pluginConfig.storageConfig);
 
             componentManager.registerResolver(DocumentPersistenceComponentResolver.class);
-            componentManager.registerResolver(DocumentRepositoryComponentResolver.class);
-
             componentManager.registerComponent(DocumentPersistence.class);
+
+            componentManager.registerResolver(DocumentRepositoryComponentResolver.class);
             componentManager.registerComponent(UserRepository.class);
         });
     }
