@@ -1,6 +1,5 @@
 plugins {
     `java-library`
-    `maven-publish`
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
@@ -9,27 +8,12 @@ allprojects {
     version = "1.0-InDEV"
 
     apply(plugin = "java-library")
-    apply(plugin = "maven-publish")
 
     repositories {
         /* Libraries */
         mavenCentral()
         maven("https://repo.dreamcode.cc/releases")
         maven("https://storehouse.okaeri.eu/repository/maven-public")
-    }
-
-    publishing {
-        repositories {
-            maven {
-                name = "dreamcode-repository"
-                url = uri("https://repo.dreamcode.cc/releases")
-
-                credentials {
-                    username = System.getenv("MAVEN_USERNAME")
-                    password = System.getenv("MAVEN_TOKEN")
-                }
-            }
-        }
     }
 
     java {
