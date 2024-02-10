@@ -15,29 +15,29 @@ dependencies {
     compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
 
     // -- dream-platform --
-    implementation("cc.dreamcode.platform:core:1.9.13")
-    implementation("cc.dreamcode.platform:bukkit:1.9.13")
-    implementation("cc.dreamcode.platform:bukkit-command:1.9.13")
-    implementation("cc.dreamcode.platform:bukkit-config:1.9.13")
-    implementation("cc.dreamcode.platform:persistence:1.9.13")
+    implementation("cc.dreamcode.platform:core:1.9.14")
+    implementation("cc.dreamcode.platform:bukkit:1.9.14")
+    implementation("cc.dreamcode.platform:bukkit-command:1.9.14")
+    implementation("cc.dreamcode.platform:bukkit-config:1.9.14")
+    implementation("cc.dreamcode.platform:persistence:1.9.14")
 
     // -- dream-utilities --
-    implementation("cc.dreamcode:utilities:1.2.23")
-    implementation("cc.dreamcode:utilities-bukkit:1.2.23")
+    implementation("cc.dreamcode:utilities:1.2.24")
+    implementation("cc.dreamcode:utilities-bukkit:1.2.24")
 
     // -- dream-notice --
-    implementation("cc.dreamcode.notice:minecraft:1.3.12")
-    implementation("cc.dreamcode.notice:bukkit:1.3.12")
-    implementation("cc.dreamcode.notice:bukkit-serdes:1.3.12")
+    implementation("cc.dreamcode.notice:minecraft:1.3.13")
+    implementation("cc.dreamcode.notice:bukkit:1.3.13")
+    implementation("cc.dreamcode.notice:bukkit-serdes:1.3.13")
 
     // -- dream-command --
-    implementation("cc.dreamcode.command:core:1.4.18")
-    implementation("cc.dreamcode.command:bukkit:1.4.18")
+    implementation("cc.dreamcode.command:core:1.4.19")
+    implementation("cc.dreamcode.command:bukkit:1.4.19")
 
     // -- dream-menu --
-    implementation("cc.dreamcode.menu:core:1.2.1")
-    implementation("cc.dreamcode.menu:bukkit:1.2.1")
-    implementation("cc.dreamcode.menu:bukkit-serdes:1.2.1")
+    implementation("cc.dreamcode.menu:core:1.2.2")
+    implementation("cc.dreamcode.menu:bukkit:1.2.2")
+    implementation("cc.dreamcode.menu:bukkit-serdes:1.2.2")
 
     // -- configs--
     implementation("eu.okaeri:okaeri-configs-yaml-bukkit:5.0.0-beta.5")
@@ -63,7 +63,7 @@ dependencies {
     implementation("eu.okaeri:okaeri-tasker-bukkit:2.1.0-beta.3")
 
     // -- Multi-Version Items helper --
-    implementation("com.github.cryptomorin:XSeries:9.8.1")
+    implementation("com.github.cryptomorin:XSeries:9.9.0")
 }
 
 tasks.withType<ShadowJar> {
