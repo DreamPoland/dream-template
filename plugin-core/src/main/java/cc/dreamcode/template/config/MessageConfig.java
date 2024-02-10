@@ -22,7 +22,7 @@ public class MessageConfig extends OkaeriConfig {
 
     public BukkitNotice usage = new BukkitNotice(MinecraftNoticeType.CHAT, "&7Poprawne uzycie: &5{usage}");
     public BukkitNotice noPermission = new BukkitNotice(MinecraftNoticeType.CHAT, "&cNie posiadasz uprawnien.");
-    public BukkitNotice notPlayer = new BukkitNotice(MinecraftNoticeType.CHAT, "&cNie jestes aby to zrobic.");
+    public BukkitNotice notPlayer = new BukkitNotice(MinecraftNoticeType.CHAT, "&cNie jestes graczem aby to zrobic.");
 
     public BukkitNotice playerNotFound = new BukkitNotice(MinecraftNoticeType.CHAT, "&cPodanego gracza nie znaleziono.");
     public BukkitNotice cannotDoAtMySelf = new BukkitNotice(MinecraftNoticeType.CHAT, "&cNie mozesz tego zrobic na sobie.");
