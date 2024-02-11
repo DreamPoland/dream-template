@@ -35,9 +35,9 @@ dependencies {
     implementation("cc.dreamcode.command:bukkit:1.4.19")
 
     // -- dream-menu --
-    implementation("cc.dreamcode.menu:core:1.2.2")
-    implementation("cc.dreamcode.menu:bukkit:1.2.2")
-    implementation("cc.dreamcode.menu:bukkit-serdes:1.2.2")
+    implementation("cc.dreamcode.menu:core:1.2.3")
+    implementation("cc.dreamcode.menu:bukkit:1.2.3")
+    implementation("cc.dreamcode.menu:bukkit-serdes:1.2.3")
 
     // -- configs--
     implementation("eu.okaeri:okaeri-configs-yaml-bukkit:5.0.0-beta.5")
