@@ -3,11 +3,12 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
-allprojects {
+subprojects {
     group = "cc.dreamcode.template"
     version = "1.0-InDEV"
 
     apply(plugin = "java-library")
+    apply(plugin = "com.github.johnrengelman.shadow")
 
     repositories {
         /* Libraries */
@@ -27,10 +28,6 @@ allprojects {
     tasks.withType<JavaCompile> {
         options.encoding = "UTF-8"
     }
-}
-
-subprojects {
-    apply(plugin = "com.github.johnrengelman.shadow")
 
     dependencies {
         /* General */
