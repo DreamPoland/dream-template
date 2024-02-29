@@ -47,7 +47,7 @@ dependencies {
     // -- persistence data --
     implementation("eu.okaeri:okaeri-persistence-flat:2.0.0-beta.1")
     implementation("eu.okaeri:okaeri-persistence-jdbc:2.0.0-beta.1")
-    implementation("eu.okaeri:okaeri-persistence-mongo:2.0.0-beta.1")
+    implementation("eu.okaeri:okaeri-persistence-mongo:2.0.1")
 
     // -- persistence data configure --
     implementation("eu.okaeri:okaeri-configs-json-gson:5.0.0-beta.5")
