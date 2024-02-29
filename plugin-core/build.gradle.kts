@@ -15,11 +15,11 @@ dependencies {
     compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
 
     // -- dream-platform --
-    implementation("cc.dreamcode.platform:core:1.9.14")
-    implementation("cc.dreamcode.platform:bukkit:1.9.14")
-    implementation("cc.dreamcode.platform:bukkit-command:1.9.14")
-    implementation("cc.dreamcode.platform:bukkit-config:1.9.14")
-    implementation("cc.dreamcode.platform:persistence:1.9.14")
+    implementation("cc.dreamcode.platform:core:1.9.15")
+    implementation("cc.dreamcode.platform:bukkit:1.9.15")
+    implementation("cc.dreamcode.platform:bukkit-command:1.9.15")
+    implementation("cc.dreamcode.platform:bukkit-config:1.9.15")
+    implementation("cc.dreamcode.platform:persistence:1.9.15")
 
     // -- dream-utilities --
     implementation("cc.dreamcode:utilities:1.2.24")
@@ -45,9 +45,9 @@ dependencies {
     implementation("eu.okaeri:okaeri-configs-serdes-commons:5.0.0-beta.5")
 
     // -- persistence data --
-    implementation("eu.okaeri:okaeri-persistence-flat:2.0.0-beta.1")
-    implementation("eu.okaeri:okaeri-persistence-jdbc:2.0.0-beta.1")
-    implementation("eu.okaeri:okaeri-persistence-mongo:2.0.0-beta.1")
+    implementation("eu.okaeri:okaeri-persistence-flat:2.0.1")
+    implementation("eu.okaeri:okaeri-persistence-jdbc:2.0.1")
+    implementation("eu.okaeri:okaeri-persistence-mongo:2.0.1")
 
     // -- persistence data configure --
     implementation("eu.okaeri:okaeri-configs-json-gson:5.0.0-beta.5")
