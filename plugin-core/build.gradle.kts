@@ -41,7 +41,7 @@ dependencies {
 
     // -- configs--
     implementation("eu.okaeri:okaeri-configs-yaml-bukkit:5.0.0-beta.5")
-    implementation("eu.okaeri:okaeri-configs-serdes-bukkit:5.0.0-beta.5")
+    implementation("eu.okaeri:okaeri-configs-serdes-bukkit:5.0.1")
     implementation("eu.okaeri:okaeri-configs-serdes-commons:5.0.0-beta.5")
 
     // -- persistence data --
