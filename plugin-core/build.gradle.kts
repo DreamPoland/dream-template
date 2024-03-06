@@ -50,7 +50,7 @@ dependencies {
     implementation("eu.okaeri:okaeri-persistence-mongo:2.0.1")
 
     // -- persistence data configure --
-    implementation("eu.okaeri:okaeri-configs-json-gson:5.0.0-beta.5")
+    implementation("eu.okaeri:okaeri-configs-json-gson:5.0.1")
     implementation("eu.okaeri:okaeri-configs-json-simple:5.0.0-beta.5")
 
     // -- injector --
