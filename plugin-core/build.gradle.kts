@@ -45,7 +45,7 @@ dependencies {
     implementation("eu.okaeri:okaeri-configs-serdes-commons:5.0.0-beta.5")
 
     // -- persistence data --
-    implementation("eu.okaeri:okaeri-persistence-flat:2.0.1")
+    implementation("eu.okaeri:okaeri-persistence-flat:2.0.2")
     implementation("eu.okaeri:okaeri-persistence-jdbc:2.0.1")
     implementation("eu.okaeri:okaeri-persistence-mongo:2.0.1")
 
