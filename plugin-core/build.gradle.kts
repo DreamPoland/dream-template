@@ -76,6 +76,7 @@ tasks.withType<ShadowJar> {
 
     relocate("com.cryptomorin", "cc.dreamcode.template.libs.com.cryptomorin")
     relocate("eu.okaeri", "cc.dreamcode.template.libs.eu.okaeri")
+    relocate("net.kyori", "cc.dreamcode.template.libs.net.kyori")
 
     relocate("cc.dreamcode.platform", "cc.dreamcode.template.libs.cc.dreamcode.platform")
     relocate("cc.dreamcode.utilities", "cc.dreamcode.template.libs.cc.dreamcode.utilities")
