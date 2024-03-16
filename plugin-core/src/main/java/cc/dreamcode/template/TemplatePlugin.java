@@ -3,7 +3,8 @@ package cc.dreamcode.template;
 import cc.dreamcode.command.bukkit.BukkitCommandProvider;
 import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
 import cc.dreamcode.menu.bukkit.okaeri.MenuBuilderSerdes;
-import cc.dreamcode.notice.minecraft.bukkit.serdes.BukkitNoticeSerdes;
+import cc.dreamcode.notice.minecraft.adventure.bukkit.AdventureBukkitNoticeProvider;
+import cc.dreamcode.notice.minecraft.serdes.AdventureBukkitNoticeSerializer;
 import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bukkit.DreamBukkitConfig;
 import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
@@ -37,9 +38,10 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
 
     @Override
     public void enable(@NonNull ComponentManager componentManager) {
-        this.registerInjectable(BukkitTasker.newPool(this));
-        this.registerInjectable(BukkitMenuProvider.create(this));
-        this.registerInjectable(BukkitCommandProvider.create(this));
+        this.getInjector().registerInjectable(BukkitTasker.newPool(this));
+        this.getInjector().registerInjectable(BukkitMenuProvider.create(this));
+        this.getInjector().registerInjectable(BukkitCommandProvider.create(this));
+        this.getInjector().registerInjectable(AdventureBukkitNoticeProvider.create(this));
 
         this.registerInjectable(VersionProvider.getVersionAccessor());
 
@@ -50,8 +52,8 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
         componentManager.registerResolver(ConfigurationComponentResolver.class);
         componentManager.registerComponent(MessageConfig.class, messageConfig ->
                 this.getInject(BukkitCommandProvider.class).ifPresent(bukkitCommandProvider -> {
-                    bukkitCommandProvider.setRequiredPermissionMessage(messageConfig.noPermission.getText());
-                    bukkitCommandProvider.setRequiredPlayerMessage(messageConfig.notPlayer.getText());
+                    bukkitCommandProvider.setRequiredPermissionMessage(messageConfig.noPermission.getRaw());
+                    bukkitCommandProvider.setRequiredPlayerMessage(messageConfig.notPlayer.getRaw());
                 }));
 
         componentManager.registerComponent(PluginConfig.class, pluginConfig -> {
@@ -81,7 +83,7 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
     @Override
     public @NonNull OkaeriSerdesPack getConfigSerdesPack() {
         return registry -> {
-            registry.register(new BukkitNoticeSerdes());
+            registry.register(new AdventureBukkitNoticeSerializer());
             registry.register(new MenuBuilderSerdes());
         };
     }
