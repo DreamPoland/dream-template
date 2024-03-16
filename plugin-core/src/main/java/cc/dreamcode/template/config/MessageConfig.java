@@ -23,6 +23,7 @@ public class MessageConfig extends OkaeriConfig {
     public AdventureBukkitNotice noPermission = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cNie posiadasz uprawnien.");
     @CustomKey(value = "not-player")
     public AdventureBukkitNotice notPlayer = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cNie jestes graczem aby to zrobic.");
+
     @CustomKey(value = "player-not-found")
     public AdventureBukkitNotice playerNotFound = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cPodanego gracza nie znaleziono.");
     @CustomKey(value = "cannot-do-at-my-self")
