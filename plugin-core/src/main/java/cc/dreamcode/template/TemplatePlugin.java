@@ -38,6 +38,8 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
 
     @Override
     public void enable(@NonNull ComponentManager componentManager) {
+        componentManager.setDebug(false);
+
         this.getInjector().registerInjectable(BukkitTasker.newPool(this));
         this.getInjector().registerInjectable(BukkitMenuProvider.create(this));
         this.getInjector().registerInjectable(BukkitCommandProvider.create(this));

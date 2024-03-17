@@ -18,7 +18,7 @@ import eu.okaeri.configs.annotation.Headers;
 public class MessageConfig extends OkaeriConfig {
 
     @CustomKey("usage")
-    public AdventureBukkitNotice usage = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&7Poprawne uzycie: &5{usage}");
+    public AdventureBukkitNotice usage = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&7Poprawne uzycie: &c{usage}");
     @CustomKey("no-permission")
     public AdventureBukkitNotice noPermission = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cNie posiadasz uprawnien.");
     @CustomKey("not-player")
