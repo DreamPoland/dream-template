@@ -52,8 +52,8 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
         componentManager.registerResolver(ConfigurationComponentResolver.class);
         componentManager.registerComponent(MessageConfig.class, messageConfig ->
                 this.getInject(BukkitCommandProvider.class).ifPresent(bukkitCommandProvider -> {
-                    bukkitCommandProvider.setRequiredPermissionMessage(messageConfig.noPermission.getRaw());
-                    bukkitCommandProvider.setRequiredPlayerMessage(messageConfig.notPlayer.getRaw());
+                    bukkitCommandProvider.setNoPermissionHandler(sender -> messageConfig.noPermission.send(sender));
+                    bukkitCommandProvider.setNotPlayerHandler(sender -> messageConfig.notPlayer.send(sender));
                 }));
 
         componentManager.registerComponent(PluginConfig.class, pluginConfig -> {
