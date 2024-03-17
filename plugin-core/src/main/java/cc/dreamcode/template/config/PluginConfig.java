@@ -14,10 +14,10 @@ import eu.okaeri.configs.annotation.Header;
 public class PluginConfig extends OkaeriConfig {
 
     @Comment("Debug pokazuje dodatkowe informacje do konsoli. Lepiej wylaczyc. :P")
-    @CustomKey(value = "debug")
+    @CustomKey("debug")
     public boolean debug = true;
 
     @Comment("Uzupelnij dane do logowania bazy danych.")
-    @CustomKey(value = "storage-config")
+    @CustomKey("storage-config")
     public StorageConfig storageConfig = new StorageConfig("dreamtemplate");
 }

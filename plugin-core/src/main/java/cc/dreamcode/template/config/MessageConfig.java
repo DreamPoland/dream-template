@@ -17,18 +17,18 @@ import eu.okaeri.configs.annotation.Headers;
 })
 public class MessageConfig extends OkaeriConfig {
 
-    @CustomKey(value = "usage")
+    @CustomKey("usage")
     public AdventureBukkitNotice usage = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&7Poprawne uzycie: &5{usage}");
-    @CustomKey(value = "no-permission")
+    @CustomKey("no-permission")
     public AdventureBukkitNotice noPermission = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cNie posiadasz uprawnien.");
-    @CustomKey(value = "not-player")
+    @CustomKey("not-player")
     public AdventureBukkitNotice notPlayer = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cNie jestes graczem aby to zrobic.");
 
-    @CustomKey(value = "player-not-found")
+    @CustomKey("player-not-found")
     public AdventureBukkitNotice playerNotFound = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cPodanego gracza nie znaleziono.");
-    @CustomKey(value = "cannot-do-at-my-self")
+    @CustomKey("cannot-do-at-my-self")
     public AdventureBukkitNotice cannotDoAtMySelf = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cNie mozesz tego zrobic na sobie.");
-    @CustomKey(value = "number-is-not-valid")
+    @CustomKey("number-is-not-valid")
     public AdventureBukkitNotice numberIsNotValid = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cPodana liczba nie jest cyfra.");
 
 }
