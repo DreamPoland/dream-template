@@ -8,14 +8,18 @@ import cc.dreamcode.notice.minecraft.serdes.AdventureBukkitNoticeSerializer;
 import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bukkit.DreamBukkitConfig;
 import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
-import cc.dreamcode.platform.bukkit.component.CommandComponentResolver;
 import cc.dreamcode.platform.bukkit.component.ConfigurationComponentResolver;
 import cc.dreamcode.platform.bukkit.component.ListenerComponentResolver;
 import cc.dreamcode.platform.bukkit.component.RunnableComponentResolver;
 import cc.dreamcode.platform.component.ComponentManager;
+import cc.dreamcode.platform.other.component.DreamCommandComponentResolver;
 import cc.dreamcode.platform.persistence.DreamPersistence;
 import cc.dreamcode.platform.persistence.component.DocumentPersistenceComponentResolver;
 import cc.dreamcode.platform.persistence.component.DocumentRepositoryComponentResolver;
+import cc.dreamcode.template.command.handler.InvalidInputHandlerImpl;
+import cc.dreamcode.template.command.handler.InvalidPermissionHandlerImpl;
+import cc.dreamcode.template.command.handler.InvalidSenderHandlerImpl;
+import cc.dreamcode.template.command.handler.InvalidUsageHandlerImpl;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.mcversion.VersionProvider;
@@ -47,15 +51,17 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
 
         this.registerInjectable(VersionProvider.getVersionAccessor());
 
-        componentManager.registerResolver(CommandComponentResolver.class);
+        componentManager.registerResolver(DreamCommandComponentResolver.class);
         componentManager.registerResolver(ListenerComponentResolver.class);
         componentManager.registerResolver(RunnableComponentResolver.class);
 
         componentManager.registerResolver(ConfigurationComponentResolver.class);
         componentManager.registerComponent(MessageConfig.class, messageConfig ->
                 this.getInject(BukkitCommandProvider.class).ifPresent(bukkitCommandProvider -> {
-                    bukkitCommandProvider.setNoPermissionHandler(sender -> messageConfig.noPermission.send(sender));
-                    bukkitCommandProvider.setNotPlayerHandler(sender -> messageConfig.notPlayer.send(sender));
+                    bukkitCommandProvider.setInvalidInputHandler(this.createInstance(InvalidInputHandlerImpl.class));
+                    bukkitCommandProvider.setInvalidPermissionHandler(this.createInstance(InvalidPermissionHandlerImpl.class));
+                    bukkitCommandProvider.setInvalidSenderHandler(this.createInstance(InvalidSenderHandlerImpl.class));
+                    bukkitCommandProvider.setInvalidUsageHandler(this.createInstance(InvalidUsageHandlerImpl.class));
                 }));
 
         componentManager.registerComponent(PluginConfig.class, pluginConfig -> {

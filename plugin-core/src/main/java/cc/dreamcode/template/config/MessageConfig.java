@@ -17,12 +17,23 @@ import eu.okaeri.configs.annotation.Headers;
 })
 public class MessageConfig extends OkaeriConfig {
 
-    @CustomKey("usage")
-    public AdventureBukkitNotice usage = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&7Poprawne uzycie: &c{usage}");
-    @CustomKey("no-permission")
+    @CustomKey("command-usage")
+    public AdventureBukkitNotice usage = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&7Przyklady uzycia komendy: &c{label}");
+    @CustomKey("command-usage-help")
+    public AdventureBukkitNotice usagePath = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&f{usage} &8- &7{description}");
+
+    @CustomKey("command-usage-not-found")
+    public AdventureBukkitNotice usageNotFound = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cNie znaleziono pasujacych do kryteriow komendy.");
+    @CustomKey("command-path-not-found")
+    public AdventureBukkitNotice pathNotFound = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cTa komenda jest pusta i nie zawiera rzeczy do wykonania.");
+    @CustomKey("command-no-permission")
     public AdventureBukkitNotice noPermission = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cNie posiadasz uprawnien.");
-    @CustomKey("not-player")
-    public AdventureBukkitNotice notPlayer = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cNie jestes graczem aby to zrobic.");
+    @CustomKey("command-not-player")
+    public AdventureBukkitNotice notPlayer = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cTa komende mozna tylko wykonac z poziomu gracza.");
+    @CustomKey("command-not-console")
+    public AdventureBukkitNotice notConsole = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cTa komende mozna tylko wykonac z poziomu konsoli.");
+    @CustomKey("command-invalid-format")
+    public AdventureBukkitNotice invalidFormat = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cPodano nieprawidlowy format argumentu komendy. ({input})");
 
     @CustomKey("player-not-found")
     public AdventureBukkitNotice playerNotFound = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cPodanego gracza nie znaleziono.");
