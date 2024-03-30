@@ -15,11 +15,11 @@ public class ExampleCommand implements CommandBase {
 
     @Executor(description = "Przykladowa komenda.")
     @Sender(type = DreamSender.Type.CLIENT)
-    @Completion(arg = "bro", value = "@allplayers")
-    @Completion(arg = "bro2", value = {"1", "2", "3"})
-    public void example(Player player, @Arg(name = "bro") Player bro, @Arg(name = "bro2") int bro2, @OptArg(name = "bro3") String bro3) {
-        player.sendMessage("hello, " + bro.getName());
-        player.sendMessage("hello 2, " + bro2);
-        player.sendMessage("hello 3, " + bro3);
+    @Completion(arg = "arg", value = "@allplayers")
+    @Completion(arg = "arg2", value = {"1", "2", "3"})
+    void example(Player player, @Arg(name = "arg") Player arg, @Arg(name = "arg2") int arg2, @OptArg(name = "arg3") String arg3) {
+        player.sendMessage("hello, " + arg.getName());
+        player.sendMessage("hello 2, " + arg2);
+        player.sendMessage("hello 3, " + arg3);
     }
 }
