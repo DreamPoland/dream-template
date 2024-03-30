@@ -10,8 +10,6 @@ import cc.dreamcode.command.annotation.OptArg;
 import cc.dreamcode.command.annotation.Sender;
 import org.bukkit.entity.Player;
 
-import java.time.Duration;
-
 @Command(name = "example")
 public class ExampleCommand implements CommandBase {
 
@@ -19,7 +17,7 @@ public class ExampleCommand implements CommandBase {
     @Sender(type = DreamSender.Type.CLIENT)
     @Completion(arg = "bro", value = "@allplayers")
     @Completion(arg = "bro2", value = {"1", "2", "3"})
-    public void example(Player player, @Arg(name = "bro") Player bro, @Arg(name = "bro2") Duration bro2, @OptArg(name = "bro3") String bro3) {
+    public void example(Player player, @Arg(name = "bro") Player bro, @Arg(name = "bro2") int bro2, @OptArg(name = "bro3") String bro3) {
         player.sendMessage("hello, " + bro.getName());
         player.sendMessage("hello 2, " + bro2);
         player.sendMessage("hello 3, " + bro3);
