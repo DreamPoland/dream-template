@@ -16,6 +16,7 @@ import cc.dreamcode.platform.other.component.DreamCommandComponentResolver;
 import cc.dreamcode.platform.persistence.DreamPersistence;
 import cc.dreamcode.platform.persistence.component.DocumentPersistenceComponentResolver;
 import cc.dreamcode.platform.persistence.component.DocumentRepositoryComponentResolver;
+import cc.dreamcode.template.command.ExampleCommand;
 import cc.dreamcode.template.command.handler.InvalidInputHandlerImpl;
 import cc.dreamcode.template.command.handler.InvalidPermissionHandlerImpl;
 import cc.dreamcode.template.command.handler.InvalidSenderHandlerImpl;
@@ -76,6 +77,8 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
             componentManager.registerResolver(DocumentRepositoryComponentResolver.class);
             componentManager.registerComponent(UserRepository.class);
         });
+
+        componentManager.registerComponent(ExampleCommand.class);
     }
 
     @Override
