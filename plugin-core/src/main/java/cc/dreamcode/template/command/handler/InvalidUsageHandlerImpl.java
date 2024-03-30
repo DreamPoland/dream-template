@@ -38,7 +38,7 @@ public class InvalidUsageHandlerImpl implements InvalidUsageHandler {
         }
 
         this.messageConfig.usage.send(bukkitSender.getHandler(), new MapBuilder<String, Object>()
-                .put("label", commandMeta.getCommandContext().getName())
+                .put("label", "/" + commandMeta.getCommandContext().getName())
                 .put("description", commandMeta.getCommandContext().getDescription())
                 .build());
 
