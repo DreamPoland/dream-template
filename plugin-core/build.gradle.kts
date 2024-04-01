@@ -34,7 +34,7 @@ dependencies {
 
     // -- dream-command --
     implementation("cc.dreamcode.command:core:2.0-beta.9")
-    implementation("cc.dreamcode.command:bukkit:2.0-beta.9")
+    implementation("cc.dreamcode.command:bukkit:2.0-pre.2")
 
     // -- dream-menu --
     implementation("cc.dreamcode.menu:core:1.2.7")
