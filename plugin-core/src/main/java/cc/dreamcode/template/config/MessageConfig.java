@@ -25,7 +25,7 @@ public class MessageConfig extends OkaeriConfig {
     @CustomKey("command-usage-not-found")
     public AdventureBukkitNotice usageNotFound = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cNie znaleziono pasujacych do kryteriow komendy.");
     @CustomKey("command-path-not-found")
-    public AdventureBukkitNotice pathNotFound = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cTa komenda jest pusta i nie zawiera rzeczy do wykonania.");
+    public AdventureBukkitNotice pathNotFound = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cTa komenda jest pusta lub nie posiadasz dostepu do niej.");
     @CustomKey("command-no-permission")
     public AdventureBukkitNotice noPermission = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cNie posiadasz uprawnien.");
     @CustomKey("command-not-player")
@@ -37,6 +37,8 @@ public class MessageConfig extends OkaeriConfig {
 
     @CustomKey("player-not-found")
     public AdventureBukkitNotice playerNotFound = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cPodanego gracza nie znaleziono.");
+    @CustomKey("world-not-found")
+    public AdventureBukkitNotice worldNotFound = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cPodanego swiata nie znaleziono.");
     @CustomKey("cannot-do-at-my-self")
     public AdventureBukkitNotice cannotDoAtMySelf = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cNie mozesz tego zrobic na sobie.");
     @CustomKey("number-is-not-valid")

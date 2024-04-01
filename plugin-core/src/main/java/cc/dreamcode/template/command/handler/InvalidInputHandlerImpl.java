@@ -8,6 +8,7 @@ import cc.dreamcode.utilities.builder.MapBuilder;
 import eu.okaeri.injector.annotation.Inject;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 @RequiredArgsConstructor(onConstructor_ = @Inject)
@@ -21,6 +22,11 @@ public class InvalidInputHandlerImpl implements InvalidInputHandler {
 
         if (requiringClass.isAssignableFrom(Player.class)) {
             this.messageConfig.playerNotFound.send(bukkitSender.getHandler());
+            return;
+        }
+
+        if (requiringClass.isAssignableFrom(World.class)) {
+            this.messageConfig.worldNotFound.send(bukkitSender.getHandler());
             return;
         }
 

@@ -12,6 +12,7 @@ import eu.okaeri.injector.annotation.Inject;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor(onConstructor_ = @Inject)
@@ -29,7 +30,8 @@ public class InvalidUsageHandlerImpl implements InvalidUsageHandler {
         }
 
         final CommandMeta commandMeta = optionalCommandMeta.get();
-        if (commandMeta.getCommandPaths().isEmpty()) {
+        final List<CommandPathMeta> commandPathMetas = commandMeta.getFilteredCommandPaths(dreamSender);
+        if (commandPathMetas.isEmpty()) {
             this.messageConfig.pathNotFound.send(bukkitSender.getHandler(), new MapBuilder<String, Object>()
                     .put("label", "/" + commandMeta.getCommandContext().getName())
                     .put("description", commandMeta.getCommandContext().getDescription())
@@ -42,7 +44,7 @@ public class InvalidUsageHandlerImpl implements InvalidUsageHandler {
                 .put("description", commandMeta.getCommandContext().getDescription())
                 .build());
 
-        for (CommandPathMeta commandPath : commandMeta.getCommandPaths()) {
+        for (CommandPathMeta commandPath : commandPathMetas) {
             this.messageConfig.usagePath.send(bukkitSender.getHandler(), new MapBuilder<String, Object>()
                     .put("usage", commandPath.getUsage())
                     .put("description", commandPath.getDescription())
