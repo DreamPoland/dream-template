@@ -33,7 +33,7 @@ dependencies {
     implementation("cc.dreamcode.notice:bukkit-adventure-serializer:1.4.9")
 
     // -- dream-command --
-    implementation("cc.dreamcode.command:core:2.0-beta.9")
+    implementation("cc.dreamcode.command:core:2.0-pre.2")
     implementation("cc.dreamcode.command:bukkit:2.0-beta.9")
 
     // -- dream-menu --
