@@ -6,5 +6,5 @@ repositories {
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
 
-    compileOnly("com.github.cryptomorin:XSeries:9.9.0")
+    compileOnly("com.github.cryptomorin:XSeries:9.10.0")
 }
