@@ -8,14 +8,14 @@ import cc.dreamcode.notice.minecraft.serdes.AdventureBukkitNoticeSerializer;
 import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bukkit.DreamBukkitConfig;
 import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
-import cc.dreamcode.platform.bukkit.component.ConfigurationComponentResolver;
-import cc.dreamcode.platform.bukkit.component.ListenerComponentResolver;
-import cc.dreamcode.platform.bukkit.component.RunnableComponentResolver;
+import cc.dreamcode.platform.bukkit.component.ConfigurationResolver;
+import cc.dreamcode.platform.bukkit.component.ListenerResolver;
+import cc.dreamcode.platform.bukkit.component.RunnableResolver;
 import cc.dreamcode.platform.component.ComponentManager;
-import cc.dreamcode.platform.other.component.DreamCommandComponentResolver;
+import cc.dreamcode.platform.other.component.DreamCommandExtension;
 import cc.dreamcode.platform.persistence.DreamPersistence;
-import cc.dreamcode.platform.persistence.component.DocumentPersistenceComponentResolver;
-import cc.dreamcode.platform.persistence.component.DocumentRepositoryComponentResolver;
+import cc.dreamcode.platform.persistence.component.DocumentPersistenceResolver;
+import cc.dreamcode.platform.persistence.component.DocumentRepositoryResolver;
 import cc.dreamcode.template.command.ExampleCommand;
 import cc.dreamcode.template.command.handler.InvalidInputHandlerImpl;
 import cc.dreamcode.template.command.handler.InvalidPermissionHandlerImpl;
@@ -45,25 +45,24 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
     public void enable(@NonNull ComponentManager componentManager) {
         componentManager.setDebug(false);
 
-        this.getInjector().registerInjectable(BukkitTasker.newPool(this));
-        this.getInjector().registerInjectable(BukkitMenuProvider.create(this));
-        this.getInjector().registerInjectable(BukkitCommandProvider.create(this));
-        this.getInjector().registerInjectable(AdventureBukkitNoticeProvider.create(this));
+        this.registerInjectable(BukkitTasker.newPool(this));
+        this.registerInjectable(BukkitMenuProvider.create(this));
+        this.registerInjectable(BukkitCommandProvider.create(this));
+        this.registerInjectable(AdventureBukkitNoticeProvider.create(this));
 
         this.registerInjectable(VersionProvider.getVersionAccessor());
 
-        componentManager.registerResolver(DreamCommandComponentResolver.class);
-        componentManager.registerResolver(ListenerComponentResolver.class);
-        componentManager.registerResolver(RunnableComponentResolver.class);
+        componentManager.registerExtension(DreamCommandExtension.class);
+        componentManager.registerResolver(ListenerResolver.class);
+        componentManager.registerResolver(RunnableResolver.class);
 
-        componentManager.registerResolver(ConfigurationComponentResolver.class);
-        componentManager.registerComponent(MessageConfig.class, messageConfig ->
-                this.getInject(BukkitCommandProvider.class).ifPresent(bukkitCommandProvider -> {
-                    bukkitCommandProvider.setInvalidInputHandler(this.createInstance(InvalidInputHandlerImpl.class));
-                    bukkitCommandProvider.setInvalidPermissionHandler(this.createInstance(InvalidPermissionHandlerImpl.class));
-                    bukkitCommandProvider.setInvalidSenderHandler(this.createInstance(InvalidSenderHandlerImpl.class));
-                    bukkitCommandProvider.setInvalidUsageHandler(this.createInstance(InvalidUsageHandlerImpl.class));
-                }));
+        componentManager.registerResolver(ConfigurationResolver.class);
+        componentManager.registerComponent(MessageConfig.class);
+
+        componentManager.registerComponent(InvalidInputHandlerImpl.class);
+        componentManager.registerComponent(InvalidPermissionHandlerImpl.class);
+        componentManager.registerComponent(InvalidSenderHandlerImpl.class);
+        componentManager.registerComponent(InvalidUsageHandlerImpl.class);
 
         componentManager.registerComponent(PluginConfig.class, pluginConfig -> {
             componentManager.setDebug(pluginConfig.debug);
@@ -71,10 +70,10 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
             // register persistence + repositories
             this.registerInjectable(pluginConfig.storageConfig);
 
-            componentManager.registerResolver(DocumentPersistenceComponentResolver.class);
+            componentManager.registerResolver(DocumentPersistenceResolver.class);
             componentManager.registerComponent(DocumentPersistence.class);
 
-            componentManager.registerResolver(DocumentRepositoryComponentResolver.class);
+            componentManager.registerResolver(DocumentRepositoryResolver.class);
             componentManager.registerComponent(UserRepository.class);
         });
 
