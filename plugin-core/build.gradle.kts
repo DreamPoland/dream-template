@@ -19,7 +19,7 @@ dependencies {
     implementation("cc.dreamcode.platform:bukkit:1.10.9")
     implementation("cc.dreamcode.platform:bukkit-config:1.10.9")
     implementation("cc.dreamcode.platform:dream-command:1.10.9")
-    implementation("cc.dreamcode.platform:persistence:1.10.9")
+    implementation("cc.dreamcode.platform:persistence:1.11.2")
 
     // -- dream-utilities --
     implementation("cc.dreamcode:utilities:1.3.0")
