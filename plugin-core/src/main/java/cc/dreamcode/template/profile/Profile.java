@@ -1,4 +1,4 @@
-package cc.dreamcode.template.user;
+package cc.dreamcode.template.profile;
 
 import eu.okaeri.configs.annotation.CustomKey;
 import eu.okaeri.persistence.document.Document;
@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class User extends Document {
+public class Profile extends Document {
 
     @CustomKey("name")
     private String name;

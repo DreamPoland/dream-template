@@ -24,7 +24,7 @@ import cc.dreamcode.template.command.handler.InvalidUsageHandlerImpl;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.mcversion.VersionProvider;
-import cc.dreamcode.template.user.UserRepository;
+import cc.dreamcode.template.profile.ProfileRepository;
 import eu.okaeri.configs.serdes.OkaeriSerdesPack;
 import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
 import eu.okaeri.persistence.document.DocumentPersistence;
@@ -74,7 +74,7 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
             componentManager.registerComponent(DocumentPersistence.class);
 
             componentManager.registerResolver(DocumentRepositoryResolver.class);
-            componentManager.registerComponent(UserRepository.class);
+            componentManager.registerComponent(ProfileRepository.class);
         });
 
         componentManager.registerComponent(ExampleCommand.class);

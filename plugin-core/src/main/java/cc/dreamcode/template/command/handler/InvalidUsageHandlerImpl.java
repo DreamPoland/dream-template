@@ -44,10 +44,10 @@ public class InvalidUsageHandlerImpl implements InvalidUsageHandler {
                 .put("description", commandMeta.getCommandContext().getDescription())
                 .build());
 
-        for (CommandPathMeta commandPath : commandPathMetas) {
+        for (CommandPathMeta commandPathMeta : commandPathMetas) {
             this.messageConfig.usagePath.send(bukkitSender.getHandler(), new MapBuilder<String, Object>()
-                    .put("usage", commandPath.getUsage())
-                    .put("description", commandPath.getDescription())
+                    .put("usage", commandPathMeta.getUsage())
+                    .put("description", commandPathMeta.getDescription())
                     .build());
         }
     }
