@@ -23,7 +23,7 @@ dependencies {
 
     // -- dream-utilities --
     implementation("cc.dreamcode:utilities:1.3.0")
-    implementation("cc.dreamcode:utilities-bukkit:1.3.0")
+    implementation("cc.dreamcode:utilities-bukkit:1.3.1")
 
     // -- dream-notice --
     implementation("cc.dreamcode.notice:core:1.4.9")
