@@ -28,7 +28,7 @@ dependencies {
     // -- dream-notice --
     implementation("cc.dreamcode.notice:core:1.4.9")
     implementation("cc.dreamcode.notice:minecraft:1.4.9")
-    implementation("cc.dreamcode.notice:minecraft-adventure:1.4.9")
+    implementation("cc.dreamcode.notice:minecraft-adventure:1.4.10")
     implementation("cc.dreamcode.notice:bukkit-adventure:1.4.9")
     implementation("cc.dreamcode.notice:bukkit-adventure-serializer:1.4.9")
 
