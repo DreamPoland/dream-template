@@ -11,6 +11,8 @@ import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
 import cc.dreamcode.platform.bukkit.component.ConfigurationResolver;
 import cc.dreamcode.platform.bukkit.component.ListenerResolver;
 import cc.dreamcode.platform.bukkit.component.RunnableResolver;
+import cc.dreamcode.platform.bukkit.serializer.ItemMetaSerializer;
+import cc.dreamcode.platform.bukkit.serializer.ItemStackSerializer;
 import cc.dreamcode.platform.component.ComponentManager;
 import cc.dreamcode.platform.other.component.DreamCommandExtension;
 import cc.dreamcode.platform.persistence.DreamPersistence;
@@ -31,6 +33,8 @@ import eu.okaeri.persistence.document.DocumentPersistence;
 import eu.okaeri.tasker.bukkit.BukkitTasker;
 import lombok.Getter;
 import lombok.NonNull;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBukkitConfig, DreamPersistence {
 
@@ -102,6 +106,9 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
     public @NonNull OkaeriSerdesPack getPersistenceSerdesPack() {
         return registry -> {
             registry.register(new SerdesBukkit());
+
+            registry.registerExclusive(ItemStack.class, new ItemStackSerializer());
+            registry.registerExclusive(ItemMeta.class, new ItemMetaSerializer());
         };
     }
 
