@@ -11,7 +11,7 @@ import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
 import cc.dreamcode.platform.bukkit.component.ConfigurationResolver;
 import cc.dreamcode.platform.bukkit.serializer.ItemMetaSerializer;
 import cc.dreamcode.platform.bukkit.serializer.ItemStackSerializer;
-import cc.dreamcode.platform.component.ComponentManager;
+import cc.dreamcode.platform.component.ComponentService;
 import cc.dreamcode.platform.other.component.DreamCommandExtension;
 import cc.dreamcode.platform.persistence.DreamPersistence;
 import cc.dreamcode.platform.persistence.component.DocumentPersistenceResolver;
@@ -39,13 +39,13 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
     @Getter private static TemplatePlugin templatePlugin;
 
     @Override
-    public void load(@NonNull ComponentManager componentManager) {
+    public void load(@NonNull ComponentService componentService) {
         templatePlugin = this;
     }
 
     @Override
-    public void enable(@NonNull ComponentManager componentManager) {
-        componentManager.setDebug(false);
+    public void enable(@NonNull ComponentService componentService) {
+        componentService.setDebug(false);
 
         this.registerInjectable(BukkitTasker.newPool(this));
         this.registerInjectable(BukkitMenuProvider.create(this));
@@ -53,30 +53,30 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
         this.registerInjectable(AdventureBukkitNoticeProvider.create(this));
 
         this.registerInjectable(VersionProvider.getVersionAccessor());
-        componentManager.registerExtension(DreamCommandExtension.class);
+        componentService.registerExtension(DreamCommandExtension.class);
 
-        componentManager.registerResolver(ConfigurationResolver.class);
-        componentManager.registerComponent(MessageConfig.class);
+        componentService.registerResolver(ConfigurationResolver.class);
+        componentService.registerComponent(MessageConfig.class);
 
-        componentManager.registerComponent(InvalidInputHandlerImpl.class);
-        componentManager.registerComponent(InvalidPermissionHandlerImpl.class);
-        componentManager.registerComponent(InvalidSenderHandlerImpl.class);
-        componentManager.registerComponent(InvalidUsageHandlerImpl.class);
+        componentService.registerComponent(InvalidInputHandlerImpl.class);
+        componentService.registerComponent(InvalidPermissionHandlerImpl.class);
+        componentService.registerComponent(InvalidSenderHandlerImpl.class);
+        componentService.registerComponent(InvalidUsageHandlerImpl.class);
 
-        componentManager.registerComponent(PluginConfig.class, pluginConfig -> {
-            componentManager.setDebug(pluginConfig.debug);
+        componentService.registerComponent(PluginConfig.class, pluginConfig -> {
+            componentService.setDebug(pluginConfig.debug);
 
             // register persistence + repositories
             this.registerInjectable(pluginConfig.storageConfig);
 
-            componentManager.registerResolver(DocumentPersistenceResolver.class);
-            componentManager.registerComponent(DocumentPersistence.class);
+            componentService.registerResolver(DocumentPersistenceResolver.class);
+            componentService.registerComponent(DocumentPersistence.class);
 
-            componentManager.registerResolver(DocumentRepositoryResolver.class);
-            componentManager.registerComponent(ProfileRepository.class);
+            componentService.registerResolver(DocumentRepositoryResolver.class);
+            componentService.registerComponent(ProfileRepository.class);
         });
 
-        componentManager.registerComponent(ExampleCommand.class);
+        componentService.registerComponent(ExampleCommand.class);
     }
 
     @Override
