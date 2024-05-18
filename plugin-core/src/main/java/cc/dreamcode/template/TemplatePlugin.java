@@ -2,15 +2,13 @@ package cc.dreamcode.template;
 
 import cc.dreamcode.command.bukkit.BukkitCommandProvider;
 import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
-import cc.dreamcode.menu.bukkit.okaeri.MenuBuilderSerdes;
+import cc.dreamcode.menu.bukkit.okaeri.MenuBuilderSerializer;
 import cc.dreamcode.notice.minecraft.adventure.bukkit.AdventureBukkitNoticeProvider;
 import cc.dreamcode.notice.minecraft.serdes.AdventureBukkitNoticeSerializer;
 import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bukkit.DreamBukkitConfig;
 import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
 import cc.dreamcode.platform.bukkit.component.ConfigurationResolver;
-import cc.dreamcode.platform.bukkit.component.ListenerResolver;
-import cc.dreamcode.platform.bukkit.component.RunnableResolver;
 import cc.dreamcode.platform.bukkit.serializer.ItemMetaSerializer;
 import cc.dreamcode.platform.bukkit.serializer.ItemStackSerializer;
 import cc.dreamcode.platform.component.ComponentManager;
@@ -55,10 +53,7 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
         this.registerInjectable(AdventureBukkitNoticeProvider.create(this));
 
         this.registerInjectable(VersionProvider.getVersionAccessor());
-
         componentManager.registerExtension(DreamCommandExtension.class);
-        componentManager.registerResolver(ListenerResolver.class);
-        componentManager.registerResolver(RunnableResolver.class);
 
         componentManager.registerResolver(ConfigurationResolver.class);
         componentManager.registerComponent(MessageConfig.class);
@@ -98,7 +93,7 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
     public @NonNull OkaeriSerdesPack getConfigSerdesPack() {
         return registry -> {
             registry.register(new AdventureBukkitNoticeSerializer());
-            registry.register(new MenuBuilderSerdes());
+            registry.register(new MenuBuilderSerializer());
         };
     }
 

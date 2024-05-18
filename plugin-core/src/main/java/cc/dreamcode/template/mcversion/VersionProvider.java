@@ -13,9 +13,11 @@ import cc.dreamcode.template.mcversion.v1_20_R3.V1_20_R3_VersionAccessor;
 import cc.dreamcode.template.mcversion.v1_8_R3.V1_8_R3_VersionAccessor;
 import com.cryptomorin.xseries.ReflectionUtils;
 
+import java.util.Objects;
+
 public class VersionProvider {
     public static VersionAccessor getVersionAccessor() {
-        switch (ReflectionUtils.NMS_VERSION) {
+        switch (Objects.requireNonNull(ReflectionUtils.NMS_VERSION)) {
             case "v1_8_R3": {
                 return new V1_8_R3_VersionAccessor();
             }
