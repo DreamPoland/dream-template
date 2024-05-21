@@ -23,7 +23,7 @@ import cc.dreamcode.template.command.handler.InvalidSenderHandlerImpl;
 import cc.dreamcode.template.command.handler.InvalidUsageHandlerImpl;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
-import cc.dreamcode.template.mcversion.VersionProvider;
+import cc.dreamcode.template.nms.api.VersionProvider;
 import cc.dreamcode.template.profile.ProfileRepository;
 import eu.okaeri.configs.serdes.OkaeriSerdesPack;
 import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;

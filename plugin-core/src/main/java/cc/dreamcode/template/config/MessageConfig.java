@@ -44,4 +44,9 @@ public class MessageConfig extends OkaeriConfig {
     @CustomKey("number-is-not-valid")
     public AdventureBukkitNotice numberIsNotValid = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cPodana liczba nie jest cyfra.");
 
+    @CustomKey("config-reloaded")
+    public AdventureBukkitNotice reloaded = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&aPrzeladowano! &7({time})");
+    @CustomKey("config-reload-error")
+    public AdventureBukkitNotice reloadError = new AdventureBukkitNotice(MinecraftNoticeType.CHAT, "&cZnaleziono problem w konfiguracji: &6{error}");
+
 }

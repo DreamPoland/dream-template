@@ -7,7 +7,7 @@ repositories {
 
 dependencies {
     // -- bukkit-versions --
-    project(":plugin-core:mcversion").dependencyProject.subprojects.forEach {
+    project(":plugin-core:nms").dependencyProject.subprojects.forEach {
         implementation(it)
     }
 
@@ -72,8 +72,6 @@ tasks.withType<ShadowJar> {
 
     archiveFileName.set("Dream-Template-${project.version}.jar")
 
-    minimize()
-
     relocate("com.cryptomorin", "cc.dreamcode.template.libs.com.cryptomorin")
     relocate("eu.okaeri", "cc.dreamcode.template.libs.eu.okaeri")
     relocate("net.kyori", "cc.dreamcode.template.libs.net.kyori")
@@ -90,4 +88,10 @@ tasks.withType<ShadowJar> {
     relocate("org.slf4j", "cc.dreamcode.template.libs.org.slf4j")
     relocate("org.json", "cc.dreamcode.template.libs.org.json")
     relocate("com.google.gson", "cc.dreamcode.template.libs.com.google.gson")
+
+    minimize {
+        parent!!.project(":plugin-core:nms").subprojects.forEach {
+            exclude(project(it.path))
+        }
+    }
 }

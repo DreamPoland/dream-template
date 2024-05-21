@@ -1,6 +1,7 @@
 plugins {
     `java-library`
     id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("io.papermc.paperweight.userdev") version "1.7.1" apply false
 }
 
 allprojects {
@@ -19,12 +20,27 @@ allprojects {
 }
 
 subprojects {
-    java {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+    if (name.startsWith("v") &&
+        (name.split("_").getOrNull(1)?.toInt() ?: 0) >= 17
+    ) {
+        apply(plugin = "io.papermc.paperweight.userdev")
 
-        withSourcesJar()
-        withJavadocJar()
+        java {
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
+
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
+    else {
+        java {
+            sourceCompatibility = JavaVersion.VERSION_1_8
+            targetCompatibility = JavaVersion.VERSION_1_8
+
+            withSourcesJar()
+            withJavadocJar()
+        }
     }
 
     tasks.withType<JavaCompile> {
