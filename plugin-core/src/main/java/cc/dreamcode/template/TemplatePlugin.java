@@ -21,6 +21,7 @@ import cc.dreamcode.template.command.handler.InvalidInputHandlerImpl;
 import cc.dreamcode.template.command.handler.InvalidPermissionHandlerImpl;
 import cc.dreamcode.template.command.handler.InvalidSenderHandlerImpl;
 import cc.dreamcode.template.command.handler.InvalidUsageHandlerImpl;
+import cc.dreamcode.template.command.result.NoticeResolver;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.nms.api.VersionProvider;
@@ -58,6 +59,7 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
         componentService.registerResolver(ConfigurationResolver.class);
         componentService.registerComponent(MessageConfig.class);
 
+        componentService.registerComponent(NoticeResolver.class);
         componentService.registerComponent(InvalidInputHandlerImpl.class);
         componentService.registerComponent(InvalidPermissionHandlerImpl.class);
         componentService.registerComponent(InvalidSenderHandlerImpl.class);

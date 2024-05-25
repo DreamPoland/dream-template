@@ -5,10 +5,10 @@ import cc.dreamcode.command.annotation.Async;
 import cc.dreamcode.command.annotation.Command;
 import cc.dreamcode.command.annotation.Executor;
 import cc.dreamcode.command.annotation.Permission;
+import cc.dreamcode.notice.minecraft.adventure.bukkit.AdventureBukkitNotice;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.utilities.Formatter;
-import cc.dreamcode.utilities.builder.MapBuilder;
 import eu.okaeri.configs.exception.OkaeriException;
 import eu.okaeri.injector.annotation.Inject;
 import lombok.RequiredArgsConstructor;
@@ -24,23 +24,21 @@ public class ExampleCommand implements CommandBase {
     @Async
     @Permission("dream-template.reload")
     @Executor(path = "reload", description = "Przeladowuje konfiguracje.")
-    void reload(CommandSender sender) {
+    AdventureBukkitNotice reload(CommandSender sender) {
         final long time = System.currentTimeMillis();
 
         try {
             this.messageConfig.load();
             this.pluginConfig.load();
 
-            this.messageConfig.reloaded.send(sender, new MapBuilder<String, Object>()
-                    .put("time", Formatter.format(System.currentTimeMillis() - time))
-                    .build());
+            return this.messageConfig.reloaded
+                    .with("time", Formatter.format(System.currentTimeMillis() - time));
         }
         catch (NullPointerException | OkaeriException e) {
             e.printStackTrace();
 
-            this.messageConfig.reloadError.send(sender, new MapBuilder<String, Object>()
-                    .put("error", e.getMessage())
-                    .build());
+            return this.messageConfig.reloadError
+                    .with("error", e.getMessage());
         }
     }
 }
