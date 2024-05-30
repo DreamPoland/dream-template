@@ -7,9 +7,7 @@ import eu.okaeri.configs.annotation.CustomKey;
 import eu.okaeri.configs.annotation.Header;
 import eu.okaeri.configs.annotation.Headers;
 
-@Configuration(
-        child = "message.yml"
-)
+@Configuration(child = "message.yml")
 @Headers({
         @Header("## Dream-Template (Message-Config) ##"),
         @Header("Dostepne type: (DO_NOT_SEND, CHAT, ACTION_BAR, SUBTITLE, TITLE, TITLE_SUBTITLE)")

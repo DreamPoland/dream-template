@@ -7,9 +7,7 @@ import eu.okaeri.configs.annotation.Comment;
 import eu.okaeri.configs.annotation.CustomKey;
 import eu.okaeri.configs.annotation.Header;
 
-@Configuration(
-        child = "config.yml"
-)
+@Configuration(child = "config.yml")
 @Header("## Dream-Template (Main-Config) ##")
 public class PluginConfig extends OkaeriConfig {
 
