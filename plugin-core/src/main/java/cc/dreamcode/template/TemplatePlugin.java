@@ -2,9 +2,9 @@ package cc.dreamcode.template;
 
 import cc.dreamcode.command.bukkit.BukkitCommandProvider;
 import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
-import cc.dreamcode.menu.bukkit.okaeri.MenuBuilderSerializer;
-import cc.dreamcode.notice.minecraft.adventure.bukkit.AdventureBukkitNoticeProvider;
-import cc.dreamcode.notice.minecraft.serdes.AdventureBukkitNoticeSerializer;
+import cc.dreamcode.menu.bukkit.serializer.MenuBuilderSerializer;
+import cc.dreamcode.notice.adventure.BukkitNoticeProvider;
+import cc.dreamcode.notice.adventure.serializer.BukkitNoticeSerializer;
 import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bukkit.DreamBukkitConfig;
 import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
@@ -21,7 +21,7 @@ import cc.dreamcode.template.command.handler.InvalidInputHandlerImpl;
 import cc.dreamcode.template.command.handler.InvalidPermissionHandlerImpl;
 import cc.dreamcode.template.command.handler.InvalidSenderHandlerImpl;
 import cc.dreamcode.template.command.handler.InvalidUsageHandlerImpl;
-import cc.dreamcode.template.command.result.NoticeResolver;
+import cc.dreamcode.template.command.result.BukkitNoticeResolver;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.template.nms.api.VersionProvider;
@@ -50,34 +50,35 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
 
         this.registerInjectable(BukkitTasker.newPool(this));
         this.registerInjectable(BukkitMenuProvider.create(this));
+        this.registerInjectable(BukkitNoticeProvider.create(this));
+
         this.registerInjectable(BukkitCommandProvider.create(this));
-        this.registerInjectable(AdventureBukkitNoticeProvider.create(this));
+        componentService.registerExtension(DreamCommandExtension.class);
 
         this.registerInjectable(VersionProvider.getVersionAccessor());
-        componentService.registerExtension(DreamCommandExtension.class);
 
         componentService.registerResolver(ConfigurationResolver.class);
         componentService.registerComponent(MessageConfig.class);
 
-        componentService.registerComponent(NoticeResolver.class);
+        componentService.registerComponent(BukkitNoticeResolver.class);
         componentService.registerComponent(InvalidInputHandlerImpl.class);
         componentService.registerComponent(InvalidPermissionHandlerImpl.class);
         componentService.registerComponent(InvalidSenderHandlerImpl.class);
         componentService.registerComponent(InvalidUsageHandlerImpl.class);
 
         componentService.registerComponent(PluginConfig.class, pluginConfig -> {
-            componentService.setDebug(pluginConfig.debug);
-
             // register persistence + repositories
             this.registerInjectable(pluginConfig.storageConfig);
 
             componentService.registerResolver(DocumentPersistenceResolver.class);
             componentService.registerComponent(DocumentPersistence.class);
-
             componentService.registerResolver(DocumentRepositoryResolver.class);
-            componentService.registerComponent(ProfileRepository.class);
+
+            // enable additional logs and debug messages
+            componentService.setDebug(pluginConfig.debug);
         });
 
+        componentService.registerComponent(ProfileRepository.class);
         componentService.registerComponent(ExampleCommand.class);
     }
 
@@ -94,7 +95,7 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
     @Override
     public @NonNull OkaeriSerdesPack getConfigSerdesPack() {
         return registry -> {
-            registry.register(new AdventureBukkitNoticeSerializer());
+            registry.register(new BukkitNoticeSerializer());
             registry.register(new MenuBuilderSerializer());
         };
     }

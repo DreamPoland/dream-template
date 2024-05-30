@@ -5,7 +5,7 @@ import cc.dreamcode.command.annotation.Async;
 import cc.dreamcode.command.annotation.Command;
 import cc.dreamcode.command.annotation.Executor;
 import cc.dreamcode.command.annotation.Permission;
-import cc.dreamcode.notice.minecraft.adventure.bukkit.AdventureBukkitNotice;
+import cc.dreamcode.notice.adventure.BukkitNotice;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.utilities.Formatter;
@@ -24,7 +24,7 @@ public class ExampleCommand implements CommandBase {
     @Async
     @Permission("dream-template.reload")
     @Executor(path = "reload", description = "Przeladowuje konfiguracje.")
-    AdventureBukkitNotice reload(CommandSender sender) {
+    BukkitNotice reload(CommandSender sender) {
         final long time = System.currentTimeMillis();
 
         try {

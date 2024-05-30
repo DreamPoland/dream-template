@@ -3,20 +3,20 @@ package cc.dreamcode.template.command.result;
 import cc.dreamcode.command.DreamSender;
 import cc.dreamcode.command.bukkit.BukkitSender;
 import cc.dreamcode.command.result.ResultResolver;
-import cc.dreamcode.notice.minecraft.adventure.bukkit.AdventureBukkitNotice;
+import cc.dreamcode.notice.adventure.BukkitNotice;
 import lombok.NonNull;
 
-public class NoticeResolver implements ResultResolver {
+public class BukkitNoticeResolver implements ResultResolver {
     @Override
     public boolean isAssignableFrom(@NonNull Class<?> type) {
-        return AdventureBukkitNotice.class.isAssignableFrom(type);
+        return BukkitNotice.class.isAssignableFrom(type);
     }
 
     @Override
     public void resolveResult(@NonNull DreamSender<?> sender, @NonNull Class<?> type, @NonNull Object object) {
         final BukkitSender bukkitSender = (BukkitSender) sender;
-        final AdventureBukkitNotice adventureBukkitNotice = (AdventureBukkitNotice) object;
+        final BukkitNotice BukkitNotice = (BukkitNotice) object;
 
-        adventureBukkitNotice.send(bukkitSender.getHandler());
+        BukkitNotice.send(bukkitSender.getHandler());
     }
 }
