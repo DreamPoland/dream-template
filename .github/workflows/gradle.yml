@@ -32,5 +32,5 @@ jobs:
     - name: Upload JAR file
       uses: actions/upload-artifact@v4.3.3
       with:
-        name: jar-file
+        name: Dream-Template
         path: plugin-core/build/libs/*.jar
