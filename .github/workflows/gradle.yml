@@ -33,4 +33,4 @@ jobs:
       uses: actions/upload-artifact@v4.3.3
       with:
         name: jar-file
-        path: build/libs/*.jar
+        path: plugin-core/build/libs/*.jar
