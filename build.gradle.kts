@@ -57,3 +57,7 @@ subprojects {
         testAnnotationProcessor("org.projectlombok:lombok:$lombok")
     }
 }
+
+tasks.register("pluginVersion") {
+    println(project.version)
+}
