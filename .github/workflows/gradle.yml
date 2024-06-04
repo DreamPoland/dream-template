@@ -53,7 +53,7 @@ jobs:
         echo "Current version: $CURRENT_VERSION"
         LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null || echo "no-tag-found")
         echo "Latest tag: $LATEST_TAG"
-        if [ "$LATEST_TAG" == "v$CURRENT_VERSION" ]; then
+        if [ "$LATEST_TAG" == "$CURRENT_VERSION" ]; then
           echo "Version has not changed. Exiting."
           echo "version_changed=false" >> $GITHUB_OUTPUT
         else
