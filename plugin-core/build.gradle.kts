@@ -26,11 +26,11 @@ dependencies {
     implementation("cc.dreamcode:utilities-bukkit:1.4.1")
 
     // -- dream-notice --
-    implementation("cc.dreamcode.notice:core:1.5.1")
-    implementation("cc.dreamcode.notice:minecraft:1.5.1")
-    implementation("cc.dreamcode.notice:minecraft-adventure:1.5.1")
-    implementation("cc.dreamcode.notice:bukkit-adventure:1.5.1")
-    implementation("cc.dreamcode.notice:bukkit-adventure-serializer:1.5.1")
+    implementation("cc.dreamcode.notice:core:1.5.2")
+    implementation("cc.dreamcode.notice:minecraft:1.5.2")
+    implementation("cc.dreamcode.notice:minecraft-adventure:1.5.2")
+    implementation("cc.dreamcode.notice:bukkit-adventure:1.5.2")
+    implementation("cc.dreamcode.notice:bukkit-adventure-serializer:1.5.2")
 
     // -- notice mini-messages --
     compileOnly("net.kyori:adventure-text-minimessage:4.16.0")
@@ -40,9 +40,9 @@ dependencies {
     implementation("cc.dreamcode.command:bukkit:2.1.0")
 
     // -- dream-menu --
-    implementation("cc.dreamcode.menu:core:1.3.2")
-    implementation("cc.dreamcode.menu:bukkit:1.3.2")
-    implementation("cc.dreamcode.menu:bukkit-serdes:1.3.2")
+    implementation("cc.dreamcode.menu:core:1.3.4")
+    implementation("cc.dreamcode.menu:bukkit-adventure:1.3.4")
+    implementation("cc.dreamcode.menu:bukkit-adventure-serializer:1.3.4")
 
     // -- configs--
     implementation("eu.okaeri:okaeri-configs-yaml-bukkit:5.0.1")

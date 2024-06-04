@@ -1,8 +1,8 @@
 package cc.dreamcode.template;
 
 import cc.dreamcode.command.bukkit.BukkitCommandProvider;
-import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
-import cc.dreamcode.menu.bukkit.serializer.MenuBuilderSerializer;
+import cc.dreamcode.menu.adventure.BukkitMenuProvider;
+import cc.dreamcode.menu.adventure.serializer.MenuBuilderSerializer;
 import cc.dreamcode.notice.adventure.BukkitNoticeProvider;
 import cc.dreamcode.notice.adventure.serializer.BukkitNoticeSerializer;
 import cc.dreamcode.platform.DreamVersion;
