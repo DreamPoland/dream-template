@@ -33,7 +33,7 @@ dependencies {
     implementation("cc.dreamcode.notice:bukkit-adventure-serializer:1.5.2")
 
     // -- notice mini-messages --
-    compileOnly("net.kyori:adventure-text-minimessage:4.16.0")
+    implementation("net.kyori:adventure-text-minimessage:4.16.0")
 
     // -- dream-command --
     implementation("cc.dreamcode.command:core:2.1.0")
