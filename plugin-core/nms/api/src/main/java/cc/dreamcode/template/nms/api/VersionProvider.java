@@ -9,6 +9,7 @@ import org.bukkit.UnsafeValues;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Locale;
+import java.util.Map;
 import java.util.TreeMap;
 
 @UtilityClass
@@ -35,15 +36,27 @@ public class VersionProvider {
     }
 
     private static String getNmsVersion() {
+
+        final String[] nmsVersionSplit = Bukkit.getServer().getClass().getPackage().getName().split("\\.");
+        if (nmsVersionSplit.length >= 4) {
+            final String nmsVersion = nmsVersionSplit[3];
+            if (nmsVersion.startsWith("v")) {
+                return nmsVersion;
+            }
+        }
+
         try {
             Method getDataVersion = UnsafeValues.class.getMethod("getDataVersion");
             int dataVersion = (int) getDataVersion.invoke(Bukkit.getServer().getUnsafe());
-            return NEWER_NMS_VERSION.floorEntry(dataVersion).getValue();
+            Map.Entry<Integer, String> entry = NEWER_NMS_VERSION.floorEntry(dataVersion);
+
+            if (entry == null) {
+                throw new RuntimeException("Cannot find server version");
+            }
+
+            return entry.getValue();
         }
-        catch (NoSuchMethodException ignored) {
-            return Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
-        }
-        catch (IllegalAccessException | InvocationTargetException e) {
+        catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException("Cannot find server version", e);
         }
     }
