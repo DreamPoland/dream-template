@@ -1,7 +1,12 @@
 plugins {
     `java-library`
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("idea")
+    id("io.github.goooler.shadow") version "8.1.7"
     id("io.papermc.paperweight.userdev") version "1.7.1" apply false
+}
+
+idea {
+    project.jdkName = "21"
 }
 
 allprojects {
@@ -9,7 +14,7 @@ allprojects {
     version = "1.0-InDEV"
 
     apply(plugin = "java-library")
-    apply(plugin = "com.github.johnrengelman.shadow")
+    apply(plugin = "io.github.goooler.shadow")
 
     repositories {
         /* Libraries */
@@ -20,27 +25,12 @@ allprojects {
 }
 
 subprojects {
-    if (name.startsWith("v") &&
-        (name.split("_").getOrNull(1)?.toInt() ?: 0) >= 17
-    ) {
-        apply(plugin = "io.papermc.paperweight.userdev")
+    java {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
 
-        java {
-            sourceCompatibility = JavaVersion.VERSION_17
-            targetCompatibility = JavaVersion.VERSION_17
-
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
-    else {
-        java {
-            sourceCompatibility = JavaVersion.VERSION_1_8
-            targetCompatibility = JavaVersion.VERSION_1_8
-
-            withSourcesJar()
-            withJavadocJar()
-        }
+        withSourcesJar()
+        withJavadocJar()
     }
 
     tasks.withType<JavaCompile> {
@@ -55,6 +45,37 @@ subprojects {
         annotationProcessor("org.projectlombok:lombok:$lombok")
         testCompileOnly("org.projectlombok:lombok:$lombok")
         testAnnotationProcessor("org.projectlombok:lombok:$lombok")
+    }
+}
+
+project(":plugin-core:nms").subprojects {
+
+    val minor = name.split("_").getOrNull(1)?.toInt() ?: 0
+    val patch = name.split("R").getOrNull(1)?.toInt() ?: 0
+
+    if (name == "api" || minor < 17) {
+        return@subprojects
+    }
+
+    apply(plugin = "io.papermc.paperweight.userdev")
+
+    if (minor >= 21 || minor == 20 && patch >= 4) {
+        java {
+            sourceCompatibility = JavaVersion.VERSION_21
+            targetCompatibility = JavaVersion.VERSION_21
+
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
+    else {
+        java {
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
+
+            withSourcesJar()
+            withJavadocJar()
+        }
     }
 }
 

@@ -1,17 +1,26 @@
 package cc.dreamcode.template.nms.api;
 
 import cc.dreamcode.utilities.ClassUtil;
+import cc.dreamcode.utilities.builder.MapBuilder;
 import lombok.experimental.UtilityClass;
+import org.bukkit.Bukkit;
+import org.bukkit.UnsafeValues;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Locale;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.TreeMap;
 
 @UtilityClass
 public class VersionProvider {
+
+    private final TreeMap<Integer, String> NEWER_NMS_VERSION = new TreeMap<>(MapBuilder.of(
+            3839, "v1_20_R4"
+    ));
+
     public static VersionAccessor getVersionAccessor() {
 
-        final String version = VersionProvider.getNmsVersion();
+        final String version = getNmsVersion();
         final String className = "cc.dreamcode.template.nms." + version + "." + version.toUpperCase(Locale.ROOT) + "_VersionAccessor";
 
         return (VersionAccessor) ClassUtil.getClass(className)
@@ -26,25 +35,16 @@ public class VersionProvider {
     }
 
     private static String getNmsVersion() {
-        final AtomicReference<String> ref = new AtomicReference<>();
-
-        for (Package pack : Package.getPackages()) {
-            if (pack.getName().startsWith("org.bukkit.craftbukkit.v")) {
-                final String name = pack.getName().split("\\.")[3];
-
-                try {
-                    Class.forName("org.bukkit.craftbukkit." + name + ".entity.CraftPlayer");
-                    ref.set(name);
-                }
-                catch (ClassNotFoundException ignored) {}
-            }
+        try {
+            Method getDataVersion = UnsafeValues.class.getMethod("getDataVersion");
+            int dataVersion = (int) getDataVersion.invoke(Bukkit.getServer().getUnsafe());
+            return NEWER_NMS_VERSION.floorEntry(dataVersion).getValue();
         }
-
-        final String version = ref.get();
-        if (version == null) {
-            throw new RuntimeException("Cannot find server version");
+        catch (NoSuchMethodException ignored) {
+            return Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
         }
-
-        return version;
+        catch (IllegalAccessException | InvocationTargetException e) {
+            throw new RuntimeException("Cannot find server version", e);
+        }
     }
 }
