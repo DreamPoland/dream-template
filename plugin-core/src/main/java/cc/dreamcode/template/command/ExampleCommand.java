@@ -8,7 +8,7 @@ import cc.dreamcode.command.annotation.Permission;
 import cc.dreamcode.notice.adventure.BukkitNotice;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
-import cc.dreamcode.utilities.Formatter;
+import cc.dreamcode.utilities.TimeUtil;
 import eu.okaeri.configs.exception.OkaeriException;
 import eu.okaeri.injector.annotation.Inject;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +32,7 @@ public class ExampleCommand implements CommandBase {
             this.pluginConfig.load();
 
             return this.messageConfig.reloaded
-                    .with("time", Formatter.format(System.currentTimeMillis() - time));
+                    .with("time", TimeUtil.format(System.currentTimeMillis() - time));
         }
         catch (NullPointerException | OkaeriException e) {
             e.printStackTrace();
