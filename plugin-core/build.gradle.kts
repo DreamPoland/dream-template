@@ -15,34 +15,34 @@ dependencies {
     compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
 
     // -- dream-platform --
-    implementation("cc.dreamcode.platform:core:1.12.7")
-    implementation("cc.dreamcode.platform:bukkit:1.12.7")
-    implementation("cc.dreamcode.platform:bukkit-config:1.12.7")
-    implementation("cc.dreamcode.platform:dream-command:1.12.7")
-    implementation("cc.dreamcode.platform:persistence:1.12.7")
+    implementation("cc.dreamcode.platform:core:1.12.8")
+    implementation("cc.dreamcode.platform:bukkit:1.12.8")
+    implementation("cc.dreamcode.platform:bukkit-config:1.12.8")
+    implementation("cc.dreamcode.platform:dream-command:1.12.8")
+    implementation("cc.dreamcode.platform:persistence:1.12.8")
 
     // -- dream-utilities --
-    implementation("cc.dreamcode:utilities:1.4.2")
-    implementation("cc.dreamcode:utilities-bukkit-adventure:1.4.2")
+    implementation("cc.dreamcode:utilities:1.4.5")
+    implementation("cc.dreamcode:utilities-bukkit-adventure:1.4.5")
 
     // -- dream-notice --
-    implementation("cc.dreamcode.notice:core:1.5.5")
-    implementation("cc.dreamcode.notice:minecraft:1.5.5")
-    implementation("cc.dreamcode.notice:minecraft-adventure:1.5.5")
-    implementation("cc.dreamcode.notice:bukkit-adventure:1.5.5")
-    implementation("cc.dreamcode.notice:bukkit-adventure-serializer:1.5.5")
+    implementation("cc.dreamcode.notice:core:1.5.6")
+    implementation("cc.dreamcode.notice:minecraft:1.5.6")
+    implementation("cc.dreamcode.notice:minecraft-adventure:1.5.6")
+    implementation("cc.dreamcode.notice:bukkit-adventure:1.5.6")
+    implementation("cc.dreamcode.notice:bukkit-adventure-serializer:1.5.6")
 
     // -- notice mini-messages --
     implementation("net.kyori:adventure-text-minimessage:4.17.0")
 
     // -- dream-command --
-    implementation("cc.dreamcode.command:core:2.1.1")
-    implementation("cc.dreamcode.command:bukkit:2.1.1")
+    implementation("cc.dreamcode.command:core:2.1.2")
+    implementation("cc.dreamcode.command:bukkit:2.1.2")
 
     // -- dream-menu --
-    implementation("cc.dreamcode.menu:core:1.3.5")
-    implementation("cc.dreamcode.menu:bukkit-adventure:1.3.5")
-    implementation("cc.dreamcode.menu:bukkit-adventure-serializer:1.3.5")
+    implementation("cc.dreamcode.menu:core:1.3.6")
+    implementation("cc.dreamcode.menu:bukkit-adventure:1.3.6")
+    implementation("cc.dreamcode.menu:bukkit-adventure-serializer:1.3.6")
 
     // -- configs--
     implementation("eu.okaeri:okaeri-configs-yaml-bukkit:5.0.2")
