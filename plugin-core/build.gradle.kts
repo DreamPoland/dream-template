@@ -26,11 +26,11 @@ dependencies {
     implementation("cc.dreamcode:utilities-bukkit-adventure:1.4.5")
 
     // -- dream-notice --
-    implementation("cc.dreamcode.notice:core:1.5.6")
-    implementation("cc.dreamcode.notice:minecraft:1.5.6")
-    implementation("cc.dreamcode.notice:minecraft-adventure:1.5.6")
-    implementation("cc.dreamcode.notice:bukkit-adventure:1.5.6")
-    implementation("cc.dreamcode.notice:bukkit-adventure-serializer:1.5.6")
+    implementation("cc.dreamcode.notice:core:1.5.7")
+    implementation("cc.dreamcode.notice:minecraft:1.5.7")
+    implementation("cc.dreamcode.notice:minecraft-adventure:1.5.7")
+    implementation("cc.dreamcode.notice:bukkit-adventure:1.5.7")
+    implementation("cc.dreamcode.notice:bukkit-adventure-serializer:1.5.7")
 
     // -- notice mini-messages --
     implementation("net.kyori:adventure-text-minimessage:4.17.0")
