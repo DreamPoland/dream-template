@@ -12,7 +12,6 @@ import cc.dreamcode.utilities.TimeUtil;
 import eu.okaeri.configs.exception.OkaeriException;
 import eu.okaeri.injector.annotation.Inject;
 import lombok.RequiredArgsConstructor;
-import org.bukkit.command.CommandSender;
 
 @Command(name = "example")
 @RequiredArgsConstructor(onConstructor_ = @Inject)
@@ -24,7 +23,7 @@ public class ExampleCommand implements CommandBase {
     @Async
     @Permission("dream-template.reload")
     @Executor(path = "reload", description = "Przeladowuje konfiguracje.")
-    BukkitNotice reload(CommandSender sender) {
+    BukkitNotice reload() {
         final long time = System.currentTimeMillis();
 
         try {

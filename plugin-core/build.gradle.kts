@@ -1,8 +1,7 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 repositories {
-    maven("https://repo.codemc.io/repository/nms")
-    maven("https://oss.sonatype.org/content/repositories/snapshots")
+    maven("https://repo.papermc.io/repository/maven-public/")
 }
 
 dependencies {
