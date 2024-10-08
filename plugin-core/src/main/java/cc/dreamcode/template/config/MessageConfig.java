@@ -1,6 +1,6 @@
 package cc.dreamcode.template.config;
 
-import cc.dreamcode.notice.adventure.BukkitNotice;
+import cc.dreamcode.notice.bukkit.BukkitNotice;
 import cc.dreamcode.platform.bukkit.component.configuration.Configuration;
 import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.CustomKey;

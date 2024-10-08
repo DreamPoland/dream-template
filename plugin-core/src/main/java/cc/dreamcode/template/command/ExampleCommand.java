@@ -5,7 +5,7 @@ import cc.dreamcode.command.annotation.Async;
 import cc.dreamcode.command.annotation.Command;
 import cc.dreamcode.command.annotation.Executor;
 import cc.dreamcode.command.annotation.Permission;
-import cc.dreamcode.notice.adventure.BukkitNotice;
+import cc.dreamcode.notice.bukkit.BukkitNotice;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
 import cc.dreamcode.utilities.TimeUtil;

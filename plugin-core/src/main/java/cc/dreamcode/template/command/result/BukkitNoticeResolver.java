@@ -3,7 +3,7 @@ package cc.dreamcode.template.command.result;
 import cc.dreamcode.command.DreamSender;
 import cc.dreamcode.command.bukkit.BukkitSender;
 import cc.dreamcode.command.result.ResultResolver;
-import cc.dreamcode.notice.adventure.BukkitNotice;
+import cc.dreamcode.notice.bukkit.BukkitNotice;
 import lombok.NonNull;
 
 public class BukkitNoticeResolver implements ResultResolver {

@@ -2,7 +2,7 @@ plugins {
     `java-library`
     id("idea")
     id("io.github.goooler.shadow") version "8.1.7"
-    id("io.papermc.paperweight.userdev") version "1.7.1" apply false
+    id("io.papermc.paperweight.userdev") version "1.7.3" apply false
 }
 
 idea {
