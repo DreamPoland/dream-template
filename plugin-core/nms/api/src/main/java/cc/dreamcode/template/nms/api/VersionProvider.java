@@ -4,10 +4,8 @@ import cc.dreamcode.utilities.ClassUtil;
 import cc.dreamcode.utilities.builder.MapBuilder;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Bukkit;
-import org.bukkit.UnsafeValues;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
@@ -15,8 +13,13 @@ import java.util.TreeMap;
 @UtilityClass
 public class VersionProvider {
 
-    private final TreeMap<Integer, String> NEWER_NMS_VERSION = new TreeMap<>(MapBuilder.of(
-            3839, "v1_20_R4"
+    private final TreeMap<String, String> NEWER_NMS_VERSION = new TreeMap<>(MapBuilder.of(
+            "1.20.6", "v1_20_R5",
+            "1.21", "v1_21_R1",
+            "1.21.1", "v1_21_R1",
+            "1.21.2", "v1_21_R2",
+            "1.21.3", "v1_21_R2",
+            "1.21.4", "v1_21_R3"
     ));
 
     public static VersionAccessor getVersionAccessor() {
@@ -45,19 +48,13 @@ public class VersionProvider {
             }
         }
 
-        try {
-            Method getDataVersion = UnsafeValues.class.getMethod("getDataVersion");
-            int dataVersion = (int) getDataVersion.invoke(Bukkit.getServer().getUnsafe());
-            Map.Entry<Integer, String> entry = NEWER_NMS_VERSION.floorEntry(dataVersion);
+        final String dataVersion = Bukkit.getBukkitVersion().split("-")[0];
+        Map.Entry<String, String> entry = NEWER_NMS_VERSION.floorEntry(dataVersion);
 
-            if (entry == null) {
-                throw new RuntimeException("Cannot find server version");
-            }
+        if (entry == null) {
+            throw new RuntimeException("Cannot find server version id:" + dataVersion + " (" + Bukkit.getVersion() + ")");
+        }
 
-            return entry.getValue();
-        }
-        catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException("Cannot find server version", e);
-        }
+        return entry.getValue();
     }
 }

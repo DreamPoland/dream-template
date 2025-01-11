@@ -1,11 +1,12 @@
 repositories {
-    maven("https://repo.codemc.io/repository/nms")
-    maven("https://repo.codemc.io/repository/maven-public")
+    maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://oss.sonatype.org/content/repositories/snapshots")
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT")
+    implementation(project(":plugin-core:nms:api"))
+
+    paperweight.paperDevBundle("1.21.4-R0.1-SNAPSHOT")
 
     // -- dream-utilities --
     implementation("cc.dreamcode:utilities:1.5.1")

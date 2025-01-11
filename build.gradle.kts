@@ -1,8 +1,8 @@
 plugins {
     `java-library`
     id("idea")
-    id("io.github.goooler.shadow") version "8.1.8"
-    id("io.papermc.paperweight.userdev") version "1.7.3" apply false
+    id("com.gradleup.shadow") version "9.0.0-beta4"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.12" apply false
 }
 
 idea {
@@ -14,7 +14,7 @@ allprojects {
     version = "1.0-InDEV"
 
     apply(plugin = "java-library")
-    apply(plugin = "io.github.goooler.shadow")
+    apply(plugin = "com.gradleup.shadow")
 
     repositories {
         /* Libraries */
