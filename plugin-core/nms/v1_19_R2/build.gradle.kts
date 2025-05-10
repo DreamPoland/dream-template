@@ -9,6 +9,6 @@ dependencies {
     paperweight.paperDevBundle("1.19.3-R0.1-SNAPSHOT")
 
     // -- dream-utilities --
-    implementation("cc.dreamcode:utilities:1.5.1")
-    implementation("cc.dreamcode:utilities-bukkit-adventure:1.5.1")
+    implementation("cc.dreamcode:utilities:1.5.2")
+    implementation("cc.dreamcode:utilities-bukkit-adventure:1.5.2")
 }

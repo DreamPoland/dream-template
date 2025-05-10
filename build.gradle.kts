@@ -1,8 +1,8 @@
 plugins {
     `java-library`
     id("idea")
-    id("com.gradleup.shadow") version "9.0.0-beta4"
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.12" apply false
+    id("com.gradleup.shadow") version "9.0.0-beta13"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.16" apply false
 }
 
 idea {
@@ -17,7 +17,6 @@ allprojects {
     apply(plugin = "com.gradleup.shadow")
 
     repositories {
-        /* Libraries */
         mavenCentral()
         maven("https://repo.dreamcode.cc/releases")
         maven("https://storehouse.okaeri.eu/repository/maven-public")
@@ -40,7 +39,7 @@ subprojects {
 
     dependencies {
         /* General */
-        val lombok = "1.18.34"
+        val lombok = "1.18.38"
         compileOnly("org.projectlombok:lombok:$lombok")
         annotationProcessor("org.projectlombok:lombok:$lombok")
         testCompileOnly("org.projectlombok:lombok:$lombok")
