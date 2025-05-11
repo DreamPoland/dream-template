@@ -16,35 +16,27 @@ dependencies {
     compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
 
     // -- dream-platform --
-    implementation("cc.dreamcode.platform:core:1.12.10")
-    implementation("cc.dreamcode.platform:bukkit:1.12.10")
-    implementation("cc.dreamcode.platform:bukkit-config:1.12.10")
-    implementation("cc.dreamcode.platform:dream-command:1.12.10")
-    implementation("cc.dreamcode.platform:persistence:1.12.10")
+    implementation("cc.dreamcode.platform:bukkit:1.13.2")
+    implementation("cc.dreamcode.platform:bukkit-config:1.13.2")
+    implementation("cc.dreamcode.platform:dream-command:1.13.2")
+    implementation("cc.dreamcode.platform:persistence:1.13.2")
 
-    // -- dream-utilities --
-    implementation("cc.dreamcode:utilities:1.5.2")
-    implementation("cc.dreamcode:utilities-bukkit-adventure:1.5.2")
+    // -- dream-utilties --
+    implementation("cc.dreamcode:utilities-adventure:1.5.5")
 
     // -- dream-notice --
-    implementation("cc.dreamcode.notice:core:1.6.8")
-    implementation("cc.dreamcode.notice:bukkit-adventure:1.6.8")
-    implementation("cc.dreamcode.notice:bukkit-adventure-serializer:1.6.8")
+    implementation("cc.dreamcode.notice:bukkit:1.7.0")
+    implementation("cc.dreamcode.notice:bukkit-serializer:1.7.0")
 
     // -- dream-command --
-    implementation("cc.dreamcode.command:core:2.1.5")
-    implementation("cc.dreamcode.command:bukkit:2.1.5")
+    implementation("cc.dreamcode.command:bukkit:2.2.1")
 
     // -- dream-menu --
-    implementation("cc.dreamcode.menu:core:1.3.10")
-    implementation("cc.dreamcode.menu:bukkit-adventure:1.3.10")
-    implementation("cc.dreamcode.menu:bukkit-adventure-serializer:1.3.10")
+    implementation("cc.dreamcode.menu:bukkit:1.4.0")
+    implementation("cc.dreamcode.menu:bukkit-serializer:1.4.0")
 
     // -- tasker (easy sync/async scheduler) --
     implementation("eu.okaeri:okaeri-tasker-bukkit:3.0.2-beta.5")
-
-    // -- Multi-Version Items helper --
-    implementation("com.github.cryptomorin:XSeries:13.2.0")
 }
 
 tasks.withType<ShadowJar> {

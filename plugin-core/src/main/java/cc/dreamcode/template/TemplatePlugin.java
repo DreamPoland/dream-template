@@ -1,9 +1,8 @@
 package cc.dreamcode.template;
 
 import cc.dreamcode.command.bukkit.BukkitCommandProvider;
-import cc.dreamcode.menu.adventure.BukkitMenuProvider;
-import cc.dreamcode.menu.adventure.serializer.MenuBuilderSerializer;
-import cc.dreamcode.notice.bukkit.BukkitNoticeProvider;
+import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
+import cc.dreamcode.menu.serializer.MenuBuilderSerializer;
 import cc.dreamcode.notice.serializer.BukkitNoticeSerializer;
 import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bukkit.DreamBukkitConfig;
@@ -24,8 +23,10 @@ import cc.dreamcode.template.command.handler.InvalidUsageHandlerImpl;
 import cc.dreamcode.template.command.result.BukkitNoticeResolver;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
-import cc.dreamcode.template.nms.api.VersionProvider;
 import cc.dreamcode.template.profile.ProfileRepository;
+import cc.dreamcode.utilities.adventure.AdventureProcessor;
+import cc.dreamcode.utilities.adventure.AdventureUtil;
+import cc.dreamcode.utilities.bukkit.StringColorUtil;
 import eu.okaeri.configs.serdes.OkaeriSerdesPack;
 import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
 import eu.okaeri.persistence.document.DocumentPersistence;
@@ -42,6 +43,9 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
     @Override
     public void load(@NonNull ComponentService componentService) {
         instance = this;
+
+        AdventureUtil.setRgbSupport(true);
+        StringColorUtil.setColorProcessor(new AdventureProcessor());
     }
 
     @Override
@@ -50,12 +54,11 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
 
         this.registerInjectable(BukkitTasker.newPool(this));
         this.registerInjectable(BukkitMenuProvider.create(this));
-        this.registerInjectable(BukkitNoticeProvider.create(this));
 
         this.registerInjectable(BukkitCommandProvider.create(this));
         componentService.registerExtension(DreamCommandExtension.class);
 
-        this.registerInjectable(VersionProvider.getVersionAccessor());
+        //this.registerInjectable(VersionProvider.getVersionAccessor());
 
         componentService.registerResolver(ConfigurationResolver.class);
         componentService.registerComponent(MessageConfig.class);

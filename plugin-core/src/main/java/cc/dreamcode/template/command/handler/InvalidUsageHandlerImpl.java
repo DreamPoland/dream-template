@@ -33,15 +33,15 @@ public class InvalidUsageHandlerImpl implements InvalidUsageHandler {
         final List<CommandPathMeta> commandPathMetas = commandMeta.getFilteredCommandPaths(dreamSender);
         if (commandPathMetas.isEmpty()) {
             this.messageConfig.pathNotFound.send(bukkitSender.getHandler(), new MapBuilder<String, Object>()
-                    .put("label", "/" + commandMeta.getCommandContext().getName())
-                    .put("description", commandMeta.getCommandContext().getDescription())
+                    .put("label", "/" + commandMeta.getCommandEntry().getName())
+                    .put("description", commandMeta.getCommandEntry().getDescription())
                     .build());
             return;
         }
 
         this.messageConfig.usage.send(bukkitSender.getHandler(), new MapBuilder<String, Object>()
-                .put("label", "/" + commandMeta.getCommandContext().getName())
-                .put("description", commandMeta.getCommandContext().getDescription())
+                .put("label", "/" + commandMeta.getCommandEntry().getName())
+                .put("description", commandMeta.getCommandEntry().getDescription())
                 .build());
 
         for (CommandPathMeta commandPathMeta : commandPathMetas) {
