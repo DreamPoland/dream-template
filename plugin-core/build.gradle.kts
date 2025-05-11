@@ -1,4 +1,5 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import com.github.jengelman.gradle.plugins.shadow.transformers.PropertiesFileTransformer
 
 repositories {
     maven("https://repo.codemc.io/repository/nms")
@@ -42,6 +43,7 @@ dependencies {
 tasks.withType<ShadowJar> {
 
     archiveFileName.set("Dream-Template-${project.version}.jar")
+    mergeServiceFiles()
 
     relocate("com.cryptomorin", "cc.dreamcode.template.libs.com.cryptomorin")
     relocate("eu.okaeri", "cc.dreamcode.template.libs.eu.okaeri")
@@ -64,5 +66,10 @@ tasks.withType<ShadowJar> {
         parent!!.project(":plugin-core:nms").subprojects.forEach {
             exclude(project(it.path))
         }
+    }
+
+    transform(PropertiesFileTransformer::class.java) {
+        paths.set(listOf("META-INF/native-image/org.mongodb/bson/native-image.properties"))
+        mergeStrategy.set(PropertiesFileTransformer.MergeStrategy.Append)
     }
 }
