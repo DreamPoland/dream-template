@@ -23,6 +23,7 @@ import cc.dreamcode.template.command.handler.InvalidUsageHandlerImpl;
 import cc.dreamcode.template.command.result.BukkitNoticeResolver;
 import cc.dreamcode.template.config.MessageConfig;
 import cc.dreamcode.template.config.PluginConfig;
+import cc.dreamcode.template.nms.api.VersionProvider;
 import cc.dreamcode.template.profile.ProfileRepository;
 import cc.dreamcode.utilities.adventure.AdventureProcessor;
 import cc.dreamcode.utilities.adventure.AdventureUtil;
@@ -58,7 +59,7 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
         this.registerInjectable(BukkitCommandProvider.create(this));
         componentService.registerExtension(DreamCommandExtension.class);
 
-        //this.registerInjectable(VersionProvider.getVersionAccessor());
+        this.registerInjectable(VersionProvider.getVersionAccessor());
 
         componentService.registerResolver(ConfigurationResolver.class);
         componentService.registerComponent(MessageConfig.class);
