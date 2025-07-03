@@ -33,8 +33,8 @@ dependencies {
     implementation("cc.dreamcode.command:bukkit:2.2.2")
 
     // -- dream-menu --
-    implementation("cc.dreamcode.menu:bukkit:1.4.2")
-    implementation("cc.dreamcode.menu:bukkit-serializer:1.4.2")
+    implementation("cc.dreamcode.menu:bukkit:1.4.3")
+    implementation("cc.dreamcode.menu:bukkit-serializer:1.4.3")
 
     // -- tasker (easy sync/async scheduler) --
     implementation("eu.okaeri:okaeri-tasker-bukkit:2.1.0-beta.3")
