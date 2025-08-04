@@ -13,14 +13,19 @@ import java.util.TreeMap;
 @UtilityClass
 public class VersionProvider {
 
-    private final TreeMap<String, String> NEWER_NMS_VERSION = new TreeMap<>(MapBuilder.of(
-            "1.20.6", "v1_20_R5",
-            "1.21", "v1_21_R1",
-            "1.21.1", "v1_21_R1",
-            "1.21.2", "v1_21_R2",
-            "1.21.3", "v1_21_R2",
-            "1.21.4", "v1_21_R3"
-    ));
+    private final TreeMap<String, String> NEWER_NMS_VERSION = new TreeMap<>(new MapBuilder<String, String>()
+            .put("1.20.6", "v1_20_R5")
+            .put("1.21", "v1_21_R1")
+            .put("1.21.1", "v1_21_R1")
+            .put("1.21.2", "v1_21_R2")
+            .put("1.21.3", "v1_21_R2")
+            .put("1.21.4", "v1_21_R3")
+            .put("1.21.5", "v1_21_R4")
+            .put("1.21.6", "v1_21_R5")
+            .put("1.21.7", "v1_21_R5")
+            .put("1.21.8", "v1_21_R5")
+            .build()
+    );
 
     public static VersionAccessor getVersionAccessor() {
 
