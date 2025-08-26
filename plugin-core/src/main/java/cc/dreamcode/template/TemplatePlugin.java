@@ -8,6 +8,7 @@ import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bukkit.DreamBukkitConfig;
 import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;
 import cc.dreamcode.platform.bukkit.component.ConfigurationResolver;
+import cc.dreamcode.platform.bukkit.serializer.InstantSerializer;
 import cc.dreamcode.platform.bukkit.serializer.ItemMetaSerializer;
 import cc.dreamcode.platform.bukkit.serializer.ItemStackSerializer;
 import cc.dreamcode.platform.component.ComponentService;
@@ -36,6 +37,8 @@ import lombok.Getter;
 import lombok.NonNull;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.time.Instant;
 
 public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBukkitConfig, DreamPersistence {
 
@@ -101,6 +104,10 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
         return registry -> {
             registry.register(new BukkitNoticeSerializer());
             registry.register(new MenuBuilderSerializer());
+
+            registry.registerExclusive(ItemStack.class, new ItemStackSerializer());
+            registry.registerExclusive(ItemMeta.class, new ItemMetaSerializer());
+            registry.registerExclusive(Instant.class, new InstantSerializer(false));
         };
     }
 
@@ -111,6 +118,7 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
 
             registry.registerExclusive(ItemStack.class, new ItemStackSerializer());
             registry.registerExclusive(ItemMeta.class, new ItemMetaSerializer());
+            registry.registerExclusive(Instant.class, new InstantSerializer(false));
         };
     }
 

@@ -17,25 +17,25 @@ dependencies {
     compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
 
     // -- dream-platform --
-    implementation("cc.dreamcode.platform:bukkit:1.13.6")
-    //implementation("cc.dreamcode.platform:bukkit-hook:1.13.6")
-    implementation("cc.dreamcode.platform:bukkit-config:1.13.6")
-    implementation("cc.dreamcode.platform:dream-command:1.13.6")
-    implementation("cc.dreamcode.platform:persistence:1.13.6")
+    implementation("cc.dreamcode.platform:bukkit:1.13.7")
+    //implementation("cc.dreamcode.platform:bukkit-hook:1.13.7")
+    implementation("cc.dreamcode.platform:bukkit-config:1.13.7")
+    implementation("cc.dreamcode.platform:dream-command:1.13.7")
+    implementation("cc.dreamcode.platform:persistence:1.13.7")
 
     // -- dream-utilties --
-    implementation("cc.dreamcode:utilities-adventure:1.5.7")
+    implementation("cc.dreamcode:utilities-adventure:1.5.8")
 
     // -- dream-notice --
-    implementation("cc.dreamcode.notice:bukkit:1.7.1")
-    implementation("cc.dreamcode.notice:bukkit-serializer:1.7.1")
+    implementation("cc.dreamcode.notice:bukkit:1.7.3")
+    implementation("cc.dreamcode.notice:bukkit-serializer:1.7.3")
 
     // -- dream-command --
-    implementation("cc.dreamcode.command:bukkit:2.2.2")
+    implementation("cc.dreamcode.command:bukkit:2.2.3")
 
     // -- dream-menu --
-    implementation("cc.dreamcode.menu:bukkit:1.4.3")
-    implementation("cc.dreamcode.menu:bukkit-serializer:1.4.3")
+    implementation("cc.dreamcode.menu:bukkit:1.4.4")
+    implementation("cc.dreamcode.menu:bukkit-serializer:1.4.4")
 
     // -- tasker (easy sync/async scheduler) --
     implementation("eu.okaeri:okaeri-tasker-bukkit:2.1.0-beta.3")
