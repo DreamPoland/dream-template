@@ -1,8 +1,8 @@
 plugins {
     `java-library`
     id("idea")
-    id("com.gradleup.shadow") version "9.2.2"
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.19" apply false
+    id("com.gradleup.shadow") version "9.4.2"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.21" apply false
 }
 
 idea {
@@ -25,8 +25,9 @@ allprojects {
 
 subprojects {
     java {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(8))
+        }
 
         withSourcesJar()
         withJavadocJar()
@@ -37,9 +38,14 @@ subprojects {
         options.compilerArgs.add("-parameters")
     }
 
+    tasks.withType<Javadoc> {
+        options.encoding = "UTF-8"
+        isFailOnError = false
+    }
+
     dependencies {
         /* General */
-        val lombok = "1.18.42"
+        val lombok = "1.18.46"
         compileOnly("org.projectlombok:lombok:$lombok")
         annotationProcessor("org.projectlombok:lombok:$lombok")
         testCompileOnly("org.projectlombok:lombok:$lombok")
@@ -58,10 +64,30 @@ project(":plugin-core:nms").subprojects {
 
     apply(plugin = "io.papermc.paperweight.userdev")
 
-    if (minor >= 21 || minor == 20 && patch >= 4) {
+    configure<io.papermc.paperweight.userdev.PaperweightUserExtension> {
+        javaLauncher.set(javaToolchains.launcherFor {
+            languageVersion.set(JavaLanguageVersion.of(if (minor >= 26) 25 else 21))
+        })
+    }
+
+    if (minor >= 26) {
         java {
-            sourceCompatibility = JavaVersion.VERSION_21
-            targetCompatibility = JavaVersion.VERSION_21
+            toolchain {
+                languageVersion.set(JavaLanguageVersion.of(25))
+            }
+
+            withSourcesJar()
+            withJavadocJar()
+        }
+        tasks.matching { it.name == "reobfJar" }.configureEach {
+            enabled = false
+        }
+    }
+    else if (minor >= 21 || minor == 20 && patch >= 4) {
+        java {
+            toolchain {
+                languageVersion.set(JavaLanguageVersion.of(21))
+            }
 
             withSourcesJar()
             withJavadocJar()
@@ -69,8 +95,9 @@ project(":plugin-core:nms").subprojects {
     }
     else {
         java {
-            sourceCompatibility = JavaVersion.VERSION_17
-            targetCompatibility = JavaVersion.VERSION_17
+            toolchain {
+                languageVersion.set(JavaLanguageVersion.of(17))
+            }
 
             withSourcesJar()
             withJavadocJar()
