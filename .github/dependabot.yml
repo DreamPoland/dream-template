@@ -1,15 +1,26 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+# .github/dependabot.yml
 
 version: 2
 updates:
-  - package-ecosystem: "gradle" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "gradle"
+    directory: "/"
     schedule:
       interval: "daily"
+    labels:
+      - "dependencies"
+      - "gradle"
     ignore:
-    - dependency-name: spigot
-      versions:
-      - "> 1.8.8-R0.1-SNAPSHOT"
+      - dependency-name: "org.spigotmc:spigot-api"
+        versions:
+          - "> 1.8.8-R0.1-SNAPSHOT"
+      - dependency-name: "net.kyori:adventure-*"
+        versions:
+          - ">= 5.0.0"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "dependencies"
+      - "github-actions"

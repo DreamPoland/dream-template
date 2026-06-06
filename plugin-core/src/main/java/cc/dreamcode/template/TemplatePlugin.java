@@ -27,7 +27,7 @@ import cc.dreamcode.template.profile.ProfileRepository;
 import cc.dreamcode.utilities.adventure.AdventureProcessor;
 import cc.dreamcode.utilities.adventure.AdventureUtil;
 import cc.dreamcode.utilities.bukkit.StringColorUtil;
-import eu.okaeri.configs.serdes.OkaeriSerdesPack;
+import eu.okaeri.configs.serdes.OkaeriSerdes;
 import eu.okaeri.configs.serdes.commons.serializer.InstantSerializer;
 import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
 import eu.okaeri.configs.yaml.bukkit.serdes.itemstack.ItemStackFailsafe;
@@ -101,7 +101,7 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
     }
 
     @Override
-    public @NonNull OkaeriSerdesPack getConfigSerdesPack() {
+    public @NonNull OkaeriSerdes getConfigSerdesPack() {
         return registry -> {
             registry.register(new BukkitNoticeSerializer());
             registry.register(new MenuBuilderSerializer());
@@ -113,7 +113,7 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
     }
 
     @Override
-    public @NonNull OkaeriSerdesPack getPersistenceSerdesPack() {
+    public @NonNull OkaeriSerdes getPersistenceSerdesPack() {
         return registry -> {
             registry.register(new SerdesBukkit());
 
