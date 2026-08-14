@@ -23,7 +23,7 @@ dependencies {
     implementation("cc.dreamcode.platform:persistence:1.14.1")
 
     // -- dream-utilties --
-    implementation("cc.dreamcode:utilities-adventure:1.6.1")
+    implementation("cc.dreamcode:utilities-adventure:2.0.2")
 
     // -- dream-notice --
     implementation("cc.dreamcode.notice:bukkit:1.8.3")
