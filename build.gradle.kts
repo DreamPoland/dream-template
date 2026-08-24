@@ -2,7 +2,7 @@ plugins {
     `java-library`
     id("idea")
     id("com.gradleup.shadow") version "9.4.2"
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.21" apply false
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.22" apply false
 }
 
 idea {
