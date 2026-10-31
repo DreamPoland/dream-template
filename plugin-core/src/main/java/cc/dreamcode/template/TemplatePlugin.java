@@ -3,7 +3,7 @@ package cc.dreamcode.template;
 import cc.dreamcode.command.bukkit.BukkitCommandProvider;
 import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
 import cc.dreamcode.menu.serializer.MenuBuilderSerializer;
-import cc.dreamcode.notice.serializer.BukkitNoticeSerializer;
+import cc.dreamcode.notice.bukkit.serializer.BukkitNoticeSerializer;
 import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bukkit.DreamBukkitConfig;
 import cc.dreamcode.platform.bukkit.DreamBukkitPlatform;

@@ -6,7 +6,7 @@ plugins {
 }
 
 idea {
-    project.jdkName = "25"
+    project.jdkName = "21"
 }
 
 allprojects {
@@ -26,7 +26,7 @@ allprojects {
 subprojects {
     java {
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(8))
+            languageVersion.set(JavaLanguageVersion.of(21))
         }
 
         withSourcesJar()
@@ -56,9 +56,8 @@ subprojects {
 project(":plugin-core:nms").subprojects {
 
     val minor = name.split("_").getOrNull(1)?.toInt() ?: 0
-    val patch = name.split("R").getOrNull(1)?.toInt() ?: 0
 
-    if (name == "api" || minor < 17) {
+    if (name == "api" || minor < 19) {
         return@subprojects
     }
 
@@ -83,20 +82,10 @@ project(":plugin-core:nms").subprojects {
             enabled = false
         }
     }
-    else if (minor >= 21 || minor == 20 && patch >= 4) {
-        java {
-            toolchain {
-                languageVersion.set(JavaLanguageVersion.of(21))
-            }
-
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
     else {
         java {
             toolchain {
-                languageVersion.set(JavaLanguageVersion.of(17))
+                languageVersion.set(JavaLanguageVersion.of(21))
             }
 
             withSourcesJar()
