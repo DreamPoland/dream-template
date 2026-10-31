@@ -3,6 +3,7 @@ package cc.dreamcode.template;
 import cc.dreamcode.command.bukkit.BukkitCommandProvider;
 import cc.dreamcode.menu.bukkit.BukkitMenuProvider;
 import cc.dreamcode.menu.serializer.MenuBuilderSerializer;
+import cc.dreamcode.notice.bukkit.BukkitNoticeProvider;
 import cc.dreamcode.notice.bukkit.serializer.BukkitNoticeSerializer;
 import cc.dreamcode.platform.DreamVersion;
 import cc.dreamcode.platform.bukkit.DreamBukkitConfig;
@@ -59,6 +60,7 @@ public final class TemplatePlugin extends DreamBukkitPlatform implements DreamBu
 
         this.registerInjectable(BukkitTasker.newPool(this));
         this.registerInjectable(BukkitMenuProvider.create(this));
+        this.registerInjectable(BukkitNoticeProvider.create(this));
 
         this.registerInjectable(BukkitCommandProvider.create(this));
         componentService.registerExtension(DreamCommandExtension.class);
