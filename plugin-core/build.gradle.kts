@@ -1,6 +1,7 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.github.jengelman.gradle.plugins.shadow.transformers.PropertiesFileTransformer
 import org.gradle.api.attributes.java.TargetJvmVersion
+import kotlin.jvm.java
 
 repositories {
     maven("https://repo.papermc.io/repository/maven-public/")
@@ -33,8 +34,8 @@ dependencies {
     implementation("cc.dreamcode:utilities-adventure:2.0.2")
 
     // -- dream-notice --
-    implementation("cc.dreamcode.notice:bukkit:2.0.4")
-    implementation("cc.dreamcode.notice:bukkit-serializer:2.0.4")
+    implementation("cc.dreamcode.notice:bukkit:2.0.6")
+    implementation("cc.dreamcode.notice:bukkit-serializer:2.0.6")
 
     // -- dream-command --
     implementation("cc.dreamcode.command:bukkit:2.4.0")
