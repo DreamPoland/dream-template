@@ -24,11 +24,11 @@ dependencies {
     compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
 
     // -- dream-platform --
-    implementation("cc.dreamcode.platform:bukkit:2.0.1")
-    //implementation("cc.dreamcode.platform:bukkit-hook:2.0.1")
-    implementation("cc.dreamcode.platform:bukkit-config:2.0.1")
-    implementation("cc.dreamcode.platform:dream-command:2.0.1")
-    implementation("cc.dreamcode.platform:persistence:2.0.1")
+    implementation("cc.dreamcode.platform:bukkit:2.0.2")
+    //implementation("cc.dreamcode.platform:bukkit-hook:2.0.2")
+    implementation("cc.dreamcode.platform:bukkit-config:2.0.2")
+    implementation("cc.dreamcode.platform:dream-command:2.0.2")
+    implementation("cc.dreamcode.platform:persistence:2.0.2")
 
     // -- dream-utilties --
     implementation("cc.dreamcode:utilities-adventure:2.0.2")
@@ -38,7 +38,7 @@ dependencies {
     implementation("cc.dreamcode.notice:bukkit-serializer:2.0.6")
 
     // -- dream-command --
-    implementation("cc.dreamcode.command:bukkit:2.4.0")
+    implementation("cc.dreamcode.command:bukkit:2.4.1")
 
     // -- dream-menu --
     implementation("cc.dreamcode.menu:bukkit:2.0.1")
