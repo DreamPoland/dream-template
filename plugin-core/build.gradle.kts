@@ -1,6 +1,5 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import com.github.jengelman.gradle.plugins.shadow.transformers.PropertiesFileTransformer
-import org.gradle.api.attributes.java.TargetJvmVersion
 import kotlin.jvm.java
 
 repositories {
@@ -34,8 +33,8 @@ dependencies {
     implementation("cc.dreamcode:utilities-adventure:2.0.2")
 
     // -- dream-notice --
-    implementation("cc.dreamcode.notice:bukkit:2.0.8")
-    implementation("cc.dreamcode.notice:bukkit-serializer:2.0.8")
+    implementation("cc.dreamcode.notice:bukkit:2.0.9")
+    implementation("cc.dreamcode.notice:bukkit-serializer:2.0.9")
 
     // -- dream-command --
     implementation("cc.dreamcode.command:bukkit:2.4.1")
